@@ -32,30 +32,41 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-U
       </figure>
       <div class="game-overview">
         <h1>{game.title}</h1>
-        <section class="game-info-card" aria-label={ja?'作品の基本情報':'Game information'}>
-        <div class="game-metadata">
-          <span class="game-format">{game.format==='browser'?(ja?'ブラウザゲーム':'Browser game'):(ja?'ダウンロードゲーム':'Download game')}</span>
-          <span class="game-genre">{game.genre[lang]}</span>
-          <span class="game-devices"><span class="game-device-label">{ja?'対応端末':'Devices'}</span>
-          {game.devices.includes('pc') && <span title={ja?'PC':'PC'} aria-label={ja?'PC':'PC'}><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></span>}
-          {game.devices.includes('tablet') && <span title={ja?'タブレット':'Tablet'} aria-label={ja?'タブレット':'Tablet'}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
-          {game.devices.includes('smartphone') && <span title={ja?'スマホ':'Phone'} aria-label={ja?'スマホ':'Phone'}><svg viewBox="0 0 24 24" width="16" height="18" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
-        </span>
-        </div>
-        <div class="game-dates">
-          {game.releasedAt && <span><span class="game-date-label">{ja?'リリース':'Released'}</span><time datetime={game.releasedAt}>{dateLabel(game.releasedAt)}</time></span>}
-          {game.updatedAt && <span><span class="game-date-label">{ja?'最終更新':'Last updated'}</span><time datetime={game.updatedAt}>{dateLabel(game.updatedAt)}</time></span>}
-        </div>
+        <section class="game-info-card" aria-label={ja?'作品情報':'Game information'}>
+          <div class="game-info-grid">
+            <div class="game-info-field">
+              <span class="game-info-label">{ja?'形式':'Format'}</span>
+              <strong>{game.format==='browser'?(ja?'ブラウザゲーム':'Browser game'):(ja?'ダウンロードゲーム':'Download game')}</strong>
+            </div>
+            <div class="game-info-field">
+              <span class="game-info-label">{ja?'ジャンル':'Genre'}</span>
+              <strong>{game.genre[lang]}</strong>
+            </div>
+            <div class="game-info-field game-info-devices">
+              <span class="game-info-label">{ja?'対応端末':'Devices'}</span>
+              <div class="game-devices">
+                {game.devices.includes('pc') && <span title="PC" aria-label="PC"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></span>}
+                {game.devices.includes('tablet') && <span title={ja?'タブレット':'Tablet'} aria-label={ja?'タブレット':'Tablet'}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
+                {game.devices.includes('smartphone') && <span title={ja?'スマホ':'Phone'} aria-label={ja?'スマホ':'Phone'}><svg viewBox="0 0 24 24" width="16" height="18" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
+              </div>
+            </div>
+            <div class="game-info-field">
+              <span class="game-info-label">{ja?'リリース日':'Released'}</span>
+              {game.releasedAt ? <time datetime={game.releasedAt}>{dateLabel(game.releasedAt)}</time> : <span class="game-date-unset">—</span>}
+            </div>
+            <div class="game-info-field">
+              <span class="game-info-label">{ja?'最終更新日':'Last updated'}</span>
+              {game.updatedAt ? <time datetime={game.updatedAt}>{dateLabel(game.updatedAt)}</time> : <span class="game-date-unset">—</span>}
+            </div>
+          </div>
+          <p class="game-info-summary">{game.summary[lang]}</p>
+          {(game.notices?.length ?? 0)>0 && <div class="game-info-notes">
+            <span class="game-info-label">{ja?'備考':'Notes'}</span>
+            <div class="game-info-notes-list">
+              {game.notices?.map(notice=><p><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M7 16h10"/></svg><span>{notice.text[lang]}</span></p>)}
+            </div>
+          </div>}
         </section>
-        <p class="game-description">{game.summary[lang]}</p>
-        {(game.notices?.length ?? 0)>0 && <div class="game-notices" aria-label={ja?'プレイ前のご案内':'Before you play'}>
-          {game.notices?.map(notice=><div class:list={['game-notice','game-notice-'+notice.kind]} role="note">
-            {notice.kind==='requirement'
-              ? <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 13h.01M10 13h.01M14 13h.01M18 13h.01M7 16h10"/></svg>
-              : <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>}
-            <div><strong>{ja?'備考':'Notes'}</strong><p>{notice.text[lang]}</p></div>
-          </div>)}
-        </div>}
         <div class="game-actions"><a class="game-play" href={game.playUrl} target="_blank" rel="noopener noreferrer"><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
         {game.repositoryUrl && <a class="game-repo-icon" href={game.repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label={ja?'GitHubでソースコードを見る':'View source code on GitHub'} title={ja?'GitHubでソースコードを見る':'View source on GitHub'}><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.6a3.2 3.2 0 0 0-.9-2.5c3-.3 6.1-1.4 6.1-6.6a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.7 1.4a12.8 12.8 0 0 0-6.7 0C5.8 1.7 4.6 2.1 4.6 2.1a4.8 4.8 0 0 0-.1 3.6A5.2 5.2 0 0 0 3 9.3c0 5.2 3.1 6.3 6.1 6.6a3.2 3.2 0 0 0-.9 2.5V22"/></svg></a>}</div>
       </div>

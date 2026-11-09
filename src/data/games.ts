@@ -42,8 +42,7 @@ export const games: Game[] = [
       placeholder: true
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
-    repositoryUrl: 'https://github.com/stellates/hackhackhack',
-    updatedAt: '2026-10-23' // Last repository push; replace with a verified game release update date when available
+    repositoryUrl: 'https://github.com/stellates/hackhackhack'
   }
 ];
 
