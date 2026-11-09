@@ -65,10 +65,10 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-U
             </div>
           </div>
           <p class="game-info-summary">{game.summary[lang]}</p>
-          {game.updateNotes && <div class="game-info-update">
+          <div class="game-info-update">
             <span class="game-info-label">{ja?'主なアップデート':'What’s new'}</span>
-            <p>{game.updateNotes[lang]}</p>
-          </div>}
+            <p>{game.updateNotes?.[lang] || '—'}</p>
+          </div>
           {(game.notices?.length ?? 0)>0 && <div class="game-info-notes">
             <span class="game-info-label">{ja?'備考':'Notes'}</span>
             <div class="game-info-notes-list">
