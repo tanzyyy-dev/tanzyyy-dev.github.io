@@ -73,15 +73,15 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-U
           <p class="game-info-summary">{game.summary[lang]}</p>
           <div class="game-info-update">
             <span class="game-info-label">{ja?'主なアップデート':'What’s new'}</span>
-            <div class="game-info-update-lines">
-              {updateSlots.map(line => <p>{line}</p>)}
-            </div>
+            <ul class="game-info-update-lines">
+              {updateSlots.map(line => <li>{line}</li>)}
+            </ul>
           </div>
           {(game.notices?.length ?? 0)>0 && <div class="game-info-notes">
             <span class="game-info-label">{ja?'備考':'Notes'}</span>
-            <div class="game-info-notes-list">
-              {game.notices?.map(notice=><p><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M7 16h10"/></svg><span>{notice.text[lang]}</span></p>)}
-            </div>
+            <ul class="game-info-notes-list">
+              {game.notices?.map(notice => <li>{notice.text[lang]}</li>)}
+            </ul>
           </div>}
         </section>
         <div class="game-actions"><a class="game-play" href={game.playUrl} target="_blank" rel="noopener noreferrer"><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
