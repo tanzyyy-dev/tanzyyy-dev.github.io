@@ -43,7 +43,12 @@ export const games: Game[] = [
       alt: { ja: 'THE HOLLYWOOD HACKER のゲームプレイ映像', en: 'THE HOLLYWOOD HACKER gameplay animation' }
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
-    repositoryUrl: 'https://github.com/stellates/hackhackhack'
+    repositoryUrl: 'https://github.com/stellates/hackhackhack',
+    updateNotes: [
+      { ja: '—', en: '—' },
+      { ja: '—', en: '—' },
+      { ja: '—', en: '—' }
+    ]
   }
 ];
 
