@@ -29,5 +29,5 @@ const prefix=lang==='ja'?'':'/en';
 <a class="skip" href="#main">{lang==='ja'?'本文へ移動':'Skip to content'}</a>
 <header><div class="wrap header-inner"><a class="brand" href={home}>tanzyyy-dev</a><nav aria-label={lang==='ja'?'メインナビゲーション':'Main navigation'}><a href={prefix+'/projects/'}>{t.projects}</a><a href={prefix+'/about/'}>{t.about}</a><a href={alternate} lang={lang==='ja'?'en':'ja'}>{lang==='ja'?'EN':'日本語'}</a></nav></div></header>
 <main id="main"><slot/></main>
-<footer><div class="wrap foot"><span>© {new Date().getFullYear()} tanzyyy-dev</span><a href="https://github.com/tanzyyy-dev">GitHub ↗</a></div></footer>
+<footer><div class="wrap foot"><span>© {new Date().getFullYear()} tanzyyy-dev</span><a href="https://github.com/tanzyyy-dev">GitHub</a></div></footer>
 </body></html>

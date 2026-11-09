@@ -3,8 +3,8 @@ import {copy,project,type Lang} from '../data/content';
 interface Props {lang:Lang}
 const {lang}=Astro.props;const t=copy[lang];const prefix=lang==='ja'?'':'/en';
 ---
-<div class="wrap page"><p><a href={prefix+'/projects/'}>← {t.back}</a></p><p class="eyebrow">GAME / BROWSER</p><h1>{project.title}</h1><p class="lead">{project.summary[lang]}</p>
+<div class="wrap page detail-page"><a class="back-link" href={prefix+'/projects/'}>← {t.back}</a><h1>{project.title}</h1><p class="lead">{project.summary[lang]}</p>
 <div class="detail-art art" role="img" aria-label="Temporary typographic artwork"><span>GAME / 001</span><strong>THE<br/>HOLLYWOOD<br/>HACKER</strong><small>RHYTHM × KEYBOARD × ACTION</small></div>
-<div class="actions">{project.demoUrl?<a class="button" href={project.demoUrl}>Play ↗</a>:<p class="notice">{lang==='ja'?'ゲームの公開URLは準備中です。':'The game URL is not available yet.'}</p>}<a class="button secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{t.source} ↗</a></div>
+<div class="actions">{project.demoUrl?<a class="button" href={project.demoUrl}>{lang==='ja'?'プレイする':'Play'}</a>:<p class="notice">{lang==='ja'?'ゲームの公開URLは準備中です。':'The game URL is not available yet.'}</p>}<a class="button secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{t.source}</a></div>
 <section class="section"><h2>{lang==='ja'?'この作品について':'About this project'}</h2><p>{project.description[lang]}</p></section>
 </div>
