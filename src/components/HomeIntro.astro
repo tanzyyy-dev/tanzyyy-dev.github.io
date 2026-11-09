@@ -3,33 +3,21 @@ import type {Lang} from '../data/content';
 interface Props { lang: Lang }
 const {lang}=Astro.props;
 const ja=lang==='ja';
-const projects=ja?'/projects/':'/en/projects/';
 ---
 <section class="home-intro" aria-labelledby="home-title">
-  <div class="home-copy">
-    <p class="home-kicker">{ja?'制作物のポータル':'A home for my work'}</p>
-    <h1 id="home-title">{ja?'つくったものを、ここに。':'A place for what I make.'}</h1>
-    <p class="home-description">{ja?'tanzyyy-devは、制作したゲームやWebサービスなどをまとめて紹介するサイトです。気になる作品を見つけたら、詳細や公開先をご覧いただけます。':'tanzyyy-dev brings together games, web services, and other things I have made. Explore a project to learn more and find its published work.'}</p>
-    <a class="home-action" href={projects}>{ja?'作品一覧を見る':'Explore projects'}<span aria-hidden="true">↗</span></a>
-  </div>
-  <div class="home-aside" aria-hidden="true">
-    <span class="home-aside-top">tanzyyy-dev / portfolio</span>
-    <div class="home-symbol"><span>t</span><span>·</span><span>d</span></div>
-    <span class="home-aside-bottom">Games / Web / Creative work</span>
+  <h1 id="home-title">{ja?'tanzyyy-devについて':'About tanzyyy-dev'}</h1>
+  <p>{ja?'ゲームやWebサービスなど、制作した作品をまとめているサイトです。作品の紹介や制作内容をご覧いただけます。':'A website collecting games, web services, and other projects I have made. Browse the projects and learn about the work behind them.'}</p>
+  <div class="home-links">
+    <a href={ja?'/projects/':'/en/projects/'}>{ja?'作品一覧':'Projects'} <span aria-hidden="true">→</span></a>
+    <a href={ja?'/about/':'/en/about/'}>{ja?'制作者について':'About the creator'} <span aria-hidden="true">→</span></a>
   </div>
 </section>
 <style>
-.home-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);min-height:420px;border-top:1px solid #a9bdc2;border-bottom:1px solid #a9bdc2}
-.home-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(40px,6vw,76px) clamp(24px,5vw,70px) clamp(40px,6vw,76px) 0}
-.home-kicker{margin:0 0 24px;font-size:13px;font-weight:700;color:#326475;letter-spacing:.04em}
-.home-copy h1{margin:0 0 24px;font-size:clamp(32px,4.1vw,54px);line-height:1.24;letter-spacing:-.055em;max-width:14ch}
-.home-description{margin:0;max-width:38ch;color:#405e67;font-size:clamp(16px,1.6vw,18px);line-height:1.9}
-.home-action{display:inline-flex;align-items:center;justify-content:space-between;gap:38px;margin-top:32px;padding:12px 0;border-bottom:2px solid #1c6074;color:#164e61;font-size:15px;font-weight:800;text-decoration:none}
-.home-action:hover{color:#0a3442;border-bottom-color:currentColor}
-.home-action span{font-size:20px;line-height:1}
-.home-aside{background:#dce9eb;color:#235465;display:flex;flex-direction:column;justify-content:space-between;padding:26px;min-width:0}
-.home-aside-top,.home-aside-bottom{font-size:12px;font-weight:700;letter-spacing:.03em}
-.home-symbol{display:flex;justify-content:center;align-items:center;gap:clamp(8px,1.6vw,22px);font-weight:800;font-size:clamp(72px,10vw,142px);line-height:1;letter-spacing:-.1em}
-.home-symbol span:nth-child(2){color:#6c949f;font-size:.55em}
-@media(max-width:760px){.home-intro{grid-template-columns:1fr;min-height:0}.home-copy{padding:38px 0 44px}.home-kicker{margin-bottom:18px}.home-copy h1{margin-bottom:20px}.home-aside{min-height:170px;padding:18px 22px}.home-symbol{font-size:70px}.home-aside-bottom{align-self:flex-end}}
+.home-intro{max-width:700px}
+.home-intro h1{margin:0 0 16px;font-size:clamp(27px,3vw,36px);font-weight:800;line-height:1.35;letter-spacing:-.045em}
+.home-intro p{margin:0;max-width:54ch;color:#405e67;font-size:16px;line-height:1.9}
+.home-links{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:24px}
+.home-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#1c6074;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:5px}
+.home-links a:hover{color:#123d4a}
+@media(max-width:760px){.home-intro h1{font-size:27px}.home-links{margin-top:20px}}
 </style>
