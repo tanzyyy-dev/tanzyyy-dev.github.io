@@ -15,7 +15,7 @@ const prefix=ja?'':'/en';
   <div class="game-sheet">
     <div class="game-sheet-heading">
       <div class="game-category">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="5" cy="8" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="20" cy="10" rx="1.8" ry="2.6"/><path d="M12 11c-3 0-3.7 2.6-6 4.6-2.5 2.1-1 5.4 2 5.4 2.1 0 2.7-1 4-1s2 .9 4 1c3 .1 4.5-3.3 2-5.4-2.3-2-3-4.6-6-4.6Z"/></svg>
+        <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><ellipse cx="5" cy="8" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="20" cy="10" rx="1.8" ry="2.6"/><path d="M12 11c-3 0-3.7 2.6-6 4.6-2.5 2.1-1 5.4 2 5.4 2.1 0 2.7-1 4-1s2 .9 4 1c3 .1 4.5-3.3 2-5.4-2.3-2-3-4.6-6-4.6Z"/></svg>
         <span><strong>G</strong>AMES</span>
       </div>
       <span class="game-version">v{project.version}</span>
@@ -52,44 +52,3 @@ const prefix=ja?'':'/en';
     </div>
   </div>
 </article>
-<style is:global>
-.game-detail{width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);padding:24px 0 52px;min-height:0;color:#292B2D}
-.game-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:18px;font-size:12px;color:#777A7B}
-.game-breadcrumb a{color:#55585A;text-decoration:none}
-.game-breadcrumb a:hover{text-decoration:underline}
-.game-breadcrumb [aria-current]{color:#292B2D;font-weight:700}
-.game-sheet{background:#fff;border:1px solid #D9DAD6;border-radius:14px;padding:clamp(18px,2.4vw,32px)}
-.game-sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
-.game-category{display:flex;align-items:center;gap:9px;font-family:"Baloo 2",sans-serif;font-size:18px;font-weight:800;letter-spacing:.015em;line-height:1}
-.game-category strong{font-size:1.5em}
-.game-category svg{width:21px;height:21px;fill:#B58A76;flex:none}
-.game-version{font-size:12px;color:#777A7B;font-weight:700}
-.game-featured{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,3vw,42px);align-items:center}
-.game-cover{margin:0;border-radius:9px;background:#292B2D;overflow:hidden}
-.game-cover img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:contain}
-.game-overview{min-width:0}
-.game-overview h1{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(30px,3.6vw,54px);line-height:1.05;letter-spacing:-.045em;margin:0 0 14px;overflow-wrap:anywhere}
-.game-tagline{font-size:clamp(17px,1.6vw,23px);font-weight:800;line-height:1.4;margin:0 0 10px}
-.game-description{font-size:14px;line-height:1.8;color:#55585A;margin:0 0 22px}
-.game-repo{display:flex;align-items:center;justify-content:space-between;gap:20px;width:fit-content;min-height:48px;padding:10px 16px;border:1px solid #D9DAD6;border-radius:9px;background:#F0EFEB;color:#292B2D;font-size:14px;font-weight:800;text-decoration:none}
-.game-repo:hover{border-color:#777A7B;background:#E5E5E1}
-.game-repo svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.game-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
-.game-fact{min-width:0;background:#F7F7F4;border:1px solid #E3E4E0;border-radius:9px;padding:18px 20px}
-.game-fact h2{font-size:17px;line-height:1.3;margin:0 0 10px;font-weight:800}
-.game-fact p{font-size:13px;line-height:1.75;color:#55585A;margin:0 0 13px}
-.game-key-row{display:flex;flex-wrap:wrap;gap:6px}
-.game-key-row span{background:#fff;border:1px solid #D9DAD6;border-radius:5px;padding:3px 9px;font-size:12px;font-weight:700}
-.game-difficulty-list{display:grid;gap:6px}
-.game-difficulty-item{display:grid;grid-template-columns:75px minmax(0,1fr) auto;align-items:center;gap:10px;font-size:12px}
-.game-difficulty-item strong{color:var(--level-color);font-family:"Baloo 2",sans-serif;font-size:15px}
-.game-difficulty-item span{color:#55585A;min-width:0}
-.game-difficulty-item small{color:#777A7B;font-size:12px;white-space:nowrap}
-.game-sheet-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #E3E4E0;margin-top:20px;padding-top:16px}
-.game-sheet-footer p{margin:0;font-size:12px;color:#777A7B;line-height:1.7}
-.game-sheet-footer p span{font-weight:800;color:#55585A;margin-right:8px}
-.game-sheet-footer a{font-size:13px;font-weight:700;text-decoration:none}
-.game-sheet-footer a:hover{text-decoration:underline}
-@media(max-width:850px){.game-featured{grid-template-columns:minmax(0,1fr);gap:20px}.game-overview h1{font-size:clamp(32px,6vw,50px)}}
-@media(max-width:760px){.game-detail{margin-inline:20px;padding-top:20px;padding-bottom:40px}.game-sheet{padding:17px}.game-sheet-heading{margin-bottom:14px}.game-overview h1{font-size:clamp(32px,8.5vw,46px)}.game-facts{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:18px}.game-fact{padding:16px}.game-sheet-footer{align-items:start}.game-difficulty-item{grid-template-columns:67px minmax(0,1fr) auto;gap:6px}}
-</style>
