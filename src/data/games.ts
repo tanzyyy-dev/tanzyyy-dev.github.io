@@ -7,7 +7,7 @@ export type Game = {
   genre: Record<Lang, string>;
   format: 'browser' | 'download';
   devices: Array<'pc' | 'tablet' | 'smartphone'>;
-  requirements: Record<Lang, string[]>;
+  notices?: Array<{ kind: 'requirement' | 'storage' | 'info'; text: Record<Lang,string> }>;
   summary: Record<Lang, string>;
   media: Array<{ type: 'image' | 'video'; src: string; poster?: string; alt: Record<Lang, string>; placeholder?: boolean }>;
   playUrl: string;
@@ -22,10 +22,13 @@ export const games: Game[] = [
     genre: { ja: 'リズム・タイピング', en: 'Rhythm typing' },
     format: 'browser',
     devices: ['pc', 'tablet', 'smartphone'],
-    requirements: {
-      ja: ['物理キーボード必須（スマホ・タブレットでは外付けキーボードを使用）'],
-      en: ['Physical keyboard required (connect an external keyboard on phones and tablets)']
-    },
+    notices: [{
+      kind: 'requirement',
+      text: {
+        ja: '物理キーボード必須。スマホ・タブレットでは外付けキーボードを接続してください。',
+        en: 'Physical keyboard required. Connect an external keyboard on phones or tablets.'
+      }
+    }],
     summary: {
       ja: '映画のハッカー気分で、音楽に合わせてキーボードを叩くリズムゲーム。',
       en: 'A rhythm typing game that lets you mash keys to the beat like a movie hacker.'
