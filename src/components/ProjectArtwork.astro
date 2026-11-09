@@ -1,0 +1,24 @@
+---
+import { copy, project, type Lang } from '../data/content';
+
+interface Props {
+  lang: Lang;
+  variant: 'listing' | 'detail';
+  detailUrl?: string;
+}
+
+const { lang, variant, detailUrl } = Astro.props;
+const isListing = variant === 'listing';
+const Tag = isListing ? 'a' : 'div';
+const t = copy[lang];
+---
+<Tag
+  class:list={['art', { 'detail-art': !isListing }]}
+  href={isListing ? detailUrl : undefined}
+  role={isListing ? undefined : 'img'}
+  aria-label={isListing ? project.title + ' — ' + t.detail : t.artworkDescription}
+>
+  <span class={isListing ? 'art-label' : undefined}>GAME / 001</span>
+  <strong>THE<br />HOLLYWOOD<br />HACKER</strong>
+  <small>{isListing ? 'RHYTHM × KEYBOARD' : 'RHYTHM × KEYBOARD × ACTION'}</small>
+</Tag>

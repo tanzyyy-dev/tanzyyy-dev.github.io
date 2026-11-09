@@ -1,33 +1,46 @@
-# tanzyyy-dev portal
+# tanzyyy-dev project catalog
 
-Astro + TypeScript で作成した作品紹介ポータルの初期版です。
+Astro + TypeScript で制作した、日英対応の作品紹介サイトです。
 
-## ローカルで起動する
+- 日本語: https://tanzyyy-dev.github.io/
+- English: https://tanzyyy-dev.github.io/en/
 
-Node.js 22以上とnpmを用意してください。
+## ローカル開発
+
+Node.js 22 以上と npm が必要です。
 
 ```bash
 git clone https://github.com/tanzyyy-dev/tanzyyy-dev.github.io.git
 cd tanzyyy-dev.github.io
-npm install
+npm ci
 npm run dev
 ```
 
-表示されたURL（通常 http://localhost:4321/ ）をブラウザで開きます。
+開発サーバーの表示する URL（通常は http://localhost:4321/ ）を開きます。
 
-## ビルドと確認
+## ビルドとプレビュー
 
 ```bash
 npm run build
 npm run preview
 ```
 
-ビルド成果物は dist/ に生成されます。日本語は /、英語は /en/ で確認できます。初回 npm install で生成される package-lock.json は、動作確認後にコミットしてください。その後は npm ci を利用できます。
+静的ファイルは `dist/` に生成されます。GitHub Pages へのデプロイは `main` ブランチへの push 時に `.github/workflows/deploy.yml` で実行されます。
 
-## 未完了・注意事項
+## コンテンツとページ構成
 
-- 依存パッケージ取得ができず、こちらではローカルビルド・起動を検証できていません。
-- ゲーム画像は実際のスクリーンショットではなく仮のタイポグラフィです。
-- ゲームの独立GitHub Pagesは未公開のため、遊ぶリンクは無効です。
-- ソースリンクは移管前の https://github.com/stellates/hackhackhack を参照します。
-- Pagesへの公開は未確認です。公開する場合は Settings → Pages → Build and deployment → Source を GitHub Actions に設定してください。
+- 作品の説明文、リポジトリ URL、デモ URL: `src/data/content.ts`
+- 日英の表示文言: `src/data/content.ts`
+- サイト共通レイアウトと SEO メタデータ: `src/layouts/Base.astro`
+- 作品の一覧・詳細: `src/components/`
+- スタイル: `src/styles/global.css`
+
+`/` と `/en/` が各言語の作品一覧です。従来の `/projects/` と `/en/projects/` も維持し、それぞれのトップページを canonical URL として指定しています。
+
+## 作品リポジトリの移行予定
+
+公開作品を `tanzyyy-dev` に集約する予定です。関連する既存の管理元は `stellates`、`marks-dev`、`tanzyyy-dev` です。
+
+現在掲載している THE HOLLYWOOD HACKER のソースリンクは、移行完了まで既存の `stellates/hackhackhack` を参照します。**移行前に推測でリンクを変更しないでください。** デモ URL も公開が確認できるまで設定しません。
+
+作品画像は現状の仮タイポグラフィ表示のままです。実際の画像への差し替えは別途判断します。
