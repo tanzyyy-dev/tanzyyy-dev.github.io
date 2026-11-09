@@ -3,7 +3,6 @@ import type {Lang} from '../data/content';
 interface Props { lang: Lang }
 const {lang}=Astro.props;
 const ja=lang==='ja';
-const profile='https://x.com/tanzyto40';
 ---
 <section class="home-intro" aria-labelledby="home-title">
   <h1 id="home-title">{ja?'tanzyyy-devについて':'About tanzyyy-dev'}</h1>
@@ -12,26 +11,6 @@ const profile='https://x.com/tanzyto40';
     <a href={ja?'/projects/':'/en/projects/'}>{ja?'作品一覧':'Projects'} <span aria-hidden="true">→</span></a>
     <a href={ja?'/about/':'/en/about/'}>{ja?'制作者について':'About the creator'} <span aria-hidden="true">→</span></a>
   </div>
-  <section class="home-x" aria-labelledby="home-x-title">
-    <div class="home-x-heading">
-      <div>
-        <h2 id="home-x-title">Tanzyyy <a href={profile} target="_blank" rel="noopener noreferrer">@tanzyto40</a></h2>
-        <p>{ja?'Xでの投稿・活動':'Posts and updates on X'}</p>
-      </div>
-      <div class="home-x-actions">
-        <a class="home-x-profile-link" href={profile} target="_blank" rel="noopener noreferrer">{ja?'Xのプロフィールを見る':'View X profile'} ↗</a>
-        <a class="twitter-follow-button" href={profile} data-show-count="false" data-size="large">Follow @tanzyto40</a>
-      </div>
-    </div>
-    <div class="home-x-feed">
-      <a class="twitter-timeline" data-height="420" data-theme="light" data-chrome="noheader nofooter" href={profile}>{ja?'Xの公開ポストを見る':'View public posts on X'}</a>
-    </div>
-    <div class="home-x-utilities">
-      <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://tanzyyy-dev.github.io/" data-via="tanzyto40" data-size="large">Share</a>
-      <a class="twitter-mention-button" href="https://twitter.com/intent/tweet?screen_name=tanzyto40" data-screen-name="tanzyto40" data-size="large">Tweet to @tanzyto40</a>
-    </div>
-  </section>
-  <script is:inline async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 </section>
 <style>
 .home-intro{width:100%}
@@ -40,17 +19,5 @@ const profile='https://x.com/tanzyto40';
 .home-links{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:24px}
 .home-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#1c6074;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:5px}
 .home-links a:hover{color:#123d4a}
-.home-x{margin-top:40px;padding-top:24px;border-top:1px solid #ccdadd}
-.home-x-heading{display:flex;justify-content:space-between;align-items:center;gap:16px 28px;flex-wrap:wrap}
-.home-x-heading h2{margin:0;font-size:23px;line-height:1.35;letter-spacing:-.03em}
-.home-x-heading h2 a{font-size:14px;font-weight:500;letter-spacing:0;color:#405e67;text-underline-offset:4px}
-.home-x-heading p{margin-top:4px;font-size:14px}
-.home-x-actions{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap}
-.home-x-profile-link,.home-x-utilities a{font-size:14px;font-weight:700;color:#1c6074;text-underline-offset:4px}
-.home-x-feed{margin-top:20px;min-height:120px}
-.home-x-feed .twitter-timeline{display:inline-block;padding:12px 0;color:#1c6074}
-.home-x-utilities{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:16px}
-.home-x-utilities a{display:inline-flex;align-items:center;min-height:44px}
-.home-x a:focus-visible{outline:2px solid #1c6074;outline-offset:4px}
-@media(max-width:760px){.home-intro h1{font-size:27px}.home-links{margin-top:20px}.home-x{margin-top:32px}.home-x-heading{align-items:flex-start}}
+@media(max-width:760px){.home-intro h1{font-size:27px}.home-links{margin-top:20px}}
 </style>
