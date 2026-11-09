@@ -100,8 +100,8 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 .home-palette header { background: #292B2D; color: #F0EFEB; }
 .home-palette nav a.active { border-bottom-color: #B7B9B6; }
 .home-palette a:focus-visible { outline-color: #777A7B; }
-.home-palette footer { border-top-color: #B7B9B6; }
-.home-palette .foot { color: #777A7B; }
+.home-palette footer, .project-palette footer { border-top-color: #B7B9B6; }
+.home-palette .foot, .project-palette .foot { color: #777A7B; }
 
 /* Home: use the viewport width with responsive gutters, not a fixed content cap. */
 .home-palette .wrap {
@@ -189,7 +189,7 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 
 /* Schnauzer artwork: independent desktop and mobile compositions. */
 .foot { justify-content: center; text-align: center; }
-.home-palette footer {
+.home-palette footer, .project-palette footer {
   border-top: 0;
   background-color: #F8F5EF;
   background-image: url('/schnauzer-footer-small.webp');
@@ -197,7 +197,7 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   background-position: center bottom;
   background-size: 100% 100%;
 }
-.home-palette .foot {
+.home-palette .foot, .project-palette .foot {
   min-height: clamp(95px, 6.875vw, 130px);
   position: relative;
   justify-content: center;
@@ -206,52 +206,52 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   color: #55585A;
   font-weight: 600;
 }
-.home-palette .foot span {
+.home-palette .foot span, .project-palette .foot span {
   display: inline-block;
   background: transparent;
   padding: 8px 0;
 }
 @media (max-width: 760px) {
-  .home-palette footer {
+  .home-palette footer, .project-palette footer {
     background-image: url('/schnauzer-footer-mobile.webp');
-    /* Crop the empty upper edge without distorting the illustration. */
+    /* Preserve the mobile artwork proportions. */
     background-size: auto 115px;
     background-position: center bottom;
   }
-  .home-palette .foot { min-height: 115px; }
+  .home-palette .foot, .project-palette .foot { min-height: 115px; }
 }
 
 /* Match project details to the homepage's salt-and-pepper visual language. */
 body.project-palette{background:#F0EFEB;color:#292B2D}
 .project-palette header{background:#292B2D;color:#F0EFEB}
 .project-palette a:focus-visible{outline-color:#777A7B}
-.project-palette footer{border-top-color:#B7B9B6}
-.project-palette .foot{color:#777A7B}
+.project-palette footer{border-top:0}
+.project-palette .foot{color:#55585A}
 
 /* Project detail layout: loaded through the shared global stylesheet. */
 
-.game-detail{width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);padding:24px 0 52px;min-height:0;color:#292B2D}
-.game-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:18px;font-size:12px;color:#777A7B}
+.game-detail{width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);padding:20px 0 32px;min-height:0;color:#292B2D}
+.game-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:12px;font-size:12px;color:#777A7B}
 .game-breadcrumb a{color:#55585A;text-decoration:none}
 .game-breadcrumb a:hover{text-decoration:underline}
 .game-breadcrumb [aria-current]{color:#292B2D;font-weight:700}
-.game-sheet{background:#fff;border:1px solid #D9DAD6;border-radius:14px;padding:clamp(18px,2.4vw,32px)}
+.game-sheet{background:#fff;border:1px solid #D9DAD6;border-radius:14px;padding:clamp(16px,2vw,26px)}
 .game-sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
 .game-category{display:flex;align-items:center;gap:9px;font-family:"Baloo 2",sans-serif;font-size:18px;font-weight:800;letter-spacing:.015em;line-height:1}
 .game-category strong{font-size:1.5em}
 .game-category svg{width:21px;height:21px;fill:#B58A76;flex:none}
 .game-version{font-size:12px;color:#777A7B;font-weight:700}
-.game-featured{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,3vw,42px);align-items:center}
+.game-featured{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(18px,2.5vw,34px);align-items:center}
 .game-cover{margin:0;border-radius:9px;background:#292B2D;overflow:hidden}
 .game-cover img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:contain}
 .game-overview{min-width:0}
-.game-overview h1{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(30px,3.6vw,54px);line-height:1.05;letter-spacing:-.045em;margin:0 0 14px;overflow-wrap:anywhere}
+.game-overview h1{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(28px,3.2vw,46px);line-height:1.05;letter-spacing:-.045em;margin:0 0 14px;overflow-wrap:anywhere}
 .game-tagline{font-size:clamp(17px,1.6vw,23px);font-weight:800;line-height:1.4;margin:0 0 10px}
 .game-description{font-size:14px;line-height:1.8;color:#55585A;margin:0 0 22px}
 .game-repo{display:flex;align-items:center;justify-content:space-between;gap:20px;width:fit-content;min-height:48px;padding:10px 16px;border:1px solid #D9DAD6;border-radius:9px;background:#F0EFEB;color:#292B2D;font-size:14px;font-weight:800;text-decoration:none}
 .game-repo:hover{border-color:#777A7B;background:#E5E5E1}
 .game-repo svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.game-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.game-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
 .game-fact{min-width:0;background:#F7F7F4;border:1px solid #E3E4E0;border-radius:9px;padding:18px 20px}
 .game-fact h2{font-size:17px;line-height:1.3;margin:0 0 10px;font-weight:800}
 .game-fact p{font-size:13px;line-height:1.75;color:#55585A;margin:0 0 13px}
@@ -262,11 +262,19 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 .game-difficulty-item strong{color:var(--level-color);font-family:"Baloo 2",sans-serif;font-size:15px}
 .game-difficulty-item span{color:#55585A;min-width:0}
 .game-difficulty-item small{color:#777A7B;font-size:12px;white-space:nowrap}
-.game-sheet-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #E3E4E0;margin-top:20px;padding-top:16px}
+.game-sheet-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #E3E4E0;margin-top:14px;padding-top:12px}
 .game-sheet-footer p{margin:0;font-size:12px;color:#777A7B;line-height:1.7}
 .game-sheet-footer p span{font-weight:800;color:#55585A;margin-right:8px}
 .game-sheet-footer a{font-size:13px;font-weight:700;text-decoration:none}
 .game-sheet-footer a:hover{text-decoration:underline}
 @media(max-width:850px){.game-featured{grid-template-columns:minmax(0,1fr);gap:20px}.game-overview h1{font-size:clamp(32px,6vw,50px)}}
-@media(max-width:760px){.game-detail{margin-inline:20px;padding-top:20px;padding-bottom:40px}.game-sheet{padding:17px}.game-sheet-heading{margin-bottom:14px}.game-overview h1{font-size:clamp(32px,8.5vw,46px)}.game-facts{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:18px}.game-fact{padding:16px}.game-sheet-footer{align-items:start}.game-difficulty-item{grid-template-columns:67px minmax(0,1fr) auto;gap:6px}}
+@media(max-width:760px){.game-detail{margin-inline:20px;padding-top:16px;padding-bottom:30px}.game-sheet{padding:17px}.game-sheet-heading{margin-bottom:14px}.game-overview h1{font-size:clamp(32px,8.5vw,46px)}.game-facts{grid-template-columns:minmax(0,1fr);gap:10px;margin-top:18px}.game-fact{padding:16px}.game-sheet-footer{align-items:start}.game-difficulty-item{grid-template-columns:67px minmax(0,1fr) auto;gap:6px}}
 
+
+/* Project index uses the same page width and typography as the homepage. */
+.project-palette .wrap{width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px)}
+.project-palette .page-heading{margin-bottom:clamp(22px,3vw,38px)}
+.project-palette .page-heading h1{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(36px,4.5vw,62px);color:#292B2D}
+.project-palette .page-heading p{color:#777A7B;max-width:none}
+.project-palette .page{min-height:0}
+@media(max-width:760px){.project-palette .wrap{margin-inline:20px}.project-palette .page-heading{margin-bottom:22px}}
