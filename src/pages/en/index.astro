@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-import ProjectList from '../../components/ProjectList.astro';
+import HomeIntro from '../../components/HomeIntro.astro';
 ---
-<Base lang="en"><div class="wrap page"><div class="page-heading"><h1>About tanzyyy-dev</h1><p>tanzyyy-dev is a portal showcasing games, web services, and other projects I have created.</p></div><ProjectList lang="en"/></div></Base>
+<Base lang="en" title="Home" description="tanzyyy-dev is a portal for games, web services, and other creative work.">
+  <div class="wrap page"><HomeIntro lang="en"/></div>
+</Base>
