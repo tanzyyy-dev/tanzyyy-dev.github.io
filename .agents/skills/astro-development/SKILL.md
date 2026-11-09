@@ -25,8 +25,7 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 ## Verification
 
 - Run `npm run build` for code changes when dependencies are available. Report any failed or unrun checks rather than claiming verification.
-- If a UI change is made, inspect these viewports: `320×568`, `375×812`, `768×1024`, `1440×900` (CSS pixels).
-- Check affected routes, including `/`, `/en/`, `/projects/`, `/en/projects/`, and project detail routes where relevant.
-- At narrow widths, check overflow, clipped titles, navigation overlap, and access to actions. Check keyboard focus, touch controls, content fidelity, and language parity.
-- **Never claim visual verification without browser or screenshot inspection.** State which checks were not possible.
+- Do not run local browser previews or generate viewport screenshots as routine verification. Perform visual inspection only when explicitly requested.
+- For UI changes, review the affected routes, responsive CSS, keyboard focus, touch controls, and Japanese/English parity in the code.
+- **Never claim visual verification without actual browser or screenshot inspection.**
 - For documentation-only edits, check paths, references, and scope; a website build is not a substitute for document consistency checks.
