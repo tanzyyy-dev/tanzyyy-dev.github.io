@@ -214,7 +214,8 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 @media (max-width: 760px) {
   .home-palette footer {
     background-image: url('/schnauzer-footer-mobile.webp');
-    background-size: auto 115px;
+    /* Crop the empty upper edge without distorting the illustration. */
+    background-size: auto 135px;
     background-position: center bottom;
   }
   .home-palette .foot { min-height: 115px; }
