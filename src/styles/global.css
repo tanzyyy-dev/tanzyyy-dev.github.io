@@ -120,7 +120,6 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 
 /* Rounded wordmark: letters roll in from the left, settling right to left. */
 .brand {
-  display: inline-block;
   font-family: "Baloo 2", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
   font-weight: 800;
   font-size: 24px;
@@ -129,20 +128,29 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 .brand-letters { display: inline-flex; white-space: nowrap; }
 .brand-letter-emphasis { font-size: 1.22em; }
-.brand-letter-small { font-size: .88em; }
-.brand-dog-icons { display: inline-flex; align-items: flex-end; gap: 1px; flex: none; }
-.brand-schnauzer { width: 29px; height: 29px; display: block; }
-.brand-paw { width: 12px; height: 12px; margin-bottom: 1px; display: block; transform: rotate(-18deg); }
+.brand-paw-cluster {
+  display: inline-flex;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 75%;
+  animation: brand-roll-from-left .95s cubic-bezier(.18,.75,.25,1) both;
+  animation-delay: 1.98s;
+}
+.brand-paw-cluster svg { display: block; width: 28px; height: 28px; flex: none; }
 .brand-letter {
   display: inline-block;
   white-space: pre;
   transform-origin: 50% 75%;
   animation: brand-roll-from-left .95s cubic-bezier(.18,.75,.25,1) both;
   animation-delay: calc(var(--order) * .18s);
+  text-shadow: 1px 1px 0 #B7B9B6, 2px 2px 0 #777A7B, 3px 3px 0 #777A7B, 4px 4px 0 #777A7B;
 }
 @keyframes brand-roll-from-left {
   0% { opacity: 0; transform: translateX(-180px) rotate(-540deg) scale(.75); }
@@ -151,10 +159,8 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   100% { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-letter { animation: none; }
+  .brand-letter, .brand-paw-cluster { animation: none; }
 }
 @media (max-width: 760px) {
-  .brand { font-size: 24px; gap: 5px; }
-  .brand-schnauzer { width: 25px; height: 25px; }
-  .brand-paw { width: 10px; height: 10px; }
+  .brand { font-size: 24px; gap: 4px; }
 }
