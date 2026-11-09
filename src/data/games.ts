@@ -12,10 +12,10 @@ export type Game = {
   media: Array<{ type: 'image' | 'video'; src: string; poster?: string; alt: Record<Lang, string>; placeholder?: boolean }>;
   playUrl: string;
   repositoryUrl?: string;
-  releasedAt?: string; // Verified first public release date (YYYY-MM-DD)
-  updatedAt?: string; // Verified last game update date (YYYY-MM-DD)
-  version?: string; // Current public game version
-  updateNotes?: Array<Record<Lang, string>>; // Localized update entries, displayed up to three
+  releasedAt: string | null; // Verified first public release date (YYYY-MM-DD), null if unknown
+  updatedAt: string | null; // Verified last game update date (YYYY-MM-DD), null if unknown
+  version: string | null; // Current public game version, null if unknown
+  updateNotes: Array<Record<Lang, string>>; // Localized update entries, displayed up to three
 };
 
 export const games: Game[] = [
@@ -44,11 +44,10 @@ export const games: Game[] = [
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
     repositoryUrl: 'https://github.com/stellates/hackhackhack',
-    updateNotes: [
-      { ja: '—', en: '—' },
-      { ja: '—', en: '—' },
-      { ja: '—', en: '—' }
-    ]
+    releasedAt: null,
+    updatedAt: null,
+    version: null,
+    updateNotes: []
   }
 ];
 
