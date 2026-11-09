@@ -94,3 +94,11 @@ footer { border-top: 1px solid #ccdadd; }
   .art strong { font-size: 30px; }
   .primary-link { width: 100%; }
 }
+
+/* Salt-and-pepper palette, scoped to the Japanese and English homepages. */
+body.home-palette { background: #F0EFEB; color: #292B2D; }
+.home-palette header { background: #292B2D; color: #F0EFEB; }
+.home-palette nav a.active { border-bottom-color: #B7B9B6; }
+.home-palette a:focus-visible { outline-color: #777A7B; }
+.home-palette footer { border-top-color: #B7B9B6; }
+.home-palette .foot { color: #777A7B; }

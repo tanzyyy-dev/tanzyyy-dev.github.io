@@ -27,7 +27,7 @@ const isAbout=path===prefix+'/about/';
 <meta property="og:type" content="website"/><meta property="og:title" content={title??'tanzyyy-dev'}/>
 <meta property="og:description" content={description??t.intro}/><meta property="og:url" content={canonical}/>
 </head>
-<body>
+<body class:list={{"home-palette":path===home}}>
 <a class="skip" href="#main">{lang==='ja'?'本文へ移動':'Skip to content'}</a>
 <header><div class="wrap header-inner"><a class="brand" href={home} aria-current={path===home?'page':undefined}>tanzyyy-dev</a><nav aria-label={lang==='ja'?'メインナビゲーション':'Main navigation'}><a href={prefix+'/projects/'} class:list={{active:isProjects}} aria-current={isProjects?'page':undefined}>{t.projects}</a><a href={prefix+'/about/'} class:list={{active:isAbout}} aria-current={isAbout?'page':undefined}>{t.about}</a><a href={alternate} lang={lang==='ja'?'en':'ja'}>{lang==='ja'?'EN':'日本語'}</a></nav></div></header>
 <main id="main"><slot/></main>
