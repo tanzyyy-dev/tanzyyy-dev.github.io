@@ -299,3 +299,9 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 .game-requirement p{margin:0;color:#55585A;font-size:12px;line-height:1.6}
 .game-sheet-footer{justify-content:flex-end}
 .game-sheet-footer a{color:#55585A}
+
+/* Project navigation: keep the header and breadcrumb available while scrolling. */
+.project-palette header{position:sticky;top:0;z-index:30}
+.project-palette .game-breadcrumb{position:sticky;top:78px;z-index:20;background:#F0EFEB;padding:10px 0;margin-top:-10px;margin-bottom:12px;min-height:40px}
+/* No secondary back-to-list action: the breadcrumb is the single return path. */
+@media(max-width:760px){.project-palette .game-breadcrumb{top:64px}}
