@@ -44,9 +44,9 @@ export const games: Game[] = [
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
     repositoryUrl: 'https://github.com/stellates/hackhackhack',
-    releasedAt: null,
-    updatedAt: null,
-    version: null,
+    releasedAt: '2026-10-14',
+    updatedAt: '2026-10-23',
+    version: '2.1.0',
     updateNotes: []
   }
 ];
