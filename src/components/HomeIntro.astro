@@ -4,8 +4,6 @@ interface Props { lang: Lang }
 const {lang}=Astro.props;
 const ja=lang==='ja';
 const profile='https://x.com/tanzyto40';
-const shareUrl='https://twitter.com/intent/tweet?'+new URLSearchParams({url:'https://tanzyyy-dev.github.io/',via:'tanzyto40'}).toString();
-const mentionUrl='https://twitter.com/intent/tweet?'+new URLSearchParams({screen_name:'tanzyto40'}).toString();
 ---
 <section class="home-intro" aria-labelledby="home-title">
   <h1 id="home-title">{ja?'tanzyyy-devについて':'About tanzyyy-dev'}</h1>
@@ -21,7 +19,7 @@ const mentionUrl='https://twitter.com/intent/tweet?'+new URLSearchParams({screen
         <p>{ja?'Xでの投稿・活動':'Posts and updates on X'}</p>
       </div>
       <div class="home-x-actions">
-        <a class="home-x-profile-link" href={profile} target="_blank" rel="noopener noreferrer">{ja?'Xのプロフィール':'X profile'} ↗</a>
+        <a class="home-x-profile-link" href={profile} target="_blank" rel="noopener noreferrer">{ja?'Xのプロフィールを見る':'View X profile'} ↗</a>
         <a class="twitter-follow-button" href={profile} data-show-count="false" data-size="large">Follow @tanzyto40</a>
       </div>
     </div>
@@ -29,8 +27,8 @@ const mentionUrl='https://twitter.com/intent/tweet?'+new URLSearchParams({screen
       <a class="twitter-timeline" data-height="420" data-theme="light" data-chrome="noheader nofooter" href={profile}>{ja?'Xの公開ポストを見る':'View public posts on X'}</a>
     </div>
     <div class="home-x-utilities">
-      <a href={shareUrl} target="_blank" rel="noopener noreferrer">{ja?'このサイトをXで共有':'Share this site on X'} ↗</a>
-      <a href={mentionUrl} target="_blank" rel="noopener noreferrer">{ja?'@tanzyto40 にポスト':'Post to @tanzyto40'} ↗</a>
+      <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://tanzyyy-dev.github.io/" data-via="tanzyto40" data-size="large">Share</a>
+      <a class="twitter-mention-button" href="https://twitter.com/intent/tweet?screen_name=tanzyto40" data-screen-name="tanzyto40" data-size="large">Tweet to @tanzyto40</a>
     </div>
   </section>
   <script is:inline async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
