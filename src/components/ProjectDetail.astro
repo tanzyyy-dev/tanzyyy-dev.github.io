@@ -6,6 +6,7 @@ const {lang, game} = Astro.props;
 const ja = lang === 'ja';
 const prefix = ja ? '' : '/en';
 const media = game.media[0];
+const updateLines = (game.updateNotes?.[lang] ?? '').split(/\r?\n/).map(line => line.trim()).filter(Boolean).slice(0, 3);
 const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-US', {year:'numeric',month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'));
 ---
 <article class="wrap page game-detail">
@@ -67,7 +68,9 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-U
           <p class="game-info-summary">{game.summary[lang]}</p>
           <div class="game-info-update">
             <span class="game-info-label">{ja?'主なアップデート':'What’s new'}</span>
-            <p>{game.updateNotes?.[lang] || '—'}</p>
+            <div class="game-info-update-lines">
+              {Array.from({length:3}, (_, index) => <p>{updateLines[index] || '—'}</p>)}
+            </div>
           </div>
           {(game.notices?.length ?? 0)>0 && <div class="game-info-notes">
             <span class="game-info-label">{ja?'備考':'Notes'}</span>
