@@ -118,26 +118,32 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   .home-palette .page { padding-top: 48px; padding-bottom: 72px; }
 }
 
-/* Friendly wordmark: a rounded Latin face with resilient system fallbacks. */
+/* Rounded wordmark: letters roll in from the left, settling right to left. */
 .brand {
   display: inline-block;
-  font-family: "Nunito", "Arial Rounded MT Bold", "Hiragino Maru Gothic ProN", "Trebuchet MS", sans-serif;
-  font-weight: 900;
+  font-family: "Baloo 2", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-weight: 800;
   font-size: clamp(23px, 2vw, 29px);
-  letter-spacing: -.055em;
-  line-height: 1.25;
+  letter-spacing: -.05em;
+  line-height: 1.4;
   white-space: nowrap;
-  transform-origin: 48% 80%;
-  animation: brand-hello 850ms cubic-bezier(.2, .8, .25, 1) both;
 }
-@keyframes brand-hello {
-  0% { opacity: 0; transform: translateY(-9px) rotate(-3deg) scale(.94); }
-  58% { opacity: 1; transform: translateY(2px) rotate(1.5deg) scale(1.045); }
-  78% { transform: translateY(-1px) rotate(-.5deg) scale(.995); }
+.brand-letters { display: inline-flex; white-space: nowrap; }
+.brand-letter {
+  display: inline-block;
+  white-space: pre;
+  transform-origin: 50% 75%;
+  animation: brand-roll-from-left .95s cubic-bezier(.18,.75,.25,1) both;
+  animation-delay: calc(var(--order) * .18s);
+}
+@keyframes brand-roll-from-left {
+  0% { opacity: 0; transform: translateX(-180px) rotate(-540deg) scale(.75); }
+  65% { opacity: 1; transform: translateX(7px) rotate(15deg) scale(1.07); }
+  83% { transform: translateX(-3px) rotate(-7deg); }
   100% { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand { animation: none; }
+  .brand-letter { animation: none; }
 }
 @media (max-width: 760px) {
   .brand { font-size: 24px; }

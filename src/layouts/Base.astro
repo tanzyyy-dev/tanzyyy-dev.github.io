@@ -21,7 +21,7 @@ const isAbout=path===prefix+'/about/';
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet"/>
 <title>{title?title+' | tanzyyy-dev':'tanzyyy-dev | Projects'}</title>
 <meta name="description" content={description??t.intro}/>
 <link rel="canonical" href={canonical}/>
@@ -32,7 +32,7 @@ const isAbout=path===prefix+'/about/';
 </head>
 <body class:list={{"home-palette":path===home}}>
 <a class="skip" href="#main">{lang==='ja'?'本文へ移動':'Skip to content'}</a>
-<header><div class="wrap header-inner"><a class="brand" href={home} aria-current={path===home?'page':undefined}>tanzyyy-dev</a><nav aria-label={lang==='ja'?'メインナビゲーション':'Main navigation'}><a href={prefix+'/projects/'} class:list={{active:isProjects}} aria-current={isProjects?'page':undefined}>{t.projects}</a><a href={prefix+'/about/'} class:list={{active:isAbout}} aria-current={isAbout?'page':undefined}>{t.about}</a><a href={alternate} lang={lang==='ja'?'en':'ja'}>{lang==='ja'?'EN':'日本語'}</a></nav></div></header>
+<header><div class="wrap header-inner"><a class="brand" href={home} aria-current={path===home?'page':undefined} aria-label="tanzyyy-dev"><span class="brand-letters" aria-hidden="true">{[..."tanzyyy-dev"].map((letter, index) => <span class="brand-letter" style={`--order:${10 - index}`}>{letter}</span>)}</span></a><nav aria-label={lang==='ja'?'メインナビゲーション':'Main navigation'}><a href={prefix+'/projects/'} class:list={{active:isProjects}} aria-current={isProjects?'page':undefined}>{t.projects}</a><a href={prefix+'/about/'} class:list={{active:isAbout}} aria-current={isAbout?'page':undefined}>{t.about}</a><a href={alternate} lang={lang==='ja'?'en':'ja'}>{lang==='ja'?'EN':'日本語'}</a></nav></div></header>
 <main id="main"><slot/></main>
 <footer><div class="wrap foot"><span>© {new Date().getFullYear()} tanzyyy-dev</span><a href="https://github.com/tanzyyy-dev">GitHub</a></div></footer>
 </body></html>
