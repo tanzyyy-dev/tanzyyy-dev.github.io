@@ -15,7 +15,7 @@ export type Game = {
   releasedAt?: string; // Verified first public release date (YYYY-MM-DD)
   updatedAt?: string; // Verified last game update date (YYYY-MM-DD)
   version?: string; // Current public game version
-  updateNotes?: Record<Lang, string>; // Concise release highlights, optional
+  updateNotes?: Array<Record<Lang, string>>; // Localized update entries, displayed up to three
 };
 
 export const games: Game[] = [
