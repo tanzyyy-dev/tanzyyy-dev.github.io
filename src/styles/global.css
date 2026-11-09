@@ -123,12 +123,20 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   display: inline-block;
   font-family: "Baloo 2", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
   font-weight: 800;
-  font-size: clamp(23px, 2vw, 29px);
+  font-size: 24px;
   letter-spacing: -.05em;
   line-height: 1.4;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .brand-letters { display: inline-flex; white-space: nowrap; }
+.brand-letter-emphasis { font-size: 1.22em; }
+.brand-letter-small { font-size: .88em; }
+.brand-dog-icons { display: inline-flex; align-items: flex-end; gap: 1px; flex: none; }
+.brand-schnauzer { width: 29px; height: 29px; display: block; }
+.brand-paw { width: 12px; height: 12px; margin-bottom: 1px; display: block; transform: rotate(-18deg); }
 .brand-letter {
   display: inline-block;
   white-space: pre;
@@ -146,5 +154,7 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   .brand-letter { animation: none; }
 }
 @media (max-width: 760px) {
-  .brand { font-size: 24px; }
+  .brand { font-size: 24px; gap: 5px; }
+  .brand-schnauzer { width: 25px; height: 25px; }
+  .brand-paw { width: 10px; height: 10px; }
 }
