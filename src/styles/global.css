@@ -220,3 +220,10 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   }
   .home-palette .foot { min-height: 115px; }
 }
+
+/* Match project details to the homepage's salt-and-pepper visual language. */
+body.project-palette{background:#F0EFEB;color:#292B2D}
+.project-palette header{background:#292B2D;color:#F0EFEB}
+.project-palette a:focus-visible{outline-color:#777A7B}
+.project-palette footer{border-top-color:#B7B9B6}
+.project-palette .foot{color:#777A7B}
