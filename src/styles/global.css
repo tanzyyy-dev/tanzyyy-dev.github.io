@@ -285,3 +285,17 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 .game-play:hover{background:#55585A}
 .game-play svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:760px){.game-play,.game-repo{width:100%}}
+
+/* Shared game template: media may be replaced by a gameplay capture or video. */
+.game-cover video{display:block;width:100%;aspect-ratio:1200/630;object-fit:contain}
+.game-media-empty{aspect-ratio:1200/630;display:grid;place-items:center;background:#292B2D;color:#F0EFEB}
+.game-media-note{padding:5px 9px;background:#F7F7F4;color:#777A7B;font-size:11px;line-height:1.5}
+.game-metadata{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center;font-size:12px;font-weight:700;color:#55585A}
+.game-metadata>span{padding:4px 9px;border-radius:6px;background:#F0EFEB;border:1px solid #E3E4E0}
+.game-metadata .game-genre{color:#292B2D}
+.game-requirement{display:flex;gap:10px;align-items:flex-start;width:100%;border:1px solid #D9DAD6;background:#F7F7F4;border-radius:9px;padding:11px 13px;margin:0 0 16px}
+.game-requirement svg{flex:none;fill:none;stroke:#B58A76;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.game-requirement strong{display:block;font-size:13px;margin-bottom:2px}
+.game-requirement p{margin:0;color:#55585A;font-size:12px;line-height:1.6}
+.game-sheet-footer{justify-content:flex-end}
+.game-sheet-footer a{color:#55585A}

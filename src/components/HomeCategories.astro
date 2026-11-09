@@ -1,11 +1,13 @@
 ---
-import {project, type Lang} from '../data/content';
+import type {Lang} from '../data/content';
+import {games,gameUrl} from '../data/games';
+const featured = games[0];
 interface Props { lang: Lang }
 const {lang}=Astro.props;
 const ja=lang==='ja';
 const prefix=ja?'':'/en';
 const categories=[
- {id:'games',label:'GAMES',color:'#B58A76',glyph:'gamepad',latest:{title:project.title,description:ja?'映画のハッカー気分で、リズムに合わせてキーを叩く爽快ゲーム。':'A fast-paced rhythm game with a Hollywood hacker twist.',kind:ja?'作品':'Project',href:prefix+'/projects/hackhackhack/',image:project.imageUrl}},
+ {id:'games',label:'GAMES',color:'#B58A76',glyph:'gamepad',latest:featured?{title:featured.title,description:featured.summary[lang],kind:featured.genre[lang],href:gameUrl(featured,lang),image:featured.media[0]?.type==='image'?featured.media[0].src:null}:null},
  {id:'tools',label:'TOOLS',color:'#7C9C9B',glyph:'tool',latest:null},
  {id:'contents',label:'CONTENTS',color:'#A292BA',glyph:'book',latest:null},
  {id:'other',label:'OTHER',color:'#B2A16F',glyph:'shapes',latest:null}

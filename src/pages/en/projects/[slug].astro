@@ -1,0 +1,8 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ProjectDetail from '../../../components/ProjectDetail.astro';
+import {games} from '../../../data/games';
+export function getStaticPaths(){return games.map(game=>({params:{slug:game.slug},props:{game}}));}
+const {game}=Astro.props;
+---
+<Base lang="en" title={game.title} description={game.summary.en}><ProjectDetail lang="en" game={game}/></Base>
