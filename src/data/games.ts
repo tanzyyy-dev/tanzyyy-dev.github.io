@@ -35,7 +35,7 @@ export const games: Game[] = [
     }, {
       kind: 'requirement',
       text: {
-        ja: '物理キーボード必須。スマホ・タブレットでは外付けキーボードを接続してください。',
+        ja: '物理キーボード必須（スマホ・タブレットでは外付けキーボードを接続してください）',
         en: 'Physical keyboard required. Connect an external keyboard on phones or tablets.'
       }
     }],
@@ -54,7 +54,7 @@ export const games: Game[] = [
     updatedAt: '2026-10-23',
     version: '2.1.0',
     updateNotes: [
-      { ja: '全体的に見やすさを改善（叩くべき色とキーの対応（凡例）追加など）', en: 'Improved overall readability, including a legend matching colors to keys.' },
+      { ja: '全体的に見やすさを改善（叩くべき色とキーの対応を示す凡例の追加など）', en: 'Improved overall readability, including a legend matching colors to keys.' },
       { ja: 'Easy / Normal / Hardにオリジナル曲を採用', en: 'Added original music for Easy, Normal, and Hard.' },
       { ja: 'X投稿機能追加', en: 'Added sharing to X.' }
     ]
