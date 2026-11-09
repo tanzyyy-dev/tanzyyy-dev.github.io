@@ -12,6 +12,8 @@ export type Game = {
   media: Array<{ type: 'image' | 'video'; src: string; poster?: string; alt: Record<Lang, string>; placeholder?: boolean }>;
   playUrl: string;
   repositoryUrl?: string;
+  releasedAt?: string; // Verified first public release date (YYYY-MM-DD)
+  updatedAt?: string; // Verified last game update date (YYYY-MM-DD)
 };
 
 export const games: Game[] = [
@@ -40,7 +42,8 @@ export const games: Game[] = [
       placeholder: true
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
-    repositoryUrl: 'https://github.com/stellates/hackhackhack'
+    repositoryUrl: 'https://github.com/stellates/hackhackhack',
+    updatedAt: '2026-10-23' // Last repository push; replace with a verified game release update date when available
   }
 ];
 
