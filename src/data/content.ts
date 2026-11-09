@@ -14,7 +14,7 @@ export const project = {
  },
  imageUrl: 'https://raw.githubusercontent.com/stellates/hackhackhack/main/public/ogp.png',
  repositoryUrl: 'https://github.com/stellates/hackhackhack',
- demoUrl: null as string | null,
+ demoUrl: 'https://stellates.github.io/hackhackhack/',
  features: {
   ja: [
    {title:'リズムでハッキング',body:'ノーツのタイミングに合わせてキー入力。PERFECTからMISSまで、打鍵の精度を判定します。'},

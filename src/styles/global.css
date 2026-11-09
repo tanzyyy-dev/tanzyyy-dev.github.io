@@ -278,3 +278,10 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 .project-palette .page-heading p{color:#777A7B;max-width:none}
 .project-palette .page{min-height:0}
 @media(max-width:760px){.project-palette .wrap{margin-inline:20px}.project-palette .page-heading{margin-bottom:22px}}
+
+/* The playable game is the primary project action. */
+.game-overview{display:flex;flex-direction:column;align-items:flex-start}
+.game-play{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;padding:10px 16px;border-radius:9px;background:#292B2D;color:#F0EFEB;font-size:14px;font-weight:800;text-decoration:none;margin-bottom:10px}
+.game-play:hover{background:#55585A}
+.game-play svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){.game-play,.game-repo{width:100%}}
