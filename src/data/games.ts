@@ -34,8 +34,8 @@ export const games: Game[] = [
       }
     }],
     summary: {
-      ja: '映画のハッカー気分で、音楽に合わせてキーボードを叩くリズムゲーム。',
-      en: 'A rhythm typing game that lets you mash keys to the beat like a movie hacker.'
+      ja: '新感覚ハッキング×リズムゲーム、音楽に合わせてキーボードを叩いて気分は天才ハッカー。',
+      en: 'A fresh hacking-meets-rhythm game. Tap your keyboard to the music and feel like a genius hacker.'
     },
     media: [{
       type: 'image',
@@ -47,7 +47,11 @@ export const games: Game[] = [
     releasedAt: '2026-10-14',
     updatedAt: '2026-10-23',
     version: '2.1.0',
-    updateNotes: []
+    updateNotes: [
+      { ja: '全体的に見やすさを改善（叩くべき色とキーの対応（凡例）追加など）', en: 'Improved overall readability, including a legend matching colors to keys.' },
+      { ja: 'Easy / Normal / Hardにオリジナル曲を採用', en: 'Added original music for Easy, Normal, and Hard.' },
+      { ja: 'X投稿機能追加', en: 'Added sharing to X.' }
+    ]
   }
 ];
 
