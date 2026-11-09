@@ -5,7 +5,7 @@ description: Product and UI design requirements for the tanzyyy-dev project cata
 
 # Portal UI design specification
 
-This document defines **user-facing design requirements only**. Implementation workflow, validation procedures, and deployment rules belong in the root `AGENTS.md`.
+This skill defines **user-facing design requirements only**. Implementation, verification, and release procedures live in separate task-specific skills.
 
 ## 1. Product and content hierarchy
 
