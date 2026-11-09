@@ -390,3 +390,20 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
  .game-info-devices{grid-column:1/-1}
  .game-info-notes{grid-template-columns:34px minmax(0,1fr);gap:8px}
 }
+
+/* Source link belongs to the metadata card; primary play action uses full column width. */
+.game-overview .game-info-card{position:relative;padding-right:60px}
+.game-info-card .game-repo-icon{position:absolute;top:9px;right:9px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;color:#55585A}
+.game-info-card .game-repo-icon:hover{color:#292B2D;background:#ECEBE7}
+.game-info-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.game-info-update{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid #E7E7E3}
+.game-info-update .game-info-label{color:#8B6555}
+.game-info-update p{margin:0;font-size:12px;line-height:1.55;color:#55585A}
+.game-actions .game-play{width:100%;flex:1}
+@media(max-width:760px){
+ .game-overview .game-info-card{padding-right:46px}
+ .game-info-card .game-repo-icon{top:7px;right:6px;width:34px;height:34px}
+ .game-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .game-info-devices{grid-column:auto}
+ .game-info-update{grid-template-columns:1fr;gap:5px}
+}

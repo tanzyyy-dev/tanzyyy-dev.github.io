@@ -14,6 +14,8 @@ export type Game = {
   repositoryUrl?: string;
   releasedAt?: string; // Verified first public release date (YYYY-MM-DD)
   updatedAt?: string; // Verified last game update date (YYYY-MM-DD)
+  version?: string; // Current public game version
+  updateNotes?: Record<Lang, string>; // Concise release highlights, optional
 };
 
 export const games: Game[] = [
