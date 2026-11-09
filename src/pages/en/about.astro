@@ -1,13 +1,4 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { copy } from '../../data/content';
-
-const t = copy.en;
 ---
-<Base lang="en" title={t.about} description={t.aboutLead}>
-  <div class="wrap page">
-    <h1>{t.about}</h1>
-    <p class="lead">{t.aboutLead}</p>
-    <p>{t.aboutBody}</p>
-  </div>
-</Base>
+<Base lang="en" title="About"><div class="wrap page"><h1>About</h1><p class="lead">tanzyyy-dev is a home for games, web services, and other independent projects.</p><p>Each project page links to its website and source code when available.</p></div></Base>

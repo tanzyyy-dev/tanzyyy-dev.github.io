@@ -1,83 +1,33 @@
 ---
 import '../styles/global.css';
-import { copy, type Lang } from '../data/content';
-
-interface Props {
-  lang: Lang;
-  title?: string;
-  description?: string;
-  canonicalPath?: string;
-}
-
-const { lang, title, description, canonicalPath } = Astro.props;
-const t = copy[lang];
-const path = Astro.url.pathname;
-const site = Astro.site;
-
-if (!site) {
-  throw new Error('Set the site URL in astro.config.mjs to generate canonical URLs.');
-}
-
-const otherLocalePath = (route: string) =>
-  lang === 'ja'
-    ? '/en' + (route === '/' ? '/' : route)
-    : route.replace(/^\/en(?=\/)/, '') || '/';
-
-const absolute = (route: string) => new URL(route, site).href;
-const canonicalRoute = canonicalPath ?? path;
-const canonical = absolute(canonicalRoute);
-const alternateCanonical = absolute(otherLocalePath(canonicalRoute));
-const alternateRoute = otherLocalePath(path);
-const japaneseCanonical = lang === 'ja' ? canonical : alternateCanonical;
-const englishCanonical = lang === 'en' ? canonical : alternateCanonical;
-const home = lang === 'ja' ? '/' : '/en/';
-const prefix = lang === 'ja' ? '' : '/en';
-const pageTitle = title ? title + ' | tanzyyy-dev' : 'tanzyyy-dev | ' + t.projects;
-const pageDescription = description ?? t.intro;
+import {copy, type Lang} from '../data/content';
+interface Props {lang:Lang; title?:string; description?:string}
+const {lang,title,description}=Astro.props;
+const t=copy[lang];
+const path=Astro.url.pathname;
+const alternate=lang==='ja'?'/en'+(path==='/'?'/':path):(path.replace(/^\/en(?=\/)/,'')||'/');
+const origin='https://tanzyyy-dev.github.io';
+const canonical=new URL(path,origin).href;
+const otherUrl=new URL(alternate,origin).href;
+const home=lang==='ja'?'/':'/en/';
+const prefix=lang==='ja'?'':'/en';
 ---
 <!doctype html>
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="ja" href={japaneseCanonical} />
-    <link rel="alternate" hreflang="en" href={englishCanonical} />
-    <link rel="alternate" hreflang="x-default" href={japaneseCanonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="tanzyyy-dev" />
-    <meta property="og:locale" content={lang === 'ja' ? 'ja_JP' : 'en_US'} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonical} />
-  </head>
-  <body>
-    <a class="skip" href="#main">{lang === 'ja' ? '本文へ移動' : 'Skip to content'}</a>
-    <header>
-      <div class="wrap header-inner">
-        <a class="brand" href={home}>tanzyyy-dev</a>
-        <nav aria-label={lang === 'ja' ? 'メインナビゲーション' : 'Main navigation'}>
-          <a href={home}>{t.projects}</a>
-          <a href={prefix + '/about/'}>{t.about}</a>
-          <a
-            href={alternateRoute}
-            lang={lang === 'ja' ? 'en' : 'ja'}
-            aria-label={lang === 'ja' ? 'Switch to English' : '日本語に切り替える'}
-          >
-            {lang === 'ja' ? 'EN' : '日本語'}
-          </a>
-        </nav>
-      </div>
-    </header>
-    <main id="main"><slot /></main>
-    <footer>
-      <div class="wrap foot">
-        <span>© {new Date().getFullYear()} tanzyyy-dev</span>
-        <a href="https://github.com/tanzyyy-dev">GitHub ↗</a>
-      </div>
-    </footer>
-  </body>
-</html>
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<title>{title?title+' | tanzyyy-dev':'tanzyyy-dev | Projects'}</title>
+<meta name="description" content={description??t.intro}/>
+<link rel="canonical" href={canonical}/>
+<link rel="alternate" hreflang="ja" href={lang==='ja'?canonical:otherUrl}/>
+<link rel="alternate" hreflang="en" href={lang==='en'?canonical:otherUrl}/>
+<meta property="og:type" content="website"/><meta property="og:title" content={title??'tanzyyy-dev'}/>
+<meta property="og:description" content={description??t.intro}/><meta property="og:url" content={canonical}/>
+</head>
+<body>
+<a class="skip" href="#main">{lang==='ja'?'本文へ移動':'Skip to content'}</a>
+<header><div class="wrap header-inner"><a class="brand" href={home}>tanzyyy-dev</a><nav aria-label={lang==='ja'?'メインナビゲーション':'Main navigation'}><a href={prefix+'/projects/'}>{t.projects}</a><a href={prefix+'/about/'}>{t.about}</a><a href={alternate} lang={lang==='ja'?'en':'ja'}>{lang==='ja'?'EN':'日本語'}</a></nav></div></header>
+<main id="main"><slot/></main>
+<footer><div class="wrap foot"><span>© {new Date().getFullYear()} tanzyyy-dev</span><a href="https://github.com/tanzyyy-dev">GitHub ↗</a></div></footer>
+</body></html>

@@ -1,24 +1,22 @@
 ---
-import ProjectArtwork from './ProjectArtwork.astro';
-import { copy, project, type Lang } from '../data/content';
-
-interface Props { lang: Lang; }
-
-const { lang } = Astro.props;
-const t = copy[lang];
-const prefix = lang === 'ja' ? '' : '/en';
-const detail = prefix + '/projects/' + project.id + '/';
-const titleId = 'project-' + project.id + '-title';
+import {copy,project,type Lang} from '../data/content';
+interface Props {lang:Lang}
+const {lang}=Astro.props;
+const t=copy[lang];
+const prefix=lang==='ja'?'':'/en';
+const detail=prefix+'/projects/hackhackhack/';
 ---
-<section class="project-row" aria-labelledby={titleId}>
-  <ProjectArtwork lang={lang} variant="listing" detailUrl={detail} />
+<section class="project-row" aria-labelledby="featured-project-title">
+  <a class="art" href={detail} aria-label={project.title+' — '+t.detail}>
+    <span class="art-label">GAME / 001</span>
+    <strong>THE<br/>HOLLYWOOD<br/>HACKER</strong>
+    <small>RHYTHM × KEYBOARD</small>
+  </a>
   <div class="project-info">
-    <p class="project-meta">{t.game} / {t.browser}</p>
-    <h2 id={titleId}><a href={detail}>{project.title}</a></h2>
+    <p class="project-meta">{t.categories[1]} / Browser</p>
+    <h2 id="featured-project-title"><a href={detail}>{project.title}</a></h2>
     <p class="project-summary">{project.summary[lang]}</p>
     <a class="primary-link" href={detail}>{t.detail}<span aria-hidden="true"> →</span></a>
-    <a class="source-link" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
-      {t.source}<span aria-hidden="true"> ↗</span>
-    </a>
+    <a class="source-link" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{t.source}<span aria-hidden="true"> ↗</span></a>
   </div>
 </section>

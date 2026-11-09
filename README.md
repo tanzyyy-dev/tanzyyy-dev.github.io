@@ -35,7 +35,7 @@ npm run preview
 - 作品の一覧・詳細: `src/components/`
 - スタイル: `src/styles/global.css`
 
-`/` と `/en/` が各言語の作品一覧です。従来の `/projects/` と `/en/projects/` も維持し、それぞれのトップページを canonical URL として指定しています。
+`/` と `/en/` が各言語のトップページです。`/projects/` と `/en/projects/` にも作品一覧があります。
 
 ## 作品リポジトリの移行予定
 

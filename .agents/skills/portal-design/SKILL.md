@@ -109,8 +109,6 @@ For a UI change, check **at minimum**:
 ## 7. Where to edit
 
 - `src/layouts/Base.astro`: header, footer, metadata, locale navigation.
-- `src/components/ProjectOverview.astro`: shared catalog overview for both locales and route aliases.
-- `src/components/ProjectArtwork.astro`: shared temporary typographic artwork, not an actual screenshot.
 - `src/components/ProjectList.astro`: catalog entries and actions.
 - `src/components/ProjectDetail.astro`: detail page content and actions.
 - `src/styles/global.css`: visual values and responsive rules.
