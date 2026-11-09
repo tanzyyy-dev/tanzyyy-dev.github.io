@@ -10,7 +10,7 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 - Use Astro + TypeScript, generating static output compatible with GitHub Pages.
 - Keep Japanese at `/` and English at `/en/`. Maintain equivalent content and navigation across languages.
 - Keep project facts and localized content in `src/data/content.ts`. Never invent project screenshots, demo URLs, project claims, or new projects.
-- Do not redirect existing source links to `tanzyyy-dev` until the associated migration is actually complete.
+- Update repository and demo links only after verifying that the destination exists and is the correct published target; never infer URLs from proposed migrations.
 - Refactoring, typo fixes, and documentation cleanup do not authorize visual, responsive, or other unrelated behavior changes. If UI behavior or appearance must change, also read `portal-design/SKILL.md`.
 
 ## Source map

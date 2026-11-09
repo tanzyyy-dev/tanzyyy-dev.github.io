@@ -18,7 +18,7 @@ The first screen should answer, in this order:
 
 For each project, prioritize: **visual → project title → one-sentence description → primary action**. Category/platform and repository link are secondary. A source-code link is not a substitute for a demo; if no demo exists, show a truthful availability message only where relevant.
 
-Current catalog has **one project**. Do not render search, filters, sorting, pagination, ratings, counts-as-social-proof, a separate featured section duplicating the list, or an empty promotional hero. Introduce discovery controls only when content volume makes them useful.
+Do not introduce search, filters, sorting, pagination, ratings, or counts-as-social-proof without a genuine visitor need supported by the catalog size. Never duplicate a project as both a featured section and an identical listing, or add an empty promotional hero.
 
 Use the information hierarchy of a conventional software directory (e.g. 窓の杜), and give genuine project visuals prominence (as in game catalogs such as Playdate). **Do not copy either site's branding or layout.** The schnauzer is a brand asset, not a site-wide color instruction.
 

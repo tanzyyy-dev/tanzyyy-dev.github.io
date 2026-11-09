@@ -36,11 +36,3 @@ npm run preview
 - スタイル: `src/styles/global.css`
 
 `/` と `/en/` が各言語のトップページです。`/projects/` と `/en/projects/` にも作品一覧があります。
-
-## 作品リポジトリの移行予定
-
-公開作品を `tanzyyy-dev` に集約する予定です。関連する既存の管理元は `stellates`、`marks-dev`、`tanzyyy-dev` です。
-
-現在掲載している THE HOLLYWOOD HACKER のソースリンクは、移行完了まで既存の `stellates/hackhackhack` を参照します。**移行前に推測でリンクを変更しないでください。** デモ URL も公開が確認できるまで設定しません。
-
-作品画像は現状の仮タイポグラフィ表示のままです。実際の画像への差し替えは別途判断します。
