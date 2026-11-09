@@ -39,9 +39,8 @@ export const games: Game[] = [
     },
     media: [{
       type: 'image',
-      src: 'https://raw.githubusercontent.com/stellates/hackhackhack/main/public/ogp.png',
-      alt: { ja: 'THE HOLLYWOOD HACKER の公式イメージ（プレイ画面は準備中）', en: 'Official artwork for THE HOLLYWOOD HACKER (gameplay capture coming soon)' },
-      placeholder: true
+      src: '/images/games/hollywood-hacker-demo.gif',
+      alt: { ja: 'THE HOLLYWOOD HACKER のゲームプレイ映像', en: 'THE HOLLYWOOD HACKER gameplay animation' }
     }],
     playUrl: 'https://stellates.github.io/hackhackhack/',
     repositoryUrl: 'https://github.com/stellates/hackhackhack'
