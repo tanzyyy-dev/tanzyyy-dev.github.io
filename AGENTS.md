@@ -17,6 +17,7 @@ Read the relevant skill(s) **before** doing that work; a task may require more t
 - `README.md` documents the project for readers: purpose, setup, usage, and enduring technical facts.
 - **Never use `AGENTS.md`, any `SKILL.md`, or `README.md` as a status/situation memo, work log, handoff note, TODO tracker, migration plan, incident record, or AI response history.** Do not append progress reports, temporary blockers, unverified deployment states, or records of past fixes.
 - Track time-bound plans and ongoing work in GitHub Issues or PRs; use commit history for completed changes. Update these documents only when the lasting instructions or project documentation themselves need to change.
+- After completing a task, capture any important, reusable rule established or clarified by the work in `AGENTS.md` (repository-wide) or the appropriate `SKILL.md` (task-specific). Keep it concise and non-duplicative; do not record task history or temporary status.
 
 ## Specification authority
 
