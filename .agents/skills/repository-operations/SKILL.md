@@ -9,7 +9,7 @@ description: Git and GitHub operations for the tanzyyy-dev website. Use before m
 
 - Keep changes focused; review the complete diff and confirm unrelated files have not changed.
 - **One logical task = one commit.** Do not create one commit per file.
-- Push once after preparing the complete task. A push to `main` triggers the GitHub Pages workflow.
+- Push once after preparing the complete task. The Pages workflow runs on `main` pushes affecting build inputs or its workflow file; documentation-only pushes do not trigger deployment. Manual dispatch remains available.
 - Avoid overlapping Pages deployments; check the preceding deployment's status before an additional push when practical.
 - If a tool only offers one-file-per-commit writes, use a multi-file commit mechanism or explain the limitation before proceeding.
 - Never modify GitHub Actions triggers, Pages settings, or deployment configuration to work around avoidable fragmented commits.
