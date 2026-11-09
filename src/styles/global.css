@@ -190,6 +190,6 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 /* Centered copyright over lightweight schnauzer footer artwork. */
 .foot { justify-content: center; text-align: center; }
 
-.home-palette footer{background-color:#F8F5EF;background-image:url("/schnauzer-footer-small.webp");background-repeat:no-repeat;background-position:center bottom;background-size:cover}
-.home-palette .foot{min-height:110px;position:relative;justify-content:center;align-items:center;text-align:center;color:#55585A;font-weight:600}
-@media(max-width:760px){.home-palette footer{background-size:auto 110px}.home-palette .foot{min-height:110px}.home-palette .foot span{background:rgba(248,245,239,.85);border-radius:5px;padding:3px 8px}}
+.home-palette footer{background-color:#F8F5EF;background-image:url("/schnauzer-footer-small.webp");background-repeat:no-repeat;background-position:center bottom;background-size:100% 100%}
+.home-palette .foot{min-height:clamp(92px,7.67vw,150px);position:relative;justify-content:center;align-items:center;text-align:center;color:#55585A;font-weight:600}
+ .home-palette .foot span{display:inline-block;position:relative;z-index:1;background:#F8F5EF;padding:8px clamp(45px,7vw,110px);border-radius:5px}\n@media(max-width:760px){.home-palette footer{background-size:auto 100%}.home-palette .foot{min-height:110px}.home-palette .foot span{padding:8px 35px}}
