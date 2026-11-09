@@ -187,9 +187,35 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   .brand-paw-cluster svg { width: 24px; height: 24px; }
 }
 
-/* Centered copyright over lightweight schnauzer footer artwork. */
+/* Schnauzer artwork: independent desktop and mobile compositions. */
 .foot { justify-content: center; text-align: center; }
-
-.home-palette footer{border-top:0;background-color:#F8F5EF;background-image:url("/schnauzer-footer-small.webp");background-repeat:no-repeat;background-position:center bottom;background-size:100% 100%}
-.home-palette .foot{min-height:clamp(95px,6.875vw,130px);position:relative;justify-content:center;align-items:center;text-align:center;color:#55585A;font-weight:600}
- .home-palette .foot span{display:inline-block;position:relative;z-index:1;background:transparent;padding:8px 0;border-radius:0}\n@media(max-width:760px){.home-palette footer{position:relative;background-image:none;overflow:hidden}.home-palette footer::before,.home-palette footer::after{content:"";position:absolute;bottom:0;width:32%;height:110px;background-image:url("/schnauzer-footer-small.webp");background-repeat:no-repeat;background-size:2400px 165px;pointer-events:none}.home-palette footer::before{left:0;background-position:left -45px bottom -12px}.home-palette footer::after{right:0;background-position:right -45px bottom -12px}.home-palette .foot{min-height:110px}.home-palette .foot span{padding:8px 0}}
+.home-palette footer {
+  border-top: 0;
+  background-color: #F8F5EF;
+  background-image: url('/schnauzer-footer-small.webp');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 100%;
+}
+.home-palette .foot {
+  min-height: clamp(95px, 6.875vw, 130px);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #55585A;
+  font-weight: 600;
+}
+.home-palette .foot span {
+  display: inline-block;
+  background: transparent;
+  padding: 8px 0;
+}
+@media (max-width: 760px) {
+  .home-palette footer {
+    background-image: url('/schnauzer-footer-mobile.webp');
+    background-size: auto 115px;
+    background-position: center bottom;
+  }
+  .home-palette .foot { min-height: 115px; }
+}
