@@ -1,11 +1,11 @@
 ---
 name: portal-design
-description: Concrete UI specification and acceptance criteria for the tanzyyy-dev Astro project catalog. Use for changes to page layout, components, navigation, visual styling, and responsive behavior.
+description: Product and UI design requirements for the tanzyyy-dev project catalog. Use for changes to information hierarchy, page layout, navigation, visual styling, responsive behavior, and accessibility.
 ---
 
 # Portal UI design specification
 
-This file specifies **what to build and how to check it**. Repository-wide execution rules belong in the root `AGENTS.md`, not here.
+This document defines **user-facing design requirements only**. Implementation workflow, validation procedures, and deployment rules belong in the root `AGENTS.md`.
 
 ## 1. Product and content hierarchy
 
@@ -24,7 +24,7 @@ Use the information hierarchy of a conventional software directory (e.g. 窓の�
 
 ## 2. Layout contract
 
-These are the **current implementation baseline**, not a claim that the visual identity is finally approved. When changing them, explain the user-facing benefit and check both locales.
+These values define the **current UI baseline**, not a claim that the visual identity is finally approved. Preserve them unless a different design direction is explicitly selected.
 
 | Element | Desktop / wide | Mobile / narrow |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ The homepage and project-list page must not add a generic slogan above the actua
 
 ## 3. Typography, color, and spacing baseline
 
-Use `src/styles/global.css` as the source of truth. The following are the **existing values to preserve for consistency until a visual direction is explicitly selected**, not a new aesthetic proposal:
+The following **existing values** describe the visual baseline to preserve until a different direction is explicitly selected:
 
 - Font stack: system UI with Japanese fallbacks; base line-height `1.65`.
 - Main text `#252525`; page background `#fafaf8`; muted text approximately `#555–#666`; separators `#d7d7d3`.
@@ -53,7 +53,7 @@ Use `src/styles/global.css` as the source of truth. The following are the **exis
 - Main column gap: `clamp(24px, 4vw, 54px)`; mobile project gap `19px`.
 - Primary action minimum height `46px`; other interactive targets should aim for at least `44×44px` with adequate separation.
 
-**Do not introduce a new palette, display font, rounded-card system, shadows, gradients, decorative badges, or animation as filler.** If a distinctive visual system is needed, design and evaluate alternatives using real content first; only then update these baseline values.
+**Do not introduce a new palette, display font, rounded-card system, shadows, gradients, decorative badges, or animation as filler.** Any new visual direction must be grounded in real project content.
 
 ## 4. Component behavior
 
@@ -63,14 +63,14 @@ Use `src/styles/global.css` as the source of truth. The following are the **exis
 - The language switch should point to the equivalent route, not reset visitors to an unrelated page.
 - On mobile, wrapping is preferable to tiny tap targets or horizontal overflow.
 
-### Project listing (`src/components/ProjectList.astro`)
+### Project listing
 - One entry per real project, not a second decorative hero plus the same item below.
 - The artwork is a link to the detail page. Title and explicit detail action also link there.
 - Do not present typographic placeholder artwork as a real game screenshot.
 - Keep the source-code link visually secondary. If a live demo becomes available, decide its priority based on the visitor's goal.
 - Never show controls that cannot meaningfully change the current result set.
 
-### Project details (`src/components/ProjectDetail.astro`)
+### Project details
 - Back link, title, concise description, project visual, available actions, then substantive details.
 - Unavailable demos must not render as clickable actions.
 - Avoid repeating identical descriptions or large decorative gaps.
@@ -92,26 +92,3 @@ Use `src/styles/global.css` as the source of truth. The following are the **exis
 | Desktop layout squeezed onto a phone | Reflow to a single column and reorder by visitor priority |
 | Artificial viewport-height fit | Readable content and natural scrolling |
 | Invented demo/screenshot/project data | Honest placeholder or explicit unavailable state |
-
-## 6. Verification and acceptance
-
-For a UI change, check **at minimum**:
-- Viewports: `320×568`, `375×812`, `768×1024`, and `1440×900` (CSS pixels).
-- Routes: `/`, `/en/`, `/projects/`, `/en/projects/`, and both project detail routes when affected.
-- At 320px: no horizontal page overflow, clipped title, overlapping navigation, or inaccessible action.
-- Keyboard: all links/actions reachable in logical order; focus visibly indicated.
-- Touch: main action and navigation links remain usable without hover.
-- Content: no fabricated screenshots or live links; JP/EN content hierarchy matches.
-- Density: no redundant hero, duplicate listing, or large empty section without purpose.
-
-**Do not claim visual verification without screenshots/browser inspection.** If a viewport or device cannot be inspected, report that limitation rather than declaring visual success.
-
-## 7. Where to edit
-
-- `src/layouts/Base.astro`: header, footer, metadata, locale navigation.
-- `src/components/ProjectList.astro`: catalog entries and actions.
-- `src/components/ProjectDetail.astro`: detail page content and actions.
-- `src/styles/global.css`: visual values and responsive rules.
-- `src/data/content.ts`: factual project information and localized copy.
-
-For a **major redesign**, first show concrete alternatives grounded in the actual content and get the direction selected. For a **small requested change**, implement directly and verify the affected behavior.
