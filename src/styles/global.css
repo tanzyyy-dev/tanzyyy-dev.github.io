@@ -186,4 +186,4 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
   .brand-paw-cluster { flex-basis: 20px; width: 20px; }
   .brand-paw-cluster svg { width: 24px; height: 24px; }
 }
-\n/* Minimal centered footer; decorative schnauzer art is prepared separately. */\n.foot { justify-content: center; text-align: center; }\n
+\n/* Centered copyright over lightweight schnauzer footer artwork. */\n.foot { justify-content: center; text-align: center; }\n\n.home-palette footer{background-color:#F8F5EF;background-image:url("/schnauzer-footer-small.webp");background-repeat:no-repeat;background-position:center bottom;background-size:cover}\n.home-palette .foot{min-height:110px;position:relative;justify-content:center;align-items:center;text-align:center;color:#55585A;font-weight:600}\n@media(max-width:760px){.home-palette footer{background-size:auto 110px}.home-palette .foot{min-height:110px}.home-palette .foot span{background:rgba(248,245,239,.85);border-radius:5px;padding:3px 8px}}\n
