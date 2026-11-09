@@ -102,3 +102,18 @@ body.home-palette { background: #F0EFEB; color: #292B2D; }
 .home-palette a:focus-visible { outline-color: #777A7B; }
 .home-palette footer { border-top-color: #B7B9B6; }
 .home-palette .foot { color: #777A7B; }
+
+/* Home: use the viewport width with responsive gutters, not a fixed content cap. */
+.home-palette .wrap {
+  width: auto;
+  max-width: none;
+  margin-inline: clamp(20px, 3.2vw, 64px);
+}
+.home-palette .page {
+  padding-top: clamp(48px, 6vw, 96px);
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+@media (max-width: 760px) {
+  .home-palette .wrap { margin-inline: 20px; }
+  .home-palette .page { padding-top: 48px; padding-bottom: 72px; }
+}
