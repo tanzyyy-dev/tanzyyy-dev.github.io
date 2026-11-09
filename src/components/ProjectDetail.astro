@@ -1,10 +1,122 @@
 ---
-import {copy,project,type Lang} from '../data/content';
-interface Props {lang:Lang}
-const {lang}=Astro.props;const t=copy[lang];const prefix=lang==='ja'?'':'/en';
+import {copy, project, type Lang} from '../data/content';
+interface Props { lang: Lang }
+const {lang} = Astro.props;
+const ja = lang === 'ja';
+const prefix = ja ? '' : '/en';
+const t = copy[lang];
 ---
-<div class="wrap page detail-page"><a class="back-link" href={prefix+'/projects/'}>← {t.back}</a><h1>{project.title}</h1><p class="lead">{project.summary[lang]}</p>
-<div class="detail-art art" role="img" aria-label="Temporary typographic artwork"><span>GAME / 001</span><strong>THE<br/>HOLLYWOOD<br/>HACKER</strong><small>RHYTHM × KEYBOARD × ACTION</small></div>
-<div class="actions">{project.demoUrl?<a class="button" href={project.demoUrl}>{lang==='ja'?'プレイする':'Play'}</a>:<p class="notice">{lang==='ja'?'ゲームの公開URLは準備中です。':'The game URL is not available yet.'}</p>}<a class="button secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{t.source}</a></div>
-<section class="section"><h2>{lang==='ja'?'この作品について':'About this project'}</h2><p>{project.description[lang]}</p></section>
+<div class="wrap page game-detail">
+  <a class="game-back" href={prefix + '/projects/'}>← {t.back}</a>
+
+  <header class="game-intro">
+    <p class="game-eyebrow">GAMES <span aria-hidden="true">/</span> 001 <span aria-hidden="true">·</span> v{project.version}</p>
+    <h1>{project.title}</h1>
+    <p class="game-lead">{project.summary[lang]}</p>
+  </header>
+
+  <figure class="game-preview">
+    <img src={project.imageUrl} width="1200" height="630" alt={ja ? 'THE HOLLYWOOD HACKER の公式プレビュー画像' : 'Official THE HOLLYWOOD HACKER preview image'} loading="eager" decoding="async"/>
+  </figure>
+
+  <div class="game-cta-row">
+    <div class="game-cta-note">
+      <strong>{ja ? '映画のハッカー気分を、指先で。' : 'A little Hollywood hacking at your fingertips.'}</strong>
+      <span>{ja ? 'TypeScript製のブラウザゲーム' : 'A browser game built with TypeScript'}</span>
+    </div>
+    <div class="game-cta-links">
+      {project.demoUrl && <a class="game-cta-primary" href={project.demoUrl} target="_blank" rel="noopener noreferrer">{ja ? 'ゲームをプレイ' : 'Play game'}</a>}
+      <a class="game-cta-outline" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{ja ? 'GitHubでソースを見る' : 'View source on GitHub'} <span aria-hidden="true">›</span></a>
+    </div>
+  </div>
+
+  <section class="game-about" aria-labelledby="game-about-heading">
+    <div class="game-section-heading"><span class="game-section-index">01</span><h2 id="game-about-heading">{ja ? 'どんなゲーム？' : 'About the game'}</h2></div>
+    <p>{project.description[lang]}</p>
+  </section>
+
+  <section class="game-features" aria-labelledby="game-features-heading">
+    <div class="game-section-heading"><span class="game-section-index">02</span><h2 id="game-features-heading">{ja ? '遊びどころ' : 'Highlights'}</h2></div>
+    <div class="game-feature-grid">
+      {project.features[lang].map((feature,index) => <article class="game-feature">
+        <span class="game-feature-count">0{index+1}</span>
+        <h3>{feature.title}</h3>
+        <p>{feature.body}</p>
+      </article>)}
+    </div>
+  </section>
+
+  <section class="game-difficulties" aria-labelledby="game-difficulties-heading">
+    <div class="game-section-heading"><span class="game-section-index">03</span><h2 id="game-difficulties-heading">{ja ? '3つの難易度' : 'Three difficulties'}</h2></div>
+    <div class="game-difficulty-grid">
+      {project.difficulties.map((item,index) => <article class="game-difficulty" style={'--diff-color:' + ['#7C9C9B','#A292BA','#B58A76'][index]}>
+        <div class="game-difficulty-top"><h3>{item.name}</h3><span>{item.bpm} BPM</span></div>
+        <p>{item.style}</p>
+        <small>{item.duration} {ja ? '秒' : 'sec'}</small>
+      </article>)}
+    </div>
+  </section>
+
+  <section class="game-tech" aria-labelledby="game-tech-heading">
+    <div class="game-section-heading"><span class="game-section-index">04</span><h2 id="game-tech-heading">{ja ? '技術スタック' : 'Built with'}</h2></div>
+    <ul>{project.stack.map((name)=><li>{name}</li>)}</ul>
+  </section>
+
+  <div class="game-end"><a href={prefix + '/projects/'}>← {t.back}</a></div>
 </div>
+<style is:global>
+.game-detail {width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);color:#292B2D;padding-top:clamp(36px,4vw,68px);padding-bottom:clamp(72px,7vw,110px)}
+.game-detail .game-back,.game-detail .game-end a {display:inline-block;color:#55585A;font-size:14px;font-weight:700;text-decoration:none}
+.game-detail .game-back:hover,.game-detail .game-end a:hover {text-decoration:underline}
+.game-detail .game-back {margin-bottom:clamp(26px,3vw,48px)}
+.game-intro {margin-bottom:clamp(22px,3vw,38px)}
+.game-intro .game-eyebrow {margin:0 0 9px;font-family:"Baloo 2",sans-serif;font-size:14px;letter-spacing:.08em;font-weight:800;color:#777A7B}
+.game-intro .game-eyebrow span {margin-inline:5px;color:#B58A76}
+.game-intro h1 {margin:0 0 16px;font-family:"Baloo 2","Trebuchet MS",sans-serif;font-weight:800;font-size:clamp(38px,6vw,86px);line-height:1.03;letter-spacing:-.05em;overflow-wrap:anywhere}
+.game-intro .game-lead {font-size:clamp(16px,1.6vw,21px);line-height:1.75;margin:0;color:#55585A}
+.game-preview {margin:0;border-radius:15px;background:#272A30;overflow:hidden}
+.game-preview img {display:block;width:100%;height:auto;max-height:min(67vw,710px);object-fit:contain}
+.game-cta-row {display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0 28px;border-bottom:1px solid #B7B9B6}
+.game-cta-note {display:flex;flex-direction:column;gap:3px}
+.game-cta-note strong {font-size:17px}
+.game-cta-note span {font-size:13px;color:#777A7B}
+.game-cta-links {display:flex;gap:10px;flex-wrap:wrap}
+.game-cta-primary,.game-cta-outline {display:inline-flex;min-height:48px;align-items:center;justify-content:space-between;gap:30px;border-radius:8px;padding:10px 18px;text-decoration:none;font-size:14px;font-weight:700}
+.game-cta-primary {background:#292B2D;color:#F0EFEB}
+.game-cta-outline {background:#fff;border:1px solid #777A7B;color:#292B2D}
+.game-cta-primary:hover {background:#55585A}
+.game-cta-outline:hover {background:#F0EFEB}
+.game-cta-outline span {font-size:23px;line-height:1}
+.game-detail section {margin-top:clamp(46px,5vw,74px)}
+.game-section-heading {display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.game-section-index {font-family:"Baloo 2",sans-serif;font-size:15px;font-weight:800;color:#B58A76}
+.game-section-heading h2 {margin:0;font-size:clamp(24px,2.8vw,37px);line-height:1.3;letter-spacing:-.045em}
+.game-about > p {margin:0;line-height:1.95;color:#55585A;font-size:16px}
+.game-feature-grid,.game-difficulty-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.game-feature {background:#fff;border:1px solid #D9DAD6;border-radius:12px;padding:24px 22px;min-width:0}
+.game-feature-count {font-family:"Baloo 2",sans-serif;font-weight:800;color:#B58A76;font-size:14px}
+.game-feature h3 {font-size:19px;line-height:1.4;margin:14px 0 8px}
+.game-feature p {margin:0;font-size:14px;line-height:1.8;color:#55585A}
+.game-difficulty {padding:22px;border:1px solid #D9DAD6;border-top:3px solid var(--diff-color);border-radius:10px;background:#fff}
+.game-difficulty-top {display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.game-difficulty h3 {font-family:"Baloo 2",sans-serif;letter-spacing:.02em;font-size:25px;line-height:1.15;margin:0}
+.game-difficulty-top span {font-size:13px;font-weight:800;color:#777A7B;white-space:nowrap}
+.game-difficulty p {color:#55585A;font-size:14px;margin:12px 0 8px}
+.game-difficulty small {font-size:12px;color:#777A7B}
+.game-tech ul {display:flex;flex-wrap:wrap;gap:9px;list-style:none;margin:0;padding:0}
+.game-tech li {border:1px solid #B7B9B6;border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:700}
+.game-end {margin-top:clamp(50px,6vw,85px);padding-top:24px;border-top:1px solid #B7B9B6}
+@media(max-width:760px){
+  .game-detail{margin-inline:20px;padding-top:36px;padding-bottom:70px}
+  .game-intro h1{font-size:clamp(37px,10vw,56px)}
+  .game-preview{border-radius:9px}
+  .game-preview img{max-height:none}
+  .game-cta-row{align-items:stretch;gap:18px}
+  .game-cta-links{width:100%}
+  .game-cta-links a{width:100%;justify-content:center}
+  .game-feature-grid,.game-difficulty-grid{grid-template-columns:minmax(0,1fr)}
+  .game-feature{padding:19px}
+  .game-difficulty{padding:18px}
+  .game-about > p{font-size:15px}
+}
+</style>
