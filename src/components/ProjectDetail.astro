@@ -1,122 +1,107 @@
 ---
-import {copy, project, type Lang} from '../data/content';
-interface Props { lang: Lang }
-const {lang} = Astro.props;
-const ja = lang === 'ja';
-const prefix = ja ? '' : '/en';
-const t = copy[lang];
+import {project, type Lang} from '../data/content';
+interface Props {lang:Lang}
+const {lang}=Astro.props;
+const ja=lang==='ja';
+const prefix=ja?'':'/en';
 ---
-<div class="wrap page game-detail">
-  <a class="game-back" href={prefix + '/projects/'}>← {t.back}</a>
+<article class="wrap page game-detail">
+  <nav class="game-crumbs" aria-label={ja?'現在位置':'Breadcrumb'}>
+    <a href={prefix+'/'}>{ja?'ホーム':'Home'}</a><span aria-hidden="true">/</span>
+    <a href={prefix+'/projects/'}>{ja?'作品一覧':'Projects'}</a><span aria-hidden="true">/</span>
+    <span aria-current="page">THE HOLLYWOOD HACKER</span>
+  </nav>
 
-  <header class="game-intro">
-    <p class="game-eyebrow">GAMES <span aria-hidden="true">/</span> 001 <span aria-hidden="true">·</span> v{project.version}</p>
-    <h1>{project.title}</h1>
-    <p class="game-lead">{project.summary[lang]}</p>
-  </header>
-
-  <figure class="game-preview">
-    <img src={project.imageUrl} width="1200" height="630" alt={ja ? 'THE HOLLYWOOD HACKER の公式プレビュー画像' : 'Official THE HOLLYWOOD HACKER preview image'} loading="eager" decoding="async"/>
-  </figure>
-
-  <div class="game-cta-row">
-    <div class="game-cta-note">
-      <strong>{ja ? '映画のハッカー気分を、指先で。' : 'A little Hollywood hacking at your fingertips.'}</strong>
-      <span>{ja ? 'TypeScript製のブラウザゲーム' : 'A browser game built with TypeScript'}</span>
+  <div class="game-hero">
+    <div class="game-hero-copy">
+      <p class="game-eyebrow"><span class="game-paw" aria-hidden="true">🐾</span> GAMES <span class="game-dot">·</span> BROWSER GAME</p>
+      <h1>{project.title}</h1>
+      <p class="game-hook">{ja?'正しく打つな、激しく叩け。':'Forget perfect typing. Feel the rhythm.'}</p>
+      <p class="game-lead">{ja?'映画の天才ハッカーになりきって、音楽に合わせてキーボードを叩く。勢いとリズムで楽しむ、サイバー・タイピングアクション。':'Mash your keyboard like a movie hacker, but keep it in time with the music. A playful cyber rhythm typing game.'}</p>
+      <div class="game-actions">
+        {project.demoUrl && <a class="game-action-primary" href={project.demoUrl} target="_blank" rel="noopener noreferrer">{ja?'ゲームをプレイ':'Play game'} <span aria-hidden="true">↗</span></a>}
+        <a class="game-action-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{ja?'GitHubで作品を見る':'View on GitHub'} <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
-    <div class="game-cta-links">
-      {project.demoUrl && <a class="game-cta-primary" href={project.demoUrl} target="_blank" rel="noopener noreferrer">{ja ? 'ゲームをプレイ' : 'Play game'}</a>}
-      <a class="game-cta-outline" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{ja ? 'GitHubでソースを見る' : 'View source on GitHub'} <span aria-hidden="true">›</span></a>
-    </div>
+    <figure class="game-visual"><img src={project.imageUrl} alt={ja?'THE HOLLYWOOD HACKER の公式ビジュアル':'Official THE HOLLYWOOD HACKER artwork'} width="1200" height="630" loading="eager" decoding="async"/></figure>
   </div>
 
-  <section class="game-about" aria-labelledby="game-about-heading">
-    <div class="game-section-heading"><span class="game-section-index">01</span><h2 id="game-about-heading">{ja ? 'どんなゲーム？' : 'About the game'}</h2></div>
-    <p>{project.description[lang]}</p>
-  </section>
-
-  <section class="game-features" aria-labelledby="game-features-heading">
-    <div class="game-section-heading"><span class="game-section-index">02</span><h2 id="game-features-heading">{ja ? '遊びどころ' : 'Highlights'}</h2></div>
-    <div class="game-feature-grid">
-      {project.features[lang].map((feature,index) => <article class="game-feature">
-        <span class="game-feature-count">0{index+1}</span>
-        <h3>{feature.title}</h3>
-        <p>{feature.body}</p>
-      </article>)}
+  <section class="game-story" aria-labelledby="game-story-title">
+    <div class="game-section-label"><span>01</span><h2 id="game-story-title">{ja?'遊び方はシンプル':'How it plays'}</h2></div>
+    <div class="game-story-body">
+      <p>{ja?'流れてくるノーツのタイミングに合わせてキーを押すだけ。連打でコードを打ち込み、Space・Shift・Enterを使い分けて、映画のようなハッキングシーンを完成させよう。':'Hit keys as notes reach the timing line. Mash to generate code, then switch between Space, Shift and Enter to pull off a cinematic hacking sequence.'}</p>
+      <div class="game-keys" aria-label={ja?'操作キー':'Controls'}>
+        <span><i class="game-key game-key-green"></i>{ja?'任意のキー：連打':'Any key: mash'}</span>
+        <span><i class="game-key game-key-yellow"></i>Space</span>
+        <span><i class="game-key game-key-purple"></i>Shift</span>
+        <span><i class="game-key game-key-red"></i>Enter</span>
+      </div>
+      <p class="game-aside">{ja?'打鍵のタイミングやコンボがスコアに反映され、プレイ後は結果を画像で保存・共有できます。':'Your timing and combos affect your score. Save and share a results certificate after playing.'}</p>
     </div>
   </section>
 
-  <section class="game-difficulties" aria-labelledby="game-difficulties-heading">
-    <div class="game-section-heading"><span class="game-section-index">03</span><h2 id="game-difficulties-heading">{ja ? '3つの難易度' : 'Three difficulties'}</h2></div>
-    <div class="game-difficulty-grid">
-      {project.difficulties.map((item,index) => <article class="game-difficulty" style={'--diff-color:' + ['#7C9C9B','#A292BA','#B58A76'][index]}>
-        <div class="game-difficulty-top"><h3>{item.name}</h3><span>{item.bpm} BPM</span></div>
-        <p>{item.style}</p>
-        <small>{item.duration} {ja ? '秒' : 'sec'}</small>
-      </article>)}
+  <section class="game-levels" aria-labelledby="game-levels-title">
+    <div class="game-section-label"><span>02</span><h2 id="game-levels-title">{ja?'気分に合わせて3段階':'Pick your pace'}</h2></div>
+    <div class="game-level-grid">
+      {project.difficulties.map((d,i)=><div class="game-level" style={'--level-accent:'+['#7C9C9B','#A292BA','#B58A76'][i]}>
+        <div class="game-level-top"><strong>{d.name}</strong><span>{d.duration}{ja?'秒':' sec'}</span></div>
+        <p>{d.style}</p>
+      </div>)}
     </div>
   </section>
 
-  <section class="game-tech" aria-labelledby="game-tech-heading">
-    <div class="game-section-heading"><span class="game-section-index">04</span><h2 id="game-tech-heading">{ja ? '技術スタック' : 'Built with'}</h2></div>
-    <ul>{project.stack.map((name)=><li>{name}</li>)}</ul>
-  </section>
-
-  <div class="game-end"><a href={prefix + '/projects/'}>← {t.back}</a></div>
-</div>
+  <div class="game-bottom">
+    <div class="game-built">
+      <span>{ja?'制作技術':'BUILT WITH'}</span>
+      <p>{project.stack.join(' · ')}</p>
+    </div>
+    <a href={prefix+'/projects/'}>{ja?'← 作品一覧に戻る':'← Back to projects'}</a>
+  </div>
+</article>
 <style is:global>
-.game-detail {width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);color:#292B2D;padding-top:clamp(36px,4vw,68px);padding-bottom:clamp(72px,7vw,110px)}
-.game-detail .game-back,.game-detail .game-end a {display:inline-block;color:#55585A;font-size:14px;font-weight:700;text-decoration:none}
-.game-detail .game-back:hover,.game-detail .game-end a:hover {text-decoration:underline}
-.game-detail .game-back {margin-bottom:clamp(26px,3vw,48px)}
-.game-intro {margin-bottom:clamp(22px,3vw,38px)}
-.game-intro .game-eyebrow {margin:0 0 9px;font-family:"Baloo 2",sans-serif;font-size:14px;letter-spacing:.08em;font-weight:800;color:#777A7B}
-.game-intro .game-eyebrow span {margin-inline:5px;color:#B58A76}
-.game-intro h1 {margin:0 0 16px;font-family:"Baloo 2","Trebuchet MS",sans-serif;font-weight:800;font-size:clamp(38px,6vw,86px);line-height:1.03;letter-spacing:-.05em;overflow-wrap:anywhere}
-.game-intro .game-lead {font-size:clamp(16px,1.6vw,21px);line-height:1.75;margin:0;color:#55585A}
-.game-preview {margin:0;border-radius:15px;background:#272A30;overflow:hidden}
-.game-preview img {display:block;width:100%;height:auto;max-height:min(67vw,710px);object-fit:contain}
-.game-cta-row {display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0 28px;border-bottom:1px solid #B7B9B6}
-.game-cta-note {display:flex;flex-direction:column;gap:3px}
-.game-cta-note strong {font-size:17px}
-.game-cta-note span {font-size:13px;color:#777A7B}
-.game-cta-links {display:flex;gap:10px;flex-wrap:wrap}
-.game-cta-primary,.game-cta-outline {display:inline-flex;min-height:48px;align-items:center;justify-content:space-between;gap:30px;border-radius:8px;padding:10px 18px;text-decoration:none;font-size:14px;font-weight:700}
-.game-cta-primary {background:#292B2D;color:#F0EFEB}
-.game-cta-outline {background:#fff;border:1px solid #777A7B;color:#292B2D}
-.game-cta-primary:hover {background:#55585A}
-.game-cta-outline:hover {background:#F0EFEB}
-.game-cta-outline span {font-size:23px;line-height:1}
-.game-detail section {margin-top:clamp(46px,5vw,74px)}
-.game-section-heading {display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
-.game-section-index {font-family:"Baloo 2",sans-serif;font-size:15px;font-weight:800;color:#B58A76}
-.game-section-heading h2 {margin:0;font-size:clamp(24px,2.8vw,37px);line-height:1.3;letter-spacing:-.045em}
-.game-about > p {margin:0;line-height:1.95;color:#55585A;font-size:16px}
-.game-feature-grid,.game-difficulty-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.game-feature {background:#fff;border:1px solid #D9DAD6;border-radius:12px;padding:24px 22px;min-width:0}
-.game-feature-count {font-family:"Baloo 2",sans-serif;font-weight:800;color:#B58A76;font-size:14px}
-.game-feature h3 {font-size:19px;line-height:1.4;margin:14px 0 8px}
-.game-feature p {margin:0;font-size:14px;line-height:1.8;color:#55585A}
-.game-difficulty {padding:22px;border:1px solid #D9DAD6;border-top:3px solid var(--diff-color);border-radius:10px;background:#fff}
-.game-difficulty-top {display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.game-difficulty h3 {font-family:"Baloo 2",sans-serif;letter-spacing:.02em;font-size:25px;line-height:1.15;margin:0}
-.game-difficulty-top span {font-size:13px;font-weight:800;color:#777A7B;white-space:nowrap}
-.game-difficulty p {color:#55585A;font-size:14px;margin:12px 0 8px}
-.game-difficulty small {font-size:12px;color:#777A7B}
-.game-tech ul {display:flex;flex-wrap:wrap;gap:9px;list-style:none;margin:0;padding:0}
-.game-tech li {border:1px solid #B7B9B6;border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:700}
-.game-end {margin-top:clamp(50px,6vw,85px);padding-top:24px;border-top:1px solid #B7B9B6}
-@media(max-width:760px){
-  .game-detail{margin-inline:20px;padding-top:36px;padding-bottom:70px}
-  .game-intro h1{font-size:clamp(37px,10vw,56px)}
-  .game-preview{border-radius:9px}
-  .game-preview img{max-height:none}
-  .game-cta-row{align-items:stretch;gap:18px}
-  .game-cta-links{width:100%}
-  .game-cta-links a{width:100%;justify-content:center}
-  .game-feature-grid,.game-difficulty-grid{grid-template-columns:minmax(0,1fr)}
-  .game-feature{padding:19px}
-  .game-difficulty{padding:18px}
-  .game-about > p{font-size:15px}
-}
+.game-detail{width:auto;max-width:none;margin-inline:clamp(20px,3.2vw,64px);padding-top:clamp(26px,3vw,48px);padding-bottom:clamp(64px,6vw,100px);color:#292B2D}
+.game-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:clamp(26px,3vw,44px);font-size:12px;color:#777A7B}
+.game-crumbs a{text-decoration:none;color:#55585A}
+.game-crumbs a:hover{text-decoration:underline}
+.game-crumbs [aria-current]{color:#292B2D;font-weight:700}
+.game-hero{display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);align-items:center;gap:clamp(24px,4vw,70px)}
+.game-hero-copy{min-width:0}
+.game-eyebrow{margin:0 0 15px;font-family:"Baloo 2",sans-serif;font-size:13px;letter-spacing:.075em;font-weight:800;color:#777A7B}
+.game-paw{font-size:13px;margin-right:5px}
+.game-dot{color:#B58A76;margin-inline:4px}
+.game-hero h1{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(40px,4.6vw,75px);font-weight:800;line-height:1.03;letter-spacing:-.045em;overflow-wrap:anywhere;margin:0 0 20px}
+.game-hook{font-size:clamp(20px,2vw,29px);font-weight:800;line-height:1.45;letter-spacing:-.035em;margin:0 0 13px}
+.game-lead{font-size:15px;line-height:1.85;color:#55585A;margin:0 0 24px}
+.game-actions{display:flex;flex-wrap:wrap;gap:10px}
+.game-action-primary,.game-action-secondary{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;min-height:48px;padding:10px 17px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none}
+.game-action-primary{background:#292B2D;color:#fff}
+.game-action-secondary{background:#fff;border:1px solid #777A7B;color:#292B2D}
+.game-action-primary:hover{background:#55585A}
+.game-action-secondary:hover{background:#F0EFEB}
+.game-visual{margin:0;min-width:0;overflow:hidden;border-radius:12px;background:#292B2D;border:1px solid #D9DAD6}
+.game-visual img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:contain}
+.game-detail section{margin-top:clamp(48px,5vw,76px)}
+.game-story,.game-levels{display:grid;grid-template-columns:minmax(180px,.27fr) minmax(0,.73fr);gap:clamp(20px,4vw,64px);padding-top:24px;border-top:1px solid #D9DAD6}
+.game-section-label{display:flex;align-items:baseline;gap:14px}
+.game-section-label>span{font-family:"Baloo 2",sans-serif;font-size:14px;color:#B58A76;font-weight:800}
+.game-section-label h2{margin:0;font-size:clamp(21px,2.2vw,30px);line-height:1.4;letter-spacing:-.035em}
+.game-story-body>p:first-child{margin:0;font-size:16px;line-height:1.9}
+.game-keys{display:flex;flex-wrap:wrap;gap:8px;margin:23px 0}
+.game-keys>span{display:inline-flex;align-items:center;gap:9px;border:1px solid #D9DAD6;border-radius:7px;background:#fff;padding:8px 11px;font-size:13px;font-weight:700}
+.game-key{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
+.game-key-green{background:#59B989}.game-key-yellow{background:#D4AD4A}.game-key-purple{background:#A292BA}.game-key-red{background:#D4747A}
+.game-aside{margin:0;font-size:13px;line-height:1.8;color:#777A7B}
+.game-level-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.game-level{min-width:0;border:1px solid #D9DAD6;border-top:3px solid var(--level-accent);background:#fff;border-radius:9px;padding:18px}
+.game-level-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.game-level-top strong{font-family:"Baloo 2",sans-serif;font-size:23px;line-height:1.2}
+.game-level-top span{font-size:12px;color:#777A7B;white-space:nowrap}
+.game-level p{margin:9px 0 0;font-size:13px;line-height:1.5;color:#55585A}
+.game-bottom{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:20px;margin-top:clamp(45px,5vw,75px);padding-top:22px;border-top:1px solid #D9DAD6}
+.game-built>span{font-size:11px;color:#777A7B;font-weight:800;letter-spacing:.07em}
+.game-built p{font-size:13px;color:#55585A;margin:5px 0 0}
+.game-bottom>a{font-size:14px;font-weight:700;text-decoration:none}
+.game-bottom>a:hover{text-decoration:underline}
+@media(max-width:900px){.game-hero{grid-template-columns:minmax(0,1fr);gap:24px}.game-hero-copy{order:0}.game-visual{order:1}.game-story,.game-levels{grid-template-columns:minmax(0,1fr);gap:17px}}
+@media(max-width:760px){.game-detail{margin-inline:20px;padding-top:26px;padding-bottom:70px}.game-hero h1{font-size:clamp(39px,10vw,56px)}.game-hook{font-size:21px}.game-lead{font-size:14px}.game-action-primary,.game-action-secondary{width:100%}.game-level-grid{grid-template-columns:minmax(0,1fr)}.game-level{padding:15px}.game-crumbs{gap:7px;font-size:11px}}
 </style>

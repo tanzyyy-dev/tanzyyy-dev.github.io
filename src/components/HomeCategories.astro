@@ -5,7 +5,7 @@ const {lang}=Astro.props;
 const ja=lang==='ja';
 const prefix=ja?'':'/en';
 const categories=[
- {id:'games',label:'GAMES',color:'#B58A76',glyph:'gamepad',latest:{title:project.title,description:project.summary[lang],kind:ja?'作品':'Project',href:prefix+'/projects/hackhackhack/',image:project.imageUrl}},
+ {id:'games',label:'GAMES',color:'#B58A76',glyph:'gamepad',latest:{title:project.title,description:ja?'映画のハッカー気分で、リズムに合わせてキーを叩く爽快ゲーム。':'A fast-paced rhythm game with a Hollywood hacker twist.',kind:ja?'作品':'Project',href:prefix+'/projects/hackhackhack/',image:project.imageUrl}},
  {id:'tools',label:'TOOLS',color:'#7C9C9B',glyph:'tool',latest:null},
  {id:'contents',label:'CONTENTS',color:'#A292BA',glyph:'book',latest:null},
  {id:'other',label:'OTHER',color:'#B2A16F',glyph:'shapes',latest:null}
@@ -28,7 +28,7 @@ const categories=[
    {category.latest?.image?<img src={category.latest.image} alt="" loading="lazy" width="1200" height="630" style="width:100%;height:100%;object-fit:cover;display:block"/>:category.latest?<div class="category-cover-type"><small>GAME / 001</small><strong>THE<br/>HOLLYWOOD<br/>HACKER</strong><small>RHYTHM × KEYBOARD</small></div>:null}
   </div>
   <div class="category-content">
-   {category.latest?<><p class="category-kicker">LATEST <span>·</span> {category.latest.kind}</p><h3><a href={category.latest.href}>{category.latest.title}</a></h3><p class="category-description">{category.latest.description}</p></>:<p class="category-empty">{ja?'現在、掲載作品はありません。':'Nothing published here yet.'}</p>}
+   {category.latest?<><p class="category-kicker">FEATURED <span>·</span> {category.latest.kind}</p><h3><a href={category.latest.href}>{category.latest.title}</a></h3><p class="category-description">{category.latest.description}</p></>:<p class="category-empty">{ja?'現在、掲載作品はありません。':'Nothing published here yet.'}</p>}
   </div>
   <a class="category-more" href={category.id==='games'?category.latest?.href:prefix+'/projects/?category='+category.id}>{ja?'もっと見る':'View more'} <svg class="category-more-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a>
   </>}

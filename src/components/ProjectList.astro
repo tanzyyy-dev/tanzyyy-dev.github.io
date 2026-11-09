@@ -2,21 +2,36 @@
 import {copy,project,type Lang} from '../data/content';
 interface Props {lang:Lang}
 const {lang}=Astro.props;
+const ja=lang==='ja';
 const t=copy[lang];
-const prefix=lang==='ja'?'':'/en';
+const prefix=ja?'':'/en';
 const detail=prefix+'/projects/hackhackhack/';
 ---
-<section class="project-row" aria-labelledby="featured-project-title">
-  <a class="art" href={detail} aria-label={project.title+' — '+t.detail}>
-    <span class="art-label">GAME / 001</span>
-    <strong>THE<br/>HOLLYWOOD<br/>HACKER</strong>
-    <small>RHYTHM × KEYBOARD</small>
+<section class="project-entry" aria-labelledby="featured-project-title">
+  <a class="project-entry-art" href={detail} aria-label={project.title+' — '+t.detail}>
+    <img src={project.imageUrl} alt="" width="1200" height="630" loading="eager"/>
   </a>
-  <div class="project-info">
-    <p class="project-meta">{t.categories[1]}</p>
+  <div class="project-entry-info">
+    <p class="project-entry-kicker">GAMES <span>·</span> 001</p>
     <h2 id="featured-project-title"><a href={detail}>{project.title}</a></h2>
-    <p class="project-summary">{project.summary[lang]}</p>
-    <a class="primary-link" href={detail}>{t.detail}</a>
-    <a class="source-link" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">{t.source}</a>
+    <p>{ja?'映画のハッカー気分で、リズムに合わせてキーを叩く爽快ゲーム。':'A fast-paced rhythm game with a Hollywood hacker twist.'}</p>
+    <a class="project-entry-more" href={detail}>{ja?'作品の詳細を見る':'Explore this game'} <span aria-hidden="true">›</span></a>
   </div>
 </section>
+<style>
+.project-entry{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,4vw,60px);align-items:center;border:1px solid #D9DAD6;border-radius:14px;background:#fff;padding:clamp(16px,2.4vw,32px);color:#292B2D}
+.project-entry-art{display:block;overflow:hidden;border-radius:9px;background:#292B2D}
+.project-entry-art img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;transition:transform .25s}
+.project-entry-art:hover img{transform:scale(1.025)}
+.project-entry-info{min-width:0}
+.project-entry-kicker{margin:0 0 12px;font-family:"Baloo 2",sans-serif;color:#777A7B;font-weight:800;font-size:13px;letter-spacing:.08em}
+.project-entry-kicker span{color:#B58A76}
+.project-entry-info h2{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(28px,3.6vw,52px);line-height:1.08;letter-spacing:-.04em;margin:0 0 16px;overflow-wrap:anywhere}
+.project-entry-info h2 a{text-decoration:none}
+.project-entry-info h2 a:hover{text-decoration:underline}
+.project-entry-info>p:not(.project-entry-kicker){font-size:15px;line-height:1.8;color:#55585A;margin:0 0 25px}
+.project-entry-more{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 18px;border-radius:8px;background:#292B2D;color:#fff;font-size:14px;font-weight:700;text-decoration:none;min-height:48px}
+.project-entry-more:hover{background:#55585A}
+.project-entry-more span{font-size:22px;line-height:1}
+@media(max-width:760px){.project-entry{grid-template-columns:minmax(0,1fr);gap:20px;padding:16px}.project-entry-info h2{font-size:34px}.project-entry-more{width:100%}}
+</style>
