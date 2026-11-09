@@ -17,3 +17,10 @@ Read the relevant skill(s) **before** doing that work; a task may require more t
 - `README.md` documents the project for readers: purpose, setup, usage, and enduring technical facts.
 - **Never use `AGENTS.md`, any `SKILL.md`, or `README.md` as a status/situation memo, work log, handoff note, TODO tracker, migration plan, incident record, or AI response history.** Do not append progress reports, temporary blockers, unverified deployment states, or records of past fixes.
 - Track time-bound plans and ongoing work in GitHub Issues or PRs; use commit history for completed changes. Update these documents only when the lasting instructions or project documentation themselves need to change.
+
+## Specification authority
+
+- The user has final authority over specifications.
+- Before formalizing user requirements into specifications, reach agreement with the user.
+- Once requirements are agreed, make design decisions based on those specifications without seeking approval for each design detail.
+- Apply revisions when instructed by the user.
