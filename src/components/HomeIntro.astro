@@ -9,19 +9,20 @@ const letters = Array.from(message);
 ---
 <p class="home-intro" aria-label={message}>
   {letters.map((letter, index) => (
-    <span class="home-intro-letter" aria-hidden="true" style={`--scatter-x:${((index * 37) % 9 - 4) * 5}px;--scatter-y:${((index * 23) % 7 - 3) * 6}px;--scatter-rotate:${((index * 17) % 11 - 5) * 8}deg`}>{letter === ' ' ? '\u00a0' : letter}</span>
+    <span class="home-intro-letter" aria-hidden="true" style={`--scatter-x:${((index * 37) % 9 - 4) * 28}px;--scatter-y:${((index * 23) % 7 - 3) * 35}px;--scatter-rotate:${((index * 17) % 11 - 5) * 36}deg`}>{letter === ' ' ? '\u00a0' : letter}</span>
   ))}
 </p>
 <style>
 .home-intro{display:flex;flex-wrap:wrap;align-items:center;margin:0 0 12px;color:#777A7B;font-size:12px;line-height:1.8;font-weight:500}
 .home-intro-letter{display:inline-block;position:relative;white-space:pre;transform-origin:center;cursor:default}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){
-  .home-intro-letter:hover{animation:letter-scatter .65s cubic-bezier(.2,.8,.2,1) both;z-index:1}
+  .home-intro-letter:hover{animation:letter-scatter 2.4s cubic-bezier(.16,.7,.18,1) both;z-index:1}
 }
 @keyframes letter-scatter{
   0%{transform:translate(0,0) rotate(0);opacity:1}
-  28%{transform:translate(var(--scatter-x),var(--scatter-y)) rotate(var(--scatter-rotate));opacity:.55}
-  65%{transform:translate(calc(var(--scatter-x) * -.18),calc(var(--scatter-y) * -.18)) rotate(0);opacity:1}
+  14%{transform:translate(var(--scatter-x),var(--scatter-y)) rotate(var(--scatter-rotate));opacity:.7}
+  38%{transform:translate(calc(var(--scatter-x) * 1.15),calc(var(--scatter-y) * 1.15)) rotate(var(--scatter-rotate));opacity:1}
+  78%{transform:translate(calc(var(--scatter-x) * .12),calc(var(--scatter-y) * .12)) rotate(8deg);opacity:1}
   100%{transform:translate(0,0) rotate(0);opacity:1}
 }
 </style>
