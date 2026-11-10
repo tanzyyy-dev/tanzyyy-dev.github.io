@@ -57,12 +57,6 @@ export const games: Game[] = [
     availabilityStatus: 'active',
     devices: ['pc', 'tablet', 'smartphone'],
     notices: [{
-      kind: 'info',
-      text: {
-        ja: 'ログイン不要、完全無料',
-        en: 'No login required. Completely free.'
-      }
-    }, {
       kind: 'requirement',
       text: {
         ja: '物理キーボード必須（スマホ・タブレットでは外付けキーボードを接続してください）',

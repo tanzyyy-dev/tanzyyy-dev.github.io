@@ -1,9 +1,12 @@
 ---
 import type { Lang } from '../data/content';
-import type { Game } from '../data/games';
+import { authRequirementLabels, pricingModelLabels, type Game } from '../data/games';
 interface Props { lang: Lang; game: Game }
 const { lang, game } = Astro.props;
 const ja = lang === 'ja';
+const accessNote = ja
+  ? `${authRequirementLabels[game.authRequirement][lang]}、${pricingModelLabels[game.pricingModel][lang]}`
+  : `${authRequirementLabels[game.authRequirement][lang]}. ${pricingModelLabels[game.pricingModel][lang]}.`;
 const MAX_UPDATE_LINES = 3;
 const updateLines = (game.updateNotes ?? [])
   .map(note => note[lang].trim())
@@ -51,10 +54,11 @@ const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-U
               {updateSlots.map(line => <li>{line}</li>)}
             </ul>
           </div>
-          {(game.notices?.length ?? 0)>0 && <div class="game-info-notes">
+          <div class="game-info-notes">
             <span class="game-info-label">{ja?'備考':'Notes'}</span>
             <ul class="game-info-notes-list">
+              <li>{accessNote}</li>
               {game.notices?.map(notice => <li>{notice.text[lang]}</li>)}
             </ul>
-          </div>}
+          </div>
         </section>
