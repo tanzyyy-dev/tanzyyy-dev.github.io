@@ -6,6 +6,7 @@ This is the Astro + TypeScript website for tanzyyy-dev. Keep this always-read fi
 
 - **Product/UI design** — page hierarchy, layout, styles, navigation, accessibility, or responsive behavior: read `.agents/skills/portal-design/SKILL.md`.
 - **Astro development** — implementation, refactoring, tests, builds, or technical verification: read `.agents/skills/astro-development/SKILL.md`.
+- **Project data management** — add, review, and update Games/Tools/Contents records and images: read `.agents/skills/project-data-management/SKILL.md`.
 - **GitHub operations** — commits, pushes, pull requests, merges, or Pages deployment: read `.agents/skills/repository-operations/SKILL.md`.
 
 Read the relevant skill(s) **before** doing that work; a task may require more than one. For documentation-only edits, read the affected documents and the GitHub operations skill if committing/pushing. Do not load unrelated skills.

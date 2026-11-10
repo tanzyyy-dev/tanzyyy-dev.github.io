@@ -16,12 +16,12 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 ## Source map
 
 - `src/layouts/Base.astro`: shared layout and metadata; composes the shared header and footer.
-- `src/components/ProjectList.astro` and `ProjectCard.astro`: project listing and its cards.
-- `src/components/ProjectDetail.astro` and `GameInfoCard.astro`: project detail and game information card.
+- `src/components/ProjectList.astro`, `HomeGameCard.astro`, and `OtherProjectCard.astro`: project listing and category-appropriate cards.
+- `src/components/ProjectDetail.astro` and `GameInfoCard.astro`: game detail and metadata; `OtherProjectDetail.astro`: Tools/Contents detail.
 - `src/styles/global.css`: styling and responsive rules.
 - `src/data/content.ts`: shared translations.
 - `src/data/types.ts`: shared and category-specific project types.
-- `src/data/projects/`: category indexes and one file per work.
+- `src/data/projects/`: category indexes, one file per work, and the unified `index.ts` catalog for listing, counts and routing.
 - `src/data/games.ts`: backwards-compatible game API.
 - `src/pages/`: Japanese and English routes.
 
@@ -29,7 +29,7 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 
 - Before adding page markup or a new UI component, inspect existing shared components and reuse an appropriate one instead of duplicating its structure or behavior.
 - Shared site chrome belongs in `src/components/SiteHeader.astro`, `SiteFooter.astro`, and `Breadcrumbs.astro`; pages should consume them through the existing layout or component API rather than copying their markup.
-- Project listing cards use `src/components/ProjectCard.astro`; game detail metadata uses `src/components/GameInfoCard.astro`. Keep localized content and project facts sourced from `src/data/`, not duplicated in components.
+- Project listing cards use `HomeGameCard.astro` for Games and `OtherProjectCard.astro` for Tools/Contents; game metadata uses `GameInfoCard.astro`. Keep localized content and project facts sourced from `src/data/`, not duplicated in components.
 - Prefer passing typed Astro props to reusable components. Do not extract a component solely because a block of markup is long; extract when it represents a stable, independently reusable responsibility.
 - Keep shared behavior (including sticky positioning) consistent across routes unless a page-specific exception is explicitly required. Place genuinely shared rules in shared CSS; scope page-specific rules deliberately.
 - Refactor one component family at a time. Preserve HTML semantics, styles, responsive behavior, accessibility, and Japanese/English parity; avoid opportunistic redesigns or unrelated cleanup.
@@ -37,7 +37,7 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 
 ## Verification
 
-- Run `npm run build` for code changes when dependencies are available. Report any failed or unrun checks rather than claiming verification.
+- Run `npm run validate:projects` and `npm run build` for project data/code changes when dependencies are available. Report any failed or unrun checks rather than claiming verification.
 - Do not run local browser previews or generate viewport screenshots as routine verification. Perform visual inspection only when explicitly requested.
 - For UI changes, review the affected routes, responsive CSS, keyboard focus, touch controls, and Japanese/English parity in the code.
 - **Never claim visual verification without actual browser or screenshot inspection.**
