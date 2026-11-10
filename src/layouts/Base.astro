@@ -34,9 +34,9 @@ const enableAnalytics = import.meta.env.PROD;
 <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
 <script is:inline define:vars={{ gaMeasurementId }}>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){ window.dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', gaMeasurementId);
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', gaMeasurementId);
 </script>
 </>}
 </head>
