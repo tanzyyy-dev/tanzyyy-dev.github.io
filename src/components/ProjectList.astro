@@ -6,22 +6,21 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ja = lang === 'ja';
 const labels = ja ? {
-  title: '作品一覧', search: '作品名・キーワードで検索...', all: 'すべて', genre: 'ジャンル',
+  search: '作品名・キーワードで検索...', all: 'すべて', genre: 'ジャンル',
   format: '形式', sort: '並び順', newest: '公開日の新しい順', updated: '更新日の新しい順',
   name: '名前順', clear: '条件をクリア', empty: '条件に一致する作品はありません。',
-  count: '件の作品', game: 'Games', tool: 'Tools', content: 'Contents'
+  count: 'の作品を表示しています🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 } : {
-  title: 'Projects', search: 'Search projects...', all: 'All', genre: 'Genre',
+  search: 'Search projects...', all: 'All', genre: 'Genre',
   format: 'Format', sort: 'Sort by', newest: 'Newest release', updated: 'Recently updated',
   name: 'Name', clear: 'Clear filters', empty: 'No projects match your filters.',
-  count: 'projects', game: 'Games', tool: 'Tools', content: 'Contents'
+  count: 'projects displayed 🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 };
 const genres = [...new Set(games.map(game => game.genre[lang]))].sort((a,b) => a.localeCompare(b,lang));
 const formats = [...new Set(games.map(game => game.format))];
 const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウザゲーム' : 'Browser game') : (ja ? 'ダウンロードゲーム' : 'Download game');
 ---
 <section class="catalog" data-catalog lang={lang}>
-  <div class="catalog-heading"><h1>{labels.title}</h1><span class="catalog-count" aria-live="polite"><span data-count>{games.length}</span> {labels.count}</span></div>
   <div class="catalog-filters" role="search" aria-label={ja ? '作品を探す' : 'Find projects'}>
     <label class="catalog-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input data-search type="search" placeholder={labels.search} aria-label={labels.search} autocomplete="off"/></label>
     <div class="catalog-tabs" role="group" aria-label={ja ? 'カテゴリ' : 'Category'}>
@@ -34,6 +33,7 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
     </div>
     <div class="catalog-filter-footer"><button type="button" data-clear>{labels.clear} <span aria-hidden="true">↺</span></button></div>
   </div>
+  <p class="catalog-count" aria-live="polite"><span data-count>{games.length}</span> / {games.length}{ja ? labels.count : ` ${labels.count}`}</p>
   <div class="catalog-grid" data-grid>
     {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false}/></div>)}
   </div>
@@ -92,7 +92,7 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
   });
 </script>
 <style>
-.catalog{margin:0 0 28px}.catalog-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 18px}.catalog-heading h1{margin:0;font-size:clamp(23px,3vw,32px);font-weight:800;color:#292B2D}.catalog-count{font-size:12px;color:#777A7B;white-space:nowrap}
+.catalog{margin:0 0 28px}.catalog-count{margin:0 0 14px;color:#777A7B;font-size:13px;font-weight:600}
 .catalog-filters{background:#fff;border:1px solid #D9DAD6;border-radius:14px;padding:clamp(14px,2vw,22px);margin-bottom:22px}
 .catalog-search{display:flex;align-items:center;gap:10px;border:1px solid #B7B9B6;border-radius:9px;padding:0 14px;background:#F9F9F7;min-height:46px}
 .catalog-search:focus-within{outline:2px solid #B58A76;outline-offset:2px}
