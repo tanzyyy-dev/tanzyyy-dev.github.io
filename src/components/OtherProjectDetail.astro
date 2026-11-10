@@ -40,8 +40,8 @@ const notes = content?.notes?.map(note => note[lang].trim()).filter(Boolean) ?? 
           <div class="game-info-grid">
             <div class="game-info-field"><span class="game-info-label">{ja ? 'カテゴリ' : 'Category'}</span><strong>{content?.categoryLabel?.[lang] ?? category}</strong></div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'ジャンル' : 'Genre'}</span><strong>{content?.genre?.[lang] ?? '—'}</strong></div>
-            <div class="game-info-field"><span class="game-info-label">{ja ? '公開記事数' : 'Published articles'}</span><strong>{content?.publishedCount != null ? (ja ? `${content.publishedCount}本` : `${content.publishedCount} articles`) : '—'}</strong></div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'バージョン' : 'Version'}</span><strong>{project.version || '—'}</strong></div>
+            <div class="game-info-field"><span class="game-info-label">{ja ? '公開記事数' : 'Published articles'}</span><strong>{content?.publishedCount != null ? (ja ? `${content.publishedCount}本` : `${content.publishedCount} articles`) : '—'}</strong></div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'リリース日' : 'Released'}</span>{project.releasedAt ? <time datetime={project.releasedAt}>{dateLabel(project.releasedAt)}</time> : <span class="game-date-unset">—</span>}</div>
             <div class="game-info-field"><span class="game-info-label">{ja ? '最終更新日' : 'Last updated'}</span>{project.updatedAt ? <time datetime={project.updatedAt}>{dateLabel(project.updatedAt)}</time> : <span class="game-date-unset">—</span>}</div>
           </div>
