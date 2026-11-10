@@ -60,7 +60,34 @@ const enableAnalytics = import.meta.env.PROD;
     if (element.dataset.gaProject) params.project_id = element.dataset.gaProject;
     if (element.dataset.gaCategory) params.project_category = element.dataset.gaCategory;
     if (element.dataset.gaDestination) params.destination = element.dataset.gaDestination;
-    window.gtag('event', name, params);
+    // Prefer beacon transport for links, so navigation does not discard the hit.
+    const link = element.closest<HTMLAnchorElement>('a[href]');
+    if (!link) {
+      window.gtag('event', name, params);
+      return;
+    }
+    const isSameTab = !link.target || link.target === '_self';
+    const isPlainClick = event instanceof MouseEvent && event.button === 0 &&
+      !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+    if (!isSameTab || !isPlainClick || link.hasAttribute('download')) {
+      window.gtag('event', name, { ...params, transport_type: 'beacon' });
+      return;
+    }
+    // Keep normal same-tab navigation reliable even if the GA callback never runs.
+    event.preventDefault();
+    let navigated = false;
+    const navigate = () => {
+      if (navigated) return;
+      navigated = true;
+      window.location.assign(link.href);
+    };
+    window.gtag('event', name, {
+      ...params,
+      transport_type: 'beacon',
+      event_callback: navigate,
+      event_timeout: 350
+    });
+    window.setTimeout(navigate, 400);
   });
 </script>
 </body></html>
