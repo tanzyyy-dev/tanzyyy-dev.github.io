@@ -41,7 +41,14 @@ const notes = content?.notes?.map(note => note[lang].trim()).filter(Boolean) ?? 
             <div class="game-info-field"><span class="game-info-label">{ja ? 'カテゴリ' : 'Category'}</span><strong>{content?.categoryLabel?.[lang] ?? category}</strong></div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'ジャンル' : 'Genre'}</span><strong>{content?.genre?.[lang] ?? '—'}</strong></div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'バージョン' : 'Version'}</span><strong>{project.version || '—'}</strong></div>
-            <div class="game-info-field"><span class="game-info-label">{ja ? '公開記事数' : 'Published articles'}</span><strong>{content?.publishedCount != null ? (ja ? `${content.publishedCount}本` : `${content.publishedCount} articles`) : '—'}</strong></div>
+            <div class="game-info-field game-info-devices">
+              <span class="game-info-label">{ja ? '対応端末' : 'Devices'}</span>
+              <div class="game-devices">
+                {content?.devices?.includes('pc') && <span title="PC" aria-label="PC"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></span>}
+                {content?.devices?.includes('tablet') && <span title={ja ? 'タブレット' : 'Tablet'} aria-label={ja ? 'タブレット' : 'Tablet'}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
+                {content?.devices?.includes('smartphone') && <span title={ja ? 'スマホ' : 'Phone'} aria-label={ja ? 'スマホ' : 'Phone'}><svg viewBox="0 0 24 24" width="16" height="18" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 19h2"/></svg></span>}
+              </div>
+            </div>
             <div class="game-info-field"><span class="game-info-label">{ja ? 'リリース日' : 'Released'}</span>{project.releasedAt ? <time datetime={project.releasedAt}>{dateLabel(project.releasedAt)}</time> : <span class="game-date-unset">—</span>}</div>
             <div class="game-info-field"><span class="game-info-label">{ja ? '最終更新日' : 'Last updated'}</span>{project.updatedAt ? <time datetime={project.updatedAt}>{dateLabel(project.updatedAt)}</time> : <span class="game-date-unset">—</span>}</div>
           </div>
