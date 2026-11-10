@@ -12,7 +12,12 @@ const updateLines = (game.updateNotes ?? [])
   .map(note => note[lang].trim())
   .filter(Boolean)
   .slice(0, MAX_UPDATE_LINES);
-const updateSlots = Array.from({ length: MAX_UPDATE_LINES }, (_, index) => updateLines[index] ?? '—');
+const dateRange = `${game.releasedAt ?? '—'}〜${game.updatedAt ?? '—'}`;
+const updateSlots = game.availabilityStatus === 'discontinued'
+  ? (ja
+    ? ['本作品はサービス終了しました。', '以下の期間、ご愛顧いただきまして誠にありがとうございました🐾', dateRange]
+    : ['This service has ended.', 'Thank you for your support during the following period 🐾', dateRange])
+  : Array.from({ length: MAX_UPDATE_LINES }, (_, index) => updateLines[index] ?? '—');
 const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-US', {year:'numeric',month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'));
 ---
 <section class="game-info-card" aria-label={ja?'作品情報':'Game information'}>

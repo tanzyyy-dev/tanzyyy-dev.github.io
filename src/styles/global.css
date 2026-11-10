@@ -425,3 +425,12 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 /* Keep the footer at the bottom of short project-list pages. */
 body.project-palette{display:flex;flex-direction:column;min-height:100svh}
 body.project-palette main{flex:1 0 auto}
+
+/* Shared availability labels and non-interactive play action. */
+.availability-badge{display:inline-flex;align-items:center;flex:none;padding:3px 9px;border:1px solid;border-radius:6px;font-size:11px;font-weight:800;line-height:1.45;white-space:nowrap;vertical-align:middle;letter-spacing:0}
+.availability-badge.status-coming-soon{color:#286A83;background:#E2F3FA;border-color:#A7D8EB}
+.availability-badge.status-active{color:#286742;background:#E5F5E9;border-color:#A9D8B7}
+.availability-badge.status-maintenance{color:#8C5119;background:#FFF0D9;border-color:#EBC28A}
+.availability-badge.status-discontinued{color:#62676A;background:#EAECEE;border-color:#BCC0C3}
+.game-title-with-status,.card-title-with-status{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:9px;row-gap:5px}
+.game-play.game-play-disabled,.game-play.game-play-disabled:hover{background:#DADBD9;color:#777A7B;border:0;cursor:not-allowed;opacity:1;font-family:inherit}

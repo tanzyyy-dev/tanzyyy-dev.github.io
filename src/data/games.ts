@@ -16,7 +16,7 @@ export const pricingModelLabels: Record<PricingModel, Record<Lang, string>> = {
   paid: { ja: '有料', en: 'Paid' }
 };
 export const availabilityStatusLabels: Record<AvailabilityStatus, Record<Lang, string>> = {
-  'coming-soon': { ja: '準備中', en: 'Coming soon' },
+  'coming-soon': { ja: '開発中', en: 'In development' },
   active: { ja: '稼働中', en: 'Live' },
   maintenance: { ja: 'メンテナンス中', en: 'Under maintenance' },
   discontinued: { ja: 'サービス終了', en: 'Discontinued' }
