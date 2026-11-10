@@ -1,20 +1,21 @@
 ---
 import type { Lang } from '../data/content';
-import { games } from '../data/games';
+import { projects, projectCounts } from '../data/projects';
 import HomeGameCard from './HomeGameCard.astro';
+import OtherProjectCard from './OtherProjectCard.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ja = lang === 'ja';
 const prefix = ja ? '' : '/en';
 const works = [
-  { id: 'games', label: 'Games', count: games.length, accent: '#B58A76', icon: '🎮' },
-  { id: 'tools', label: 'Tools', count: 0, accent: '#7C9C9B', icon: '🛠' },
-  { id: 'contents', label: 'Contents', count: 0, accent: '#A292BA', icon: '📖' }
+  { id: 'games', label: 'Games', count: projectCounts.games, accent: '#B58A76', icon: '🎮' },
+  { id: 'tools', label: 'Tools', count: projectCounts.tools, accent: '#7C9C9B', icon: '🛠' },
+  { id: 'contents', label: 'Contents', count: projectCounts.contents, accent: '#A292BA', icon: '📖' }
 ];
-const news = games.filter(game => game.homeFeature).map(game => ({
-  game, feature: game.homeFeature!,
-  date: game.homeFeature === 'new-release' ? game.releasedAt : game.homeFeature === 'update' ? game.updatedAt : null,
-  description: game.summary[lang]
+const news = projects.filter(project => project.homeFeature).map(project => ({
+  project, feature: project.homeFeature!,
+  date: project.homeFeature === 'new-release' ? project.releasedAt : project.homeFeature === 'update' ? project.updatedAt : null,
+  description: project.summary[lang]
 })).sort((a,b) => {
   const priority = { 'new-release':0, update:1, recommended:2 };
   return priority[a.feature] - priority[b.feature] || (b.date || '').localeCompare(a.date || '');
@@ -26,7 +27,7 @@ const paw = '<svg viewBox="0 0 24 24" width="23" height="23" style="width:23px;h
     <h2 id="news-heading" class="section-heading"><Fragment set:html={paw}/> News</h2>
     <div class="news-list" data-news-list>
       {news.map((item,index) => <div class="news-entry" data-news-item data-news-date={item.date || ''} data-news-feature={item.feature} data-news-index={index}>
-        <HomeGameCard game={item.game} lang={lang} showAccess={true} analyticsSource="home_news"/>
+        {item.project.category === 'games' ? <HomeGameCard game={item.project} lang={lang} showAccess={true} analyticsSource="home_news"/> : <OtherProjectCard project={item.project} lang={lang} analyticsSource="home_news"/>}
       </div>)}
       <p class="empty-message" data-news-empty hidden>{ja ? '現在、お知らせはありません。' : 'No news at the moment.'}</p>
     </div>

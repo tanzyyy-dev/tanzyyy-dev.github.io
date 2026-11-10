@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProjectDetail from '../../components/ProjectDetail.astro';
-import {games} from '../../data/games';
-export function getStaticPaths(){return games.map(game=>({params:{slug:game.slug},props:{game}}));}
-const {game}=Astro.props;
+import OtherProjectDetail from '../../components/OtherProjectDetail.astro';
+import { projects } from '../../data/projects';
+export function getStaticPaths() { return projects.map(project => ({ params: { slug: project.slug }, props: { project } })); }
+const { project } = Astro.props;
 ---
-<Base lang="ja" title={game.title} description={game.summary.ja}><ProjectDetail lang="ja" game={game}/></Base>
+<Base lang="ja" title={project.title} description={project.summary.ja}>{project.category === 'games' ? <ProjectDetail lang="ja" game={project}/> : <OtherProjectDetail lang="ja" project={project}/>}</Base>

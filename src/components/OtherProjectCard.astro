@@ -1,0 +1,16 @@
+---
+import type { Lang } from '../data/content';
+import type { Tool, Content } from '../data/types';
+import { projectUrl } from '../data/projects';
+interface Props { project: Tool | Content; lang: Lang; analyticsSource?: string }
+const { project, lang, analyticsSource } = Astro.props;
+const image = project.media.find(item => item.type === 'image');
+const category = project.category === 'tools' ? 'Tools' : 'Contents';
+---
+<a class="other-project-card" href={projectUrl(project, lang)} data-ga-event="project_card_click" data-ga-project={project.slug} data-ga-source={analyticsSource}>
+  <div class="other-project-image">{image ? <img src={image.src} alt={image.alt[lang]} loading="lazy" width="144" height="144"/> : <span>{category}</span>}</div>
+  <div class="other-project-copy"><span class="other-project-category">{category}</span><h3>{project.title}</h3><p>{project.summary[lang]}</p></div>
+</a>
+<style>
+.other-project-card{display:grid;grid-template-columns:100px minmax(0,1fr);gap:16px;height:100%;padding:14px;border:1px solid #D8B8A5;border-radius:10px;background:#F9F5F1;color:#292B2D;text-decoration:none;transition:box-shadow .2s,background-color .2s}.other-project-card:hover{background:#FFF8F3;box-shadow:0 0 0 3px #B58A76}.other-project-card:focus-visible{outline:3px solid #B58A76;outline-offset:4px}.other-project-image{display:flex;align-items:center;justify-content:center;aspect-ratio:1;overflow:hidden;border-radius:7px;background:#292B2D;color:#fff}.other-project-image img{width:100%;height:100%;object-fit:cover}.other-project-image span{font-size:12px}.other-project-copy{min-width:0}.other-project-category{font-size:11px;font-weight:700;color:#76513F}h3{margin:4px 0 8px;font-size:18px;overflow-wrap:anywhere}p{margin:0;font-size:12px;line-height:1.55;color:#55585A}@media(max-width:380px){.other-project-card{grid-template-columns:90px minmax(0,1fr)}}
+</style>

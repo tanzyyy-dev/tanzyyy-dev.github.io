@@ -1,7 +1,8 @@
 ---
-import { games } from '../data/games';
+import { projects } from '../data/projects';
 import type { Lang } from '../data/content';
 import HomeGameCard from './HomeGameCard.astro';
+import OtherProjectCard from './OtherProjectCard.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ja = lang === 'ja';
@@ -16,8 +17,8 @@ const labels = ja ? {
   name: 'Name', clear: 'Clear filters', empty: 'No projects match your filters.',
   count: 'projects displayed 🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 };
-const genres = [...new Set(games.map(game => game.genre[lang]))].sort((a,b) => a.localeCompare(b,lang));
-const formats = [...new Set(games.map(game => game.format))];
+const genres = [...new Set(projects.filter(project => project.category === 'games').map(game => game.genre[lang]))].sort((a,b) => a.localeCompare(b,lang));
+const formats = [...new Set(projects.filter(project => project.category === 'games').map(game => game.format))];
 const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウザゲーム' : 'Browser game') : (ja ? 'ダウンロードゲーム' : 'Download game');
 ---
 <section class="catalog" data-catalog lang={lang}>
@@ -33,9 +34,9 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
     </div>
     <div class="catalog-filter-footer"><button type="button" data-clear>{labels.clear} <span aria-hidden="true">↺</span></button></div>
   </div>
-  <p class="catalog-count" aria-live="polite"><span data-count>{games.length}</span> / {games.length}{ja ? labels.count : ` ${labels.count}`}</p>
+  <p class="catalog-count" aria-live="polite"><span data-count>{projects.length}</span> / {projects.length}{ja ? labels.count : ` ${labels.count}`}</p>
   <div class="catalog-grid" data-grid>
-    {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false} showAccess={true} analyticsSource="project_catalog"/></div>)}
+    {projects.map((project,index) => <div class="catalog-item" data-item data-index={index} data-category={project.category} data-genre={project.category === 'games' ? project.genre[lang] : ''} data-format={project.category === 'games' ? project.format : ''} data-released={project.releasedAt ?? ''} data-updated={project.updatedAt ?? ''} data-name={project.title} data-keywords={`${project.title} ${project.category === 'games' ? project.genre[lang] : ''} ${project.summary[lang]} ${project.category === 'games' ? formatLabel(project.format) : ''}`.toLocaleLowerCase()}>{project.category === 'games' ? <HomeGameCard game={project} lang={lang} showFeature={false} showAccess={true} analyticsSource="project_catalog"/> : <OtherProjectCard project={project} lang={lang} analyticsSource="project_catalog"/>}</div>)}
   </div>
   <p class="catalog-empty" data-empty hidden>{labels.empty}</p>
 </section>
