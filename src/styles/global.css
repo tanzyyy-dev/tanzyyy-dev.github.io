@@ -435,8 +435,8 @@ body.project-palette main{flex:1 0 auto}
 .game-title-with-status,.card-title-with-status{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:9px;row-gap:5px}
 .game-play.game-play-disabled,.game-play.game-play-disabled:hover{background:#DADBD9;color:#777A7B;border:0;cursor:not-allowed;opacity:1;font-family:inherit}
 
-/* Portrait desktop/tablet widths: align media with the top of the taller info column. */
+/* Portrait desktop widths use the same stacked layout as mobile. */
 @media (min-width:851px) and (max-width:1280px){
-  .game-featured{align-items:start}
-  .game-featured .game-cover{align-self:start}
+  .game-featured{grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
+  .game-featured .game-cover{align-self:auto}
 }
