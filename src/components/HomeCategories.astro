@@ -1,8 +1,9 @@
 ---
 import type {Lang} from '../data/content';
-import {homepageGames} from '../data/games';
+import {games, homepageGames} from '../data/games';
 import HomeGameCard from './HomeGameCard.astro';
 const featuredGames = homepageGames();
+const hasMoreGames = games.filter(game => game.homeFeature).length > 3;
 interface Props { lang: Lang }
 const {lang}=Astro.props;
 const ja=lang==='ja';
@@ -33,7 +34,7 @@ const categories=[
   <div class="category-content">
    {category.latest?<><p class="category-kicker">FEATURED <span>·</span> {category.latest.kind}</p><h3><a href={category.latest.href}>{category.latest.title}</a></h3><p class="category-description">{category.latest.description}</p></>:<p class="category-empty">{ja?'現在、掲載作品はありません。':'Nothing published here yet.'}</p>}
   </div>
-  <a class="category-more" href={category.id==='games'?prefix+'/projects/':prefix+'/projects/?category='+category.id}>{ja?'もっと見る':'View more'} <svg class="category-more-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a>
+  {(category.id!=='games' || hasMoreGames) && <a class="category-more" href={category.id==='games'?prefix+'/projects/':prefix+'/projects/?category='+category.id}>{ja?'もっと見る':'View more'} <svg class="category-more-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a>}
   </>}
  </article>)}
 </section>

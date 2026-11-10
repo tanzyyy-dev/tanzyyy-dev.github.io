@@ -7,7 +7,9 @@ const reason = game.homeFeature;
 const badge = reason === 'new-release' ? 'NEW RELEASE' : reason === 'update' ? 'UPDATE' : 'RECOMMENDED';
 const date = reason === 'new-release' ? game.releasedAt : reason === 'update' ? game.updatedAt : null;
 const image = game.media.find(item => item.type === 'image');
-const format = game.format === 'browser' ? 'Browser' : 'Download';
+const format = game.format === 'browser'
+  ? (lang === 'ja' ? 'ブラウザゲーム' : 'Browser game')
+  : (lang === 'ja' ? 'ダウンロードゲーム' : 'Download game');
 ---
 <article class="home-game-entry">
   <a class="home-game-image" href={gameUrl(game, lang)} aria-label={game.title}>
@@ -16,7 +18,7 @@ const format = game.format === 'browser' ? 'Browser' : 'Download';
   <div class="home-game-copy">
     <div class="home-game-status"><span class:list={['home-game-badge', reason]}>{badge}</span>{date && <time datetime={date}>{date.replaceAll('-', '.')}</time>}</div>
     <h3><a href={gameUrl(game, lang)}>{game.title}</a></h3>
-    <p class="home-game-meta">{game.genre[lang]} <span aria-hidden="true">·</span> {format}</p>
+    <div class="home-game-meta"><span class="home-game-tag">{game.genre[lang]}</span><span class="home-game-tag">{format}</span></div>
     <p class="home-game-summary">{game.summary[lang]}</p>
   </div>
 </article>
@@ -33,7 +35,7 @@ const format = game.format === 'browser' ? 'Browser' : 'Download';
 .home-game-status time{color:#777A7B;font-size:11px;font-variant-numeric:tabular-nums}
 h3{margin:0 0 5px;font-size:clamp(15px,1.5vw,19px);line-height:1.3;letter-spacing:-.025em;overflow-wrap:anywhere}
 h3 a{text-decoration:none}h3 a:hover{text-decoration:underline}
-.home-game-meta{margin:0 0 6px;color:#777A7B;font-size:12px}.home-game-meta span{margin:0 4px}
+.home-game-meta{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}.home-game-tag{display:inline-block;padding:2px 8px;border:1px solid #D9DAD6;border-radius:5px;background:#F0EFEB;color:#55585A;font-size:11px;line-height:1.5}
 .home-game-summary{margin:0;color:#55585A;font-size:12px;line-height:1.55}
 @media(max-width:760px){.home-game-entry{grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px}}
 @media(max-width:380px){.home-game-entry{grid-template-columns:80px minmax(0,1fr);gap:10px}}
