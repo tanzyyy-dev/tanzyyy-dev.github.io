@@ -37,9 +37,9 @@ export type Game = ProjectBase<'games'> & {
 export type Tool = ProjectBase<'tools'> & { url?: string };
 export type Content = ProjectBase<'contents'> & {
   url?: string;
-  format?: LocalizedText;
+  categoryLabel?: LocalizedText;
+  genre?: LocalizedText;
   publishedCount?: number;
-  updateFrequency?: LocalizedText;
   notes?: LocalizedText[];
 };
 export type Project = Game | Tool | Content;

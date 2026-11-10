@@ -22,9 +22,9 @@ export const aiDistance: Content = {
   releasedAt: '2026-05-05',
   updatedAt: '2026-10-17',
   version: null,
-  format: { ja: '漫画・記事', en: 'Comics & articles' },
+  categoryLabel: { ja: 'Web漫画', en: 'Web comics' },
+  genre: { ja: '4コマ漫画', en: 'Four-panel comics' },
   publishedCount: 167,
-  updateFrequency: { ja: '不定期', en: 'Occasional' },
   updateNotes: [
     { ja: '2026年10月までに167本の記事を公開', en: 'Published 167 articles by October 2026' },
     { ja: 'ChatGPTやCodexを使った半自動化など、制作工程を試行錯誤', en: 'Experimented with AI-assisted workflows using ChatGPT and Codex' },
