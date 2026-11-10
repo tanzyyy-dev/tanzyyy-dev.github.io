@@ -6,6 +6,7 @@ export type Game = {
   category: 'games';
   genre: Record<Lang, string>;
   format: 'browser' | 'download';
+  homeFeature?: 'new-release' | 'recommended' | 'update';
   devices: Array<'pc' | 'tablet' | 'smartphone'>;
   notices?: Array<{ kind: 'requirement' | 'storage' | 'info'; text: Record<Lang,string> }>;
   summary: Record<Lang, string>;
@@ -25,6 +26,7 @@ export const games: Game[] = [
     category: 'games',
     genre: { ja: 'リズム・タイピング', en: 'Rhythm typing' },
     format: 'browser',
+    homeFeature: 'recommended',
     devices: ['pc', 'tablet', 'smartphone'],
     notices: [{
       kind: 'info',
@@ -63,3 +65,20 @@ export const games: Game[] = [
 
 export const getGame = (slug: string): Game | undefined => games.find(game => game.slug === slug);
 export const gameUrl = (game: Game, lang: Lang) => `${lang === 'ja' ? '' : '/en'}/projects/${game.slug}/`;
+
+// Homepage: priority first, newest release first within NEW RELEASE, stable order otherwise.
+export const homepageGames = () => games
+  .filter(game => game.homeFeature)
+  .map((game, index) => ({ game, index }))
+  .sort((a, b) => {
+    const priority = { 'new-release': 0, recommended: 1, update: 2 } as const;
+    const difference = priority[a.game.homeFeature!] - priority[b.game.homeFeature!];
+    if (difference !== 0) return difference;
+    if (a.game.homeFeature === 'new-release' && b.game.homeFeature === 'new-release') {
+      const dateOrder = (b.game.releasedAt ?? '').localeCompare(a.game.releasedAt ?? '');
+      if (dateOrder !== 0) return dateOrder;
+    }
+    return a.index - b.index;
+  })
+  .slice(0, 3)
+  .map(({ game }) => game);
