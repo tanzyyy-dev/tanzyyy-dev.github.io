@@ -10,7 +10,7 @@ export const aiDistance: Content = {
   },
   media: [{
     type: 'image',
-    src: '/images/contents/ai-distance-thumbnail.webp',
+    src: '/images/contents/ai-distance-thumbnail.gif',
     alt: {
       ja: '「AIとのちょうどいい距離感」のサムネイル画像',
       en: 'Thumbnail for Finding the Right Distance from AI'
