@@ -7,12 +7,12 @@ const { lang } = Astro.props;
 const ja = lang === 'ja';
 const labels = ja ? {
   search: '作品名・キーワードで検索...', all: 'すべて', genre: 'ジャンル',
-  format: '形式', sort: '並び順', newest: '公開日の新しい順', updated: '更新日の新しい順',
+  format: 'ジャンル', sort: '並び順', newest: '公開日の新しい順', updated: '更新日の新しい順',
   name: '名前順', clear: '条件をクリア', empty: '条件に一致する作品はありません。',
   count: 'の作品を表示しています🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 } : {
   search: 'Search projects...', all: 'All', genre: 'Genre',
-  format: 'Format', sort: 'Sort by', newest: 'Newest release', updated: 'Recently updated',
+  format: 'Genre', sort: 'Sort by', newest: 'Newest release', updated: 'Recently updated',
   name: 'Name', clear: 'Clear filters', empty: 'No projects match your filters.',
   count: 'projects displayed 🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 };
@@ -51,9 +51,7 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
     const count = catalog.querySelector<HTMLElement>('[data-count]')!;
     const empty = catalog.querySelector<HTMLElement>('[data-empty]')!;
     const clear = catalog.querySelector<HTMLButtonElement>('[data-clear]')!;
-    const params = new URLSearchParams(window.location.search);
-    let category = params.get('category') || 'all';
-    if (!tabs.some(tab => tab.dataset.category === category)) category = 'all';
+    let category = 'all';
     const update = () => {
       tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.category === category)));
       const query = search.value.trim().toLocaleLowerCase();
