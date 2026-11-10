@@ -1,4 +1,4 @@
 import type { Content } from '../../types';
+import { aiDistance } from './ai-distance';
 
-// Add one <slug>.ts module per verified work, then register it here.
-export const contents: Content[] = [];
+export const contents: Content[] = [aiDistance];
