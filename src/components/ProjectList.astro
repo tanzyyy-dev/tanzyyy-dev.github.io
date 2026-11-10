@@ -7,12 +7,12 @@ const { lang } = Astro.props;
 const ja = lang === 'ja';
 const labels = ja ? {
   search: '作品名・キーワードで検索...', all: 'すべて', genre: 'ジャンル',
-  format: 'ジャンル', sort: '並び順', newest: '公開日の新しい順', updated: '更新日の新しい順',
+  format: 'カテゴリ', sort: '並び順', newest: '公開日の新しい順', updated: '更新日の新しい順',
   name: '名前順', clear: '条件をクリア', empty: '条件に一致する作品はありません。',
   count: 'の作品を表示しています🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 } : {
   search: 'Search projects...', all: 'All', genre: 'Genre',
-  format: 'Genre', sort: 'Sort by', newest: 'Newest release', updated: 'Recently updated',
+  format: 'Category', sort: 'Sort by', newest: 'Newest release', updated: 'Recently updated',
   name: 'Name', clear: 'Clear filters', empty: 'No projects match your filters.',
   count: 'projects displayed 🐾', game: 'Games', tool: 'Tools', content: 'Contents'
 };
@@ -27,8 +27,8 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
       {[['all',labels.all],['games',labels.game],['tools',labels.tool],['contents',labels.content]].map(([value,label])=><button type="button" class="catalog-tab" data-category={value} aria-pressed={value==='all'}>{label}</button>)}
     </div>
     <div class="catalog-selects">
-      <label><span>{labels.genre}</span><select data-genre><option value="all">{labels.all}</option>{genres.map(genre=><option value={genre}>{genre}</option>)}</select></label>
       <label><span>{labels.format}</span><select data-format><option value="all">{labels.all}</option>{formats.map(format=><option value={format}>{formatLabel(format)}</option>)}</select></label>
+      <label><span>{labels.genre}</span><select data-genre><option value="all">{labels.all}</option>{genres.map(genre=><option value={genre}>{genre}</option>)}</select></label>
       <label><span>{labels.sort}</span><select data-sort><option value="newest">{labels.newest}</option><option value="updated">{labels.updated}</option><option value="name">{labels.name}</option></select></label>
     </div>
     <div class="catalog-filter-footer"><button type="button" data-clear>{labels.clear} <span aria-hidden="true">↺</span></button></div>
