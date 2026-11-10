@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../data/content';
 import type { Game } from '../data/games';
+import Breadcrumbs from './Breadcrumbs.astro';
 interface Props { lang: Lang; game: Game }
 const {lang, game} = Astro.props;
 const ja = lang === 'ja';
@@ -15,11 +16,7 @@ const updateSlots = Array.from({ length: MAX_UPDATE_LINES }, (_, index) => updat
 const dateLabel = (date: string) => new Intl.DateTimeFormat(ja ? 'ja-JP' : 'en-US', {year:'numeric',month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'));
 ---
 <article class="wrap page game-detail">
-  <nav class="game-breadcrumb" aria-label={ja?'現在位置':'Breadcrumb'}>
-    <a href={prefix+'/'}>{ja?'ホーム':'Home'}</a><span aria-hidden="true">/</span>
-    <a href={prefix+'/projects/'}>{ja?'作品一覧':'Projects'}</a><span aria-hidden="true">/</span>
-    <span aria-current="page">{game.title}</span>
-  </nav>
+  <Breadcrumbs lang={lang} items={[{label:ja?'ホーム':'Home',href:prefix+'/'},{label:ja?'作品一覧':'Projects',href:prefix+'/projects/'},{label:game.title}]} />
   <div class="game-sheet">
     <div class="game-sheet-heading">
       <div class="game-category">

@@ -1,0 +1,12 @@
+---
+import type { Lang } from '../data/content';
+interface Crumb { label: string; href?: string }
+interface Props { lang: Lang; items: Crumb[] }
+const { lang, items } = Astro.props;
+---
+<nav class="game-breadcrumb" aria-label={lang === 'ja' ? '現在位置' : 'Breadcrumb'}>
+  {items.map((item, index) => <>
+    {index > 0 && <span aria-hidden="true">/</span>}
+    {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
+  </>)}
+</nav>

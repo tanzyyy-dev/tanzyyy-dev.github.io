@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProjectList from '../../components/ProjectList.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 ---
-<Base lang="ja" title="作品一覧"><div class="wrap page game-detail"><nav class="game-breadcrumb" aria-label="現在位置"><a href="/">ホーム</a><span aria-hidden="true">/</span><span aria-current="page">作品一覧</span></nav><ProjectList lang="ja"/></div></Base>
+<Base lang="ja" title="作品一覧"><div class="wrap page game-detail"><Breadcrumbs lang="ja" items={[{label:"ホーム",href:"/"},{label:"作品一覧"}]} /><ProjectList lang="ja"/></div></Base>
