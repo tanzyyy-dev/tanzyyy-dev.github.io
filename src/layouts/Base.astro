@@ -12,6 +12,8 @@ const origin='https://tanzyyy-dev.github.io';
 const canonical=new URL(path,origin).href;
 const otherUrl=new URL(alternate,origin).href;
 const home=lang==='ja'?'/':'/en/';
+const gaMeasurementId = 'G-JERJNVGDH7';
+const enableAnalytics = import.meta.env.PROD;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -28,6 +30,15 @@ const home=lang==='ja'?'/':'/en/';
 <link rel="alternate" hreflang="en" href={lang==='en'?canonical:otherUrl}/>
 <meta property="og:type" content="website"/><meta property="og:title" content={title??'tanzyyy-dev'}/>
 <meta property="og:description" content={description??t.intro}/><meta property="og:url" content={canonical}/>
+{enableAnalytics && <>
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+<script is:inline define:vars={{ gaMeasurementId }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', gaMeasurementId);
+</script>
+</>}
 </head>
 <body class:list={{"home-palette":path===home,"project-palette":path.includes("/projects/")}}>
 <a class="skip" href="#main">{lang==='ja'?'本文へ移動':'Skip to content'}</a>
