@@ -1,8 +1,8 @@
 ---
 import type { Lang } from '../data/content';
 import { gameUrl, type Game } from '../data/games';
-interface Props { game: Game; lang: Lang; preview?: boolean }
-const { game, lang, preview = false } = Astro.props;
+interface Props { game: Game; lang: Lang; preview?: boolean; showFeature?: boolean }
+const { game, lang, preview = false, showFeature = true } = Astro.props;
 const Tag = preview ? 'div' : 'a';
 const reason = game.homeFeature;
 const badge = reason === 'new-release' ? 'NEW RELEASE' : reason === 'update' ? 'UPDATE' : 'RECOMMENDED';
@@ -17,7 +17,7 @@ const format = game.format === 'browser'
     {image ? <img src={image.src} alt={image.alt[lang]} loading="lazy" width="144" height="144"/> : <span aria-hidden="true">{game.title}</span>}
   </div>
   <div class="home-game-copy">
-    <div class="home-game-status"><span class:list={['home-game-badge', reason]}>{badge}</span>{date && <time datetime={date}>{date.replaceAll('-', '.')}</time>}</div>
+    {showFeature && <div class="home-game-status"><span class:list={['home-game-badge', reason]}>{badge}</span>{date && <time datetime={date}>{date.replaceAll('-', '.')}</time>}</div>}
     <h3>{game.title}</h3>
     <div class="home-game-meta"><span class="home-game-tag genre">{game.genre[lang]}</span><span class="home-game-tag format">{format}</span></div>
     <p class="home-game-summary">{game.summary[lang]}</p>
