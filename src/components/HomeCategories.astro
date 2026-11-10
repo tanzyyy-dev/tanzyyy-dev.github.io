@@ -9,7 +9,7 @@ const previewGames = realFeaturedGames.length ? [
   { ...realFeaturedGames[0], slug: 'layout-preview-new', title: 'SAMPLE GAME — NEW RELEASE', homeFeature: 'new-release' as const, releasedAt: '2026-11-01', summary: { ja: 'レイアウト確認用の仮作品です。', en: 'Placeholder for layout testing.' }, media: [] },
   { ...realFeaturedGames[0], slug: 'layout-preview-update', title: 'SAMPLE GAME — UPDATE', homeFeature: 'update' as const, updatedAt: '2026-10-30', summary: { ja: 'レイアウト確認用の仮作品です。', en: 'Placeholder for layout testing.' }, media: [] }
 ] : [];
-const featuredGames = layoutPreview ? [...realFeaturedGames, ...previewGames].slice(0, 3) : realFeaturedGames;
+const featuredGames = layoutPreview ? [...previewGames, ...realFeaturedGames].slice(0, 3).sort((a, b) => ({ 'new-release': 0, recommended: 1, update: 2 }[a.homeFeature!] - { 'new-release': 0, recommended: 1, update: 2 }[b.homeFeature!])) : realFeaturedGames;
 const hasMoreGames = layoutPreview || games.filter(game => game.homeFeature).length > 3;
 interface Props { lang: Lang }
 const {lang}=Astro.props;
@@ -46,9 +46,9 @@ const categories=[
  </article>)}
 </section>
 <style>
-.home-games-list{display:flex;flex-direction:column;gap:12px;min-height:0;flex:1;overflow:visible;padding:12px;margin:-10px}
+.home-games-list{display:flex;flex-direction:column;gap:12px;flex:1;overflow:visible;padding:12px;margin:-10px;min-height:max-content}
 .category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
-.category-card{height:clamp(640px,52vw,720px);min-width:0;display:flex;flex-direction:column;padding:clamp(18px,2.1vw,28px);background:#fff;border:1px solid #D9DAD6;border-radius:14px;overflow:hidden}
+.category-card{height:auto;min-height:clamp(640px,52vw,720px);min-width:0;display:flex;flex-direction:column;padding:clamp(18px,2.1vw,28px);background:#fff;border:1px solid #D9DAD6;border-radius:14px;overflow:visible}
 .category-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
 .category-heading h2{margin:0;display:flex;align-items:center;gap:9px;color:#292B2D;font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(22px,2.1vw,27px);font-weight:800;line-height:1.1;letter-spacing:-.025em}
 .category-name{display:inline-block;white-space:nowrap}.category-initial{font-size:1.5em}.category-paw{width:22px;height:22px;fill:var(--category-accent);flex:none;transform:rotate(-18deg)}
