@@ -10,7 +10,7 @@ a { color: inherit; text-underline-offset: 4px; }
 a:focus-visible, button:focus-visible { outline: 3px solid #e5a549; outline-offset: 4px; }
 .wrap { width: min(100% - 64px, 1100px); margin-inline: auto; }
 
-header { background: #183945; color: #f8fbfb; }
+header { background: #183945; color: #f8fbfb; position: sticky; top: 0; z-index: 30; }
 .header-inner, .foot { display: flex; justify-content: space-between; align-items: center; gap: 28px; }
 .header-inner { min-height: 78px; }
 .brand { font-size: 21px; font-weight: 800; letter-spacing: -.055em; text-decoration: none; }
@@ -300,8 +300,7 @@ body.project-palette{background:#F0EFEB;color:#292B2D}
 .game-sheet-footer{justify-content:flex-end}
 .game-sheet-footer a{color:#55585A}
 
-/* Project navigation: keep the header and breadcrumb available while scrolling. */
-.project-palette header{position:sticky;top:0;z-index:30}
+/* Project navigation: keep the breadcrumb available while scrolling. */
 .project-palette .game-breadcrumb{position:sticky;top:78px;z-index:20;background:#F0EFEB;padding:10px 0;margin-top:-10px;margin-bottom:12px;min-height:40px}
 /* No secondary back-to-list action: the breadcrumb is the single return path. */
 @media(max-width:760px){.project-palette .game-breadcrumb{top:64px}}
