@@ -15,12 +15,22 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 
 ## Source map
 
-- `src/layouts/Base.astro`: shared layout, navigation, footer, and metadata.
-- `src/components/ProjectList.astro`: project listing.
-- `src/components/ProjectDetail.astro`: project detail.
+- `src/layouts/Base.astro`: shared layout and metadata; composes the shared header and footer.
+- `src/components/ProjectList.astro` and `ProjectCard.astro`: project listing and its cards.
+- `src/components/ProjectDetail.astro` and `GameInfoCard.astro`: project detail and game information card.
 - `src/styles/global.css`: styling and responsive rules.
 - `src/data/content.ts`: project information and translations.
 - `src/pages/`: Japanese and English routes.
+
+## Component reuse and refactoring
+
+- Before adding page markup or a new UI component, inspect existing shared components and reuse an appropriate one instead of duplicating its structure or behavior.
+- Shared site chrome belongs in `src/components/SiteHeader.astro`, `SiteFooter.astro`, and `Breadcrumbs.astro`; pages should consume them through the existing layout or component API rather than copying their markup.
+- Project listing cards use `src/components/ProjectCard.astro`; game detail metadata uses `src/components/GameInfoCard.astro`. Keep localized content and project facts sourced from `src/data/`, not duplicated in components.
+- Prefer passing typed Astro props to reusable components. Do not extract a component solely because a block of markup is long; extract when it represents a stable, independently reusable responsibility.
+- Keep shared behavior (including sticky positioning) consistent across routes unless a page-specific exception is explicitly required. Place genuinely shared rules in shared CSS; scope page-specific rules deliberately.
+- Refactor one component family at a time. Preserve HTML semantics, styles, responsive behavior, accessibility, and Japanese/English parity; avoid opportunistic redesigns or unrelated cleanup.
+- After each refactor, review the changed files and verify the build before proceeding to another component family. Report unverified visual behavior accurately.
 
 ## Verification
 
