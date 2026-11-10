@@ -18,7 +18,7 @@ const format = game.format === 'browser'
   <div class="home-game-copy">
     <div class="home-game-status"><span class:list={['home-game-badge', reason]}>{badge}</span>{date && <time datetime={date}>{date.replaceAll('-', '.')}</time>}</div>
     <h3><a href={gameUrl(game, lang)}>{game.title}</a></h3>
-    <div class="home-game-meta"><span class="home-game-tag">{game.genre[lang]}</span><span class="home-game-tag">{format}</span></div>
+    <div class="home-game-meta"><span class="home-game-tag genre">{game.genre[lang]}</span><span class="home-game-tag format">{format}</span></div>
     <p class="home-game-summary">{game.summary[lang]}</p>
   </div>
 </article>
@@ -35,7 +35,7 @@ const format = game.format === 'browser'
 .home-game-status time{color:#777A7B;font-size:11px;font-variant-numeric:tabular-nums}
 h3{margin:0 0 5px;font-size:clamp(15px,1.5vw,19px);line-height:1.3;letter-spacing:-.025em;overflow-wrap:anywhere}
 h3 a{text-decoration:none}h3 a:hover{text-decoration:underline}
-.home-game-meta{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}.home-game-tag{display:inline-block;padding:2px 8px;border:1px solid #D9DAD6;border-radius:5px;background:#F0EFEB;color:#55585A;font-size:11px;line-height:1.5}
+.home-game-meta{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}.home-game-tag{display:inline-block;padding:3px 9px;border:1.5px solid;border-radius:6px;font-size:11px;font-weight:700;line-height:1.5}.home-game-tag.genre{background:#E3E4E1;border-color:#9A9D99;color:#292B2D}.home-game-tag.format{background:#DCEAE9;border-color:#729996;color:#315C59}
 .home-game-summary{margin:0;color:#55585A;font-size:12px;line-height:1.55}
 @media(max-width:760px){.home-game-entry{grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px}}
 @media(max-width:380px){.home-game-entry{grid-template-columns:80px minmax(0,1fr);gap:10px}}
