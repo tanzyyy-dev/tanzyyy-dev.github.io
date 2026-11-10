@@ -1,8 +1,8 @@
 ---
 import type { Lang } from '../data/content';
 import { authRequirementLabels, pricingModelLabels, availabilityStatusLabels, gameUrl, type Game } from '../data/games';
-interface Props { game: Game; lang: Lang; preview?: boolean; showFeature?: boolean; showAccess?: boolean }
-const { game, lang, preview = false, showFeature = true, showAccess = false } = Astro.props;
+interface Props { game: Game; lang: Lang; preview?: boolean; showFeature?: boolean; showAccess?: boolean; analyticsSource?: string }
+const { game, lang, preview = false, showFeature = true, showAccess = false, analyticsSource } = Astro.props;
 const Tag = preview ? 'div' : 'a';
 const reason = game.homeFeature;
 const badge = reason === 'new-release' ? 'NEW RELEASE' : reason === 'update' ? 'UPDATE' : 'RECOMMENDED';
@@ -12,7 +12,7 @@ const format = game.format === 'browser'
   ? (lang === 'ja' ? 'ブラウザゲーム' : 'Browser game')
   : (lang === 'ja' ? 'ダウンロードゲーム' : 'Download game');
 ---
-<Tag class:list={['home-game-entry', { 'is-preview': preview }]} href={preview ? undefined : gameUrl(game, lang)} aria-label={preview ? undefined : `${game.title} — ${lang === 'ja' ? '作品詳細を見る' : 'View game details'}`}>
+<Tag class:list={['home-game-entry', { 'is-preview': preview }]} href={preview ? undefined : gameUrl(game, lang)} data-ga-event={preview ? undefined : "project_card_click"} data-ga-project={preview ? undefined : game.slug} data-ga-source={preview ? undefined : analyticsSource} aria-label={preview ? undefined : `${game.title} — ${lang === 'ja' ? '作品詳細を見る' : 'View game details'}`}>
   <div class="home-game-image">
     {image ? <img src={image.src} alt={image.alt[lang]} loading="lazy" width="144" height="144"/> : <span aria-hidden="true">{game.title}</span>}
   </div>

@@ -32,7 +32,7 @@ const isActive = game.availabilityStatus === 'active';
         <h1 class="game-title-with-status"><span class={`availability-badge status-${game.availabilityStatus}`}>{availabilityStatusLabels[game.availabilityStatus][lang]}</span><span>{game.title}</span></h1>
         <GameInfoCard lang={lang} game={game} />
         <div class="game-actions">{isActive
-          ? <a class="game-play" href={game.playUrl} target="_blank" rel="noopener noreferrer"><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+          ? <a class="game-play" data-ga-event="game_play_click" data-ga-source="project_detail" data-ga-project={game.slug} href={game.playUrl} target="_blank" rel="noopener noreferrer"><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
           : <button class="game-play game-play-disabled" type="button" disabled aria-label={ja?'現在ゲームをプレイできません':'Game currently unavailable'}><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>}
 </div>
       </div>

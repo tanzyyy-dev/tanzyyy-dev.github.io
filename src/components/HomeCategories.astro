@@ -26,29 +26,29 @@ const paw = '<svg viewBox="0 0 24 24" width="23" height="23" style="width:23px;h
     <h2 id="news-heading" class="section-heading"><Fragment set:html={paw}/> News</h2>
     <div class="news-list" data-news-list>
       {news.map((item,index) => <div class="news-entry" data-news-item data-news-date={item.date || ''} data-news-feature={item.feature} data-news-index={index}>
-        <HomeGameCard game={item.game} lang={lang} showAccess={true}/>
+        <HomeGameCard game={item.game} lang={lang} showAccess={true} analyticsSource="home_news"/>
       </div>)}
       <p class="empty-message" data-news-empty hidden>{ja ? '現在、お知らせはありません。' : 'No news at the moment.'}</p>
     </div>
-    <button type="button" class="section-more" data-news-toggle disabled aria-expanded="false"><span data-news-toggle-text>{ja ? 'お知らせをもっと見る' : 'Show more news'}</span><span aria-hidden="true" class="chevron">›</span></button>
+    <button type="button" class="section-more" data-ga-event="news_expand" data-ga-source="home_news" data-news-toggle disabled aria-expanded="false"><span data-news-toggle-text>{ja ? 'お知らせをもっと見る' : 'Show more news'}</span><span aria-hidden="true" class="chevron">›</span></button>
   </section>
   <section class="home-panel" style="--accent:#7C9C9B" aria-labelledby="works-heading">
     <h2 id="works-heading" class="section-heading"><Fragment set:html={paw}/> Works</h2>
     <div class="works-grid">
-      {works.map(work => <a class="work-entry interactive-card" href={`${prefix}/projects/?category=${work.id}`} style={`--work-accent:${work.accent}`}>
+      {works.map(work => <a class="work-entry interactive-card" data-ga-event="works_category_click" data-ga-source="home_works" data-ga-category={work.id} href={`${prefix}/projects/?category=${work.id}`} style={`--work-accent:${work.accent}`}>
         <span class="work-icon" aria-hidden="true">{work.icon}</span>
         <strong>{work.label}</strong>
         <span class="work-count">{work.count} {ja ? '作品' : work.count === 1 ? 'project' : 'projects'}</span>
       </a>)}
     </div>
-    <a class="section-more interactive-card" href={`${prefix}/projects/`}><span>{ja ? '作品一覧から探す' : 'Browse all projects'}</span><span class="chevron" aria-hidden="true">›</span></a>
+    <a class="section-more interactive-card" data-ga-event="works_browse_click" data-ga-source="home_works" href={`${prefix}/projects/`}><span>{ja ? '作品一覧から探す' : 'Browse all projects'}</span><span class="chevron" aria-hidden="true">›</span></a>
   </section>
   <section class="home-panel" style="--accent:#A292BA" aria-labelledby="other-heading">
     <h2 id="other-heading" class="section-heading"><Fragment set:html={paw}/> Other</h2>
     <div class="other-grid">
-      <a class="other-entry interactive-card" href="https://x.com/tanzyto40" target="_blank" rel="noopener noreferrer"><span class="other-symbol">𝕏</span><span><strong>TanzyyyのX</strong><small>{ja ? 'IT・AIの話や近況を投稿しています🐾' : 'IT, AI, and everyday updates 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
-      <a class="other-entry interactive-card" href="https://qiita.com/tanzyto40" target="_blank" rel="noopener noreferrer"><span class="other-symbol qiita">Q</span><span><strong>TanzyyyのQiita</strong><small>{ja ? '気まぐれに書く技術記事🐾' : 'Occasional technical articles 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
-      <a class="other-entry interactive-card" href="https://github.com/tanzyyy-dev" target="_blank" rel="noopener noreferrer"><span class="other-symbol">⌘</span><span><strong>TanzyyyのGitHub</strong><small>{ja ? '制作物やコードを公開しています🐾' : 'Projects and source code 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
+      <a class="other-entry interactive-card" href="https://x.com/tanzyto40" data-ga-event="external_link_click" data-ga-source="home_other" data-ga-destination="x" target="_blank" rel="noopener noreferrer"><span class="other-symbol">𝕏</span><span><strong>TanzyyyのX</strong><small>{ja ? 'IT・AIの話や近況を投稿しています🐾' : 'IT, AI, and everyday updates 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
+      <a class="other-entry interactive-card" href="https://qiita.com/tanzyto40" data-ga-event="external_link_click" data-ga-source="home_other" data-ga-destination="qiita" target="_blank" rel="noopener noreferrer"><span class="other-symbol qiita">Q</span><span><strong>TanzyyyのQiita</strong><small>{ja ? '気まぐれに書く技術記事🐾' : 'Occasional technical articles 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
+      <a class="other-entry interactive-card" href="https://github.com/tanzyyy-dev" data-ga-event="external_link_click" data-ga-source="home_other" data-ga-destination="github" target="_blank" rel="noopener noreferrer"><span class="other-symbol">⌘</span><span><strong>TanzyyyのGitHub</strong><small>{ja ? '制作物やコードを公開しています🐾' : 'Projects and source code 🐾'}</small></span><span class="chevron" aria-hidden="true">›</span></a>
     </div>
     <p class="other-free-comment">{ja ? <>XやQiitaはお気軽にフォロー、コメントください🐾<br/>情報交換や雑談で絡める方、大歓迎です🐶</> : <>Feel free to follow or comment on X and Qiita 🐾<br/>Always happy to chat and exchange ideas 🐶</>}</p>
   </section>

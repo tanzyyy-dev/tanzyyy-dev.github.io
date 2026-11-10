@@ -35,7 +35,7 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
   </div>
   <p class="catalog-count" aria-live="polite"><span data-count>{games.length}</span> / {games.length}{ja ? labels.count : ` ${labels.count}`}</p>
   <div class="catalog-grid" data-grid>
-    {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false} showAccess={true}/></div>)}
+    {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false} showAccess={true} analyticsSource="project_catalog"/></div>)}
   </div>
   <p class="catalog-empty" data-empty hidden>{labels.empty}</p>
 </section>
@@ -54,6 +54,16 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
     const params = new URLSearchParams(window.location.search);
     let category = params.get('category') || 'all';
     if (!tabs.some(tab => tab.dataset.category === category)) category = 'all';
+    const trackFilter = (action: string) => {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', 'project_filter_change', {
+        filter_action: action,
+        project_category: category,
+        genre: genre.value,
+        format: format.value,
+        sort_order: sort.value
+      });
+    };
     const update = () => {
       tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.category === category)));
       const query = search.value.trim().toLocaleLowerCase();
@@ -81,12 +91,20 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
       else url.searchParams.set('category',category);
       window.history.replaceState(null,'',url);
       update();
+      trackFilter('category');
     }));
     [search,genre,format,sort].forEach(control => control.addEventListener('input',update));
+    // Do not send typed keywords to analytics: they can contain personal information.
+    let searchTimer: ReturnType<typeof setTimeout> | undefined;
+    search.addEventListener('input', () => {
+      if (searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => trackFilter('search'), 700);
+    });
+    [genre,format,sort].forEach(control => control.addEventListener('change', () => trackFilter(control.dataset.genre !== undefined ? 'genre' : control.dataset.format !== undefined ? 'format' : 'sort')));
     clear.addEventListener('click',() => {
       search.value = ''; genre.value = 'all'; format.value = 'all'; sort.value = 'newest'; category = 'all';
       const url = new URL(window.location.href); url.searchParams.delete('category');
-      window.history.replaceState(null,'',url); update();
+      window.history.replaceState(null,'',url); update(); trackFilter('clear');
     });
     update();
   });

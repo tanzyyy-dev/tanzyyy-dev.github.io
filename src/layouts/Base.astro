@@ -45,4 +45,22 @@ const enableAnalytics = import.meta.env.PROD;
 <SiteHeader lang={lang} path={path} alternate={alternate} home={home} />
 <main id="main"><slot/></main>
 <SiteFooter />
+<script>
+  // Delegate clicks so links navigate normally, including external destinations.
+  declare global { interface Window { gtag?: (...args: any[]) => void } }
+  document.addEventListener('click', event => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const element = target.closest<HTMLElement>('[data-ga-event]');
+    if (!element || element.hasAttribute('disabled')) return;
+    const name = element.dataset.gaEvent;
+    if (!name || typeof window.gtag !== 'function') return;
+    const params: Record<string,string> = {};
+    if (element.dataset.gaSource) params.source = element.dataset.gaSource;
+    if (element.dataset.gaProject) params.project_id = element.dataset.gaProject;
+    if (element.dataset.gaCategory) params.project_category = element.dataset.gaCategory;
+    if (element.dataset.gaDestination) params.destination = element.dataset.gaDestination;
+    window.gtag('event', name, params);
+  });
+</script>
 </body></html>
