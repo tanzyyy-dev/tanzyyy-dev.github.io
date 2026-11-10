@@ -26,7 +26,7 @@ const paw = '<svg viewBox="0 0 24 24" width="23" height="23" style="width:23px;h
     <h2 id="news-heading" class="section-heading"><Fragment set:html={paw}/> News</h2>
     <div class="news-list" data-news-list>
       {news.map((item,index) => <div class="news-entry" data-news-item data-news-date={item.date || ''} data-news-feature={item.feature} data-news-index={index}>
-        <HomeGameCard game={item.game} lang={lang}/>
+        <HomeGameCard game={item.game} lang={lang} showAccess={true}/>
       </div>)}
       <p class="empty-message" data-news-empty hidden>{ja ? '現在、お知らせはありません。' : 'No news at the moment.'}</p>
     </div>
