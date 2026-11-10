@@ -440,3 +440,22 @@ body.project-palette main{flex:1 0 auto}
   .game-featured{grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
   .game-featured .game-cover{align-self:auto}
 }
+
+/* Detail title leads the whole card; category is secondary at the right. */
+.game-sheet-heading{align-items:center;gap:14px}
+.game-sheet-heading .game-title-with-status{font-family:"Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(23px,2.2vw,34px);line-height:1.15;letter-spacing:-.035em;margin:0;min-width:0}
+.game-sheet-heading .game-category{flex:none;margin-left:auto}
+/* Let the details panel fill spare vertical space on wide screens. */
+@media (min-width:1281px){
+  .game-featured{align-items:stretch}
+  .game-featured .game-cover{align-self:start}
+  .game-featured .game-overview{height:100%;display:flex;flex-direction:column}
+  .game-featured .game-info-card{flex:1}
+  .game-featured .game-actions{margin-top:auto}
+}
+@media(max-width:760px){
+  .game-sheet-heading{align-items:flex-start}
+  .game-sheet-heading .game-title-with-status{font-size:clamp(22px,5vw,32px)}
+  .game-sheet-heading .game-category{font-size:14px;gap:5px}
+  .game-sheet-heading .game-category svg{width:17px;height:17px}
+}

@@ -14,6 +14,7 @@ const isActive = game.availabilityStatus === 'active';
   <Breadcrumbs lang={lang} items={[{label:ja?'ホーム':'Home',href:prefix+'/'},{label:ja?'作品一覧':'Projects',href:prefix+'/projects/'},{label:game.title}]} />
   <div class="game-sheet">
     <div class="game-sheet-heading">
+      <h1 class="game-title-with-status"><span class={`availability-badge status-${game.availabilityStatus}`}>{availabilityStatusLabels[game.availabilityStatus][lang]}</span><span>{game.title}</span></h1>
       <div class="game-category">
         <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><ellipse cx="5" cy="8" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="20" cy="10" rx="1.8" ry="2.6"/><path d="M12 11c-3 0-3.7 2.6-6 4.6-2.5 2.1-1 5.4 2 5.4 2.1 0 2.7-1 4-1s2 .9 4 1c3 .1 4.5-3.3 2-5.4-2.3-2-3-4.6-6-4.6Z"/></svg>
         <span><strong>G</strong>AMES</span>
@@ -29,8 +30,7 @@ const isActive = game.availabilityStatus === 'active';
         {media?.placeholder && <figcaption class="game-media-note">{ja?'※ 仮画像：プレイ画面は後日掲載予定':'Placeholder artwork — gameplay capture coming soon'}</figcaption>}
       </figure>
       <div class="game-overview">
-        <h1 class="game-title-with-status"><span class={`availability-badge status-${game.availabilityStatus}`}>{availabilityStatusLabels[game.availabilityStatus][lang]}</span><span>{game.title}</span></h1>
-        <GameInfoCard lang={lang} game={game} />
+          <GameInfoCard lang={lang} game={game} />
         <div class="game-actions">{isActive
           ? <a class="game-play" data-ga-event="game_play_click" data-ga-source="project_detail" data-ga-project={game.slug} href={game.playUrl} target="_blank" rel="noopener noreferrer"><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
           : <button class="game-play game-play-disabled" type="button" disabled aria-label={ja?'現在ゲームをプレイできません':'Game currently unavailable'}><span>{ja?'ゲームをプレイ':'Play the game'}</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button>}
