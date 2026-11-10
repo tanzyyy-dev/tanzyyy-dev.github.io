@@ -1,5 +1,27 @@
 import type { Lang } from './content';
 
+export type AuthRequirement = 'none' | 'optional' | 'required';
+export type PricingModel = 'free' | 'freemium' | 'paid';
+export type AvailabilityStatus = 'coming-soon' | 'active' | 'maintenance' | 'discontinued';
+
+// Labels are prepared for future UI integration; existing cards/details are unchanged.
+export const authRequirementLabels: Record<AuthRequirement, Record<Lang, string>> = {
+  none: { ja: 'ログイン不要', en: 'No login required' },
+  optional: { ja: 'ログイン不要（長期利用にはログイン推奨）', en: 'No login required (recommended for long-term use)' },
+  required: { ja: 'ログイン必須', en: 'Login required' }
+};
+export const pricingModelLabels: Record<PricingModel, Record<Lang, string>> = {
+  free: { ja: '完全無料', en: 'Completely free' },
+  freemium: { ja: '基本無料（一部有料商品あり）', en: 'Free to use (some paid items available)' },
+  paid: { ja: '有料', en: 'Paid' }
+};
+export const availabilityStatusLabels: Record<AvailabilityStatus, Record<Lang, string>> = {
+  'coming-soon': { ja: '準備中', en: 'Coming soon' },
+  active: { ja: '稼働中', en: 'Live' },
+  maintenance: { ja: 'メンテナンス中', en: 'Under maintenance' },
+  discontinued: { ja: 'サービス終了', en: 'Discontinued' }
+};
+
 export type Game = {
   slug: string;
   title: string;
@@ -7,6 +29,9 @@ export type Game = {
   genre: Record<Lang, string>;
   format: 'browser' | 'download';
   homeFeature?: 'new-release' | 'recommended' | 'update';
+  authRequirement: AuthRequirement;
+  pricingModel: PricingModel;
+  availabilityStatus: AvailabilityStatus;
   devices: Array<'pc' | 'tablet' | 'smartphone'>;
   notices?: Array<{ kind: 'requirement' | 'storage' | 'info'; text: Record<Lang,string> }>;
   summary: Record<Lang, string>;
@@ -27,6 +52,9 @@ export const games: Game[] = [
     genre: { ja: 'リズム・タイピング', en: 'Rhythm typing' },
     format: 'browser',
     homeFeature: 'recommended',
+    authRequirement: 'none',
+    pricingModel: 'free',
+    availabilityStatus: 'active',
     devices: ['pc', 'tablet', 'smartphone'],
     notices: [{
       kind: 'info',
