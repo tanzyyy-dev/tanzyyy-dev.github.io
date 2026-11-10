@@ -35,5 +35,11 @@ export type Game = ProjectBase<'games'> & {
 
 // Initial category schemas; refine category-specific fields before first registration.
 export type Tool = ProjectBase<'tools'> & { url?: string };
-export type Content = ProjectBase<'contents'> & { url?: string };
+export type Content = ProjectBase<'contents'> & {
+  url?: string;
+  categoryLabel?: LocalizedText;
+  genre?: LocalizedText;
+  devices?: Array<'pc' | 'tablet' | 'smartphone'>;
+  notes?: LocalizedText[];
+};
 export type Project = Game | Tool | Content;
