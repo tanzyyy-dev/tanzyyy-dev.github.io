@@ -18,7 +18,7 @@ const news = games.filter(game => game.homeFeature).map(game => ({
   const priority = { 'new-release':0, update:1, recommended:2 };
   return priority[a.feature] - priority[b.feature] || (b.date || '').localeCompare(a.date || '');
 });
-const paw = '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="5" cy="8" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="20" cy="10" rx="1.8" ry="2.6"/><path d="M12 11c-3 0-3.7 2.6-6 4.6-2.5 2.1-1 5.4 2 5.4 2.1 0 2.7-1 4-1s2 .9 4 1c3 .1 4.5-3.3 2-5.4-2.3-2-3-4.6-6-4.6Z"/></svg>';
+const paw = '<svg viewBox="0 0 24 24" width="23" height="23" style="width:23px;height:23px;flex:none;fill:var(--accent);transform:rotate(-18deg)" aria-hidden="true"><ellipse cx="5" cy="8" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="20" cy="10" rx="1.8" ry="2.6"/><path d="M12 11c-3 0-3.7 2.6-6 4.6-2.5 2.1-1 5.4 2 5.4 2.1 0 2.7-1 4-1s2 .9 4 1c3 .1 4.5-3.3 2-5.4-2.3-2-3-4.6-6-4.6Z"/></svg>';
 ---
 <div class="home-sections">
   <section class="home-panel" style="--accent:#B58A76" aria-labelledby="news-heading">
