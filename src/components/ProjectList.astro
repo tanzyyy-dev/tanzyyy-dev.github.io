@@ -51,7 +51,9 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
     const count = catalog.querySelector<HTMLElement>('[data-count]')!;
     const empty = catalog.querySelector<HTMLElement>('[data-empty]')!;
     const clear = catalog.querySelector<HTMLButtonElement>('[data-clear]')!;
-    let category = 'all';
+    const params = new URLSearchParams(window.location.search);
+    let category = params.get('category') || 'all';
+    if (!tabs.some(tab => tab.dataset.category === category)) category = 'all';
     const update = () => {
       tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.category === category)));
       const query = search.value.trim().toLocaleLowerCase();
