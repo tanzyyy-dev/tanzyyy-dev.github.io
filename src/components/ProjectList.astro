@@ -35,7 +35,7 @@ const formatLabel = (format: string) => format === 'browser' ? (ja ? 'ブラウ�
   </div>
   <p class="catalog-count" aria-live="polite"><span data-count>{games.length}</span> / {games.length}{ja ? labels.count : ` ${labels.count}`}</p>
   <div class="catalog-grid" data-grid>
-    {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false}/></div>)}
+    {games.map((game,index)=><div class="catalog-item" data-item data-index={index} data-category={game.category} data-genre={game.genre[lang]} data-format={game.format} data-released={game.releasedAt ?? ''} data-updated={game.updatedAt ?? ''} data-name={game.title} data-keywords={`${game.title} ${game.genre[lang]} ${game.summary[lang]} ${formatLabel(game.format)}`.toLocaleLowerCase()}><HomeGameCard game={game} lang={lang} showFeature={false} showAccess={true}/></div>)}
   </div>
   <p class="catalog-empty" data-empty hidden>{labels.empty}</p>
 </section>
