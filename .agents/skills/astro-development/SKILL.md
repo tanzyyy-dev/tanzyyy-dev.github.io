@@ -9,7 +9,7 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 
 - Use Astro + TypeScript, generating static output compatible with GitHub Pages.
 - Keep Japanese at `/` and English at `/en/`. Maintain equivalent content and navigation across languages.
-- Keep project facts and localized content in `src/data/content.ts`. Never invent project screenshots, demo URLs, project claims, or new projects.
+- Keep shared translations in `src/data/content.ts`, common project types in `src/data/types.ts`, and project facts in `src/data/projects/{games,contents,tools}/{slug}.ts`. Never invent project screenshots, demo URLs, project claims, or new projects.
 - Update repository and demo links only after verifying that the destination exists and is the correct published target; never infer URLs from proposed migrations.
 - Refactoring, typo fixes, and documentation cleanup do not authorize visual, responsive, or other unrelated behavior changes. If UI behavior or appearance must change, also read `portal-design/SKILL.md`.
 
@@ -19,7 +19,10 @@ description: Implement and verify the tanzyyy-dev Astro and TypeScript website. 
 - `src/components/ProjectList.astro` and `ProjectCard.astro`: project listing and its cards.
 - `src/components/ProjectDetail.astro` and `GameInfoCard.astro`: project detail and game information card.
 - `src/styles/global.css`: styling and responsive rules.
-- `src/data/content.ts`: project information and translations.
+- `src/data/content.ts`: shared translations.
+- `src/data/types.ts`: shared and category-specific project types.
+- `src/data/projects/`: category indexes and one file per work.
+- `src/data/games.ts`: backwards-compatible game API.
 - `src/pages/`: Japanese and English routes.
 
 ## Component reuse and refactoring
