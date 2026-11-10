@@ -1,16 +1,27 @@
 ---
-import type {Lang} from '../data/content';
+import type { Lang } from '../data/content';
 interface Props { lang: Lang }
-const {lang}=Astro.props;
-const ja=lang==='ja';
+const { lang } = Astro.props;
+const message = lang === 'ja'
+  ? 'Tanzyyy（たんずぃ）の作品展示場はこちらです🐾'
+  : "Welcome to Tanzyyy's showcase of creations 🐾";
+const letters = Array.from(message);
 ---
-<section class="home-intro" aria-labelledby="home-title">
-  <h1 id="home-title">{ja?'tanzyyy-devについて':'About tanzyyy-dev'}</h1>
-  <p>{ja?'ゲームやWebサービスなど、制作した作品をまとめているサイトです。作品の紹介や制作内容をご覧いただけます。':'A website collecting games, web services, and other projects I have made. Browse the projects and learn about the work behind them.'}</p>
-</section>
+<p class="home-intro" aria-label={message}>
+  {letters.map((letter, index) => (
+    <span class="home-intro-letter" aria-hidden="true" style={`--scatter-x:${((index * 37) % 9 - 4) * 5}px;--scatter-y:${((index * 23) % 7 - 3) * 6}px;--scatter-rotate:${((index * 17) % 11 - 5) * 8}deg`}>{letter === ' ' ? '\u00a0' : letter}</span>
+  ))}
+</p>
 <style>
-.home-intro{width:100%}
-.home-intro h1{margin:0 0 16px;font-size:clamp(27px,3vw,36px);font-weight:800;line-height:1.35;letter-spacing:-.045em}
-.home-intro p{margin:0;color:#777A7B;font-size:16px;line-height:1.9}
-@media(max-width:760px){.home-intro h1{font-size:27px}}
+.home-intro{display:flex;flex-wrap:wrap;align-items:center;margin:0 0 12px;color:#777A7B;font-size:12px;line-height:1.8;font-weight:500}
+.home-intro-letter{display:inline-block;position:relative;white-space:pre;transform-origin:center;cursor:default}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .home-intro-letter:hover{animation:letter-scatter .65s cubic-bezier(.2,.8,.2,1) both;z-index:1}
+}
+@keyframes letter-scatter{
+  0%{transform:translate(0,0) rotate(0);opacity:1}
+  28%{transform:translate(var(--scatter-x),var(--scatter-y)) rotate(var(--scatter-rotate));opacity:.55}
+  65%{transform:translate(calc(var(--scatter-x) * -.18),calc(var(--scatter-y) * -.18)) rotate(0);opacity:1}
+  100%{transform:translate(0,0) rotate(0);opacity:1}
+}
 </style>

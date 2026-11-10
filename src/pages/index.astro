@@ -1,7 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import HomeIntro from '../components/HomeIntro.astro';
 import HomeCategories from '../components/HomeCategories.astro';
 ---
 <Base lang="ja" title="ホーム" description="tanzyyy-devは、制作したゲームやWebサービスなどを紹介するポータルサイトです。">
-  <div class="wrap page"><HomeCategories lang="ja"/></div>
+  <div class="wrap page home-content"><HomeIntro lang="ja"/><HomeCategories lang="ja"/></div>
 </Base>
+
+<style>
+:global(.home-palette) .home-content{padding-top:20px}
+</style>
