@@ -26,10 +26,10 @@ export const heroNeverWins: Game = {
   ],
   media: [{
     type: 'image',
-    src: '/images/games/hero-never-wins.png',
+    src: '/images/games/hero-never-wins.gif',
     alt: {
       ja: '「主人公なのにやけに勝てない」のプレイ画面',
-      en: 'Gameplay screenshot of HERO NEVER WINS'
+      en: 'Gameplay animation of HERO NEVER WINS'
     }
   }],
   playUrl: 'https://tanzyyy-dev.github.io/hero-never-wins/',
