@@ -6,7 +6,7 @@ export const heroNeverWins: Game = {
   category: 'games',
   genre: { ja: 'パチスロシミュレーター', en: 'Pachislot simulator' },
   format: 'browser',
-  homeFeature: 'new-release',
+  homeFeature: 'update',
   authRequirement: 'none',
   pricingModel: 'free',
   availabilityStatus: 'active',
@@ -35,7 +35,11 @@ export const heroNeverWins: Game = {
   playUrl: 'https://tanzyyy-dev.github.io/hero-never-wins/',
   repositoryUrl: 'https://github.com/tanzyyy-dev/hero-never-wins',
   releasedAt: '2026-11-15',
-  updatedAt: null,
-  version: '0.1.0',
-  updateNotes: []
+  updatedAt: '2026-11-16',
+  version: '0.1.1',
+  updateNotes: [
+    { ja: 'iOS環境でのBGM再生の安定性を改善', en: 'Improved BGM playback stability on iOS.' },
+    { ja: '初回ロードとゲーム開始時の動作を最適化', en: 'Optimized initial loading and game startup.' },
+    { ja: 'リール図柄の色彩・描画不具合を修正', en: 'Fixed reel symbol color and rendering issues.' }
+  ]
 };
