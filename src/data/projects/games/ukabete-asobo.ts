@@ -1,0 +1,32 @@
+import type { Game } from '../../types';
+
+export const ukabeteAsobo: Game = {
+  slug: 'ukabete-asobo',
+  title: 'うかべてあそぼ',
+  category: 'games',
+  genre: { ja: 'お絵描き・サンドボックス', en: 'Drawing sandbox' },
+  format: 'browser',
+  homeFeature: 'new-release',
+  authRequirement: 'none',
+  pricingModel: 'free',
+  availabilityStatus: 'active',
+  devices: ['pc', 'tablet', 'smartphone'],
+  summary: {
+    ja: '描いた絵がふわふわ浮かんで動き出す！好きな絵を描いたり、キャラクターをつかんで動かしたり、自由に遊べるお絵描きブラウザゲーム。',
+    en: 'Draw your own characters and watch them float to life! A playful browser sandbox where you can create, move, and interact with your drawings.'
+  },
+  media: [{
+    type: 'image',
+    src: '/images/games/ukabete-asobo-demo.gif',
+    alt: {
+      ja: '「うかべてあそぼ」で描いた絵が浮かんで動くプレイ画面',
+      en: 'Gameplay animation showing drawings floating and moving in Ukabete Asobo'
+    }
+  }],
+  playUrl: 'https://tanzyyy-dev.github.io/ukabete-asobo/',
+  repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
+  releasedAt: null,
+  updatedAt: null,
+  version: null,
+  updateNotes: []
+};
