@@ -27,6 +27,8 @@ export const ukabeteAsobo: Game = {
   repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
   releasedAt: '2026-11-17',
   updatedAt: null,
-  version: null,
-  updateNotes: []
+  version: '1.0.0',
+  updateNotes: [
+    { ja: 'Ver 1.0.0 リリース', en: 'Ver 1.0.0 released' }
+  ]
 };
