@@ -25,7 +25,7 @@ export const ukabeteAsobo: Game = {
   }],
   playUrl: 'https://tanzyyy-dev.github.io/ukabete-asobo/',
   repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
-  releasedAt: null,
+  releasedAt: '2026-11-17',
   updatedAt: null,
   version: null,
   updateNotes: []
