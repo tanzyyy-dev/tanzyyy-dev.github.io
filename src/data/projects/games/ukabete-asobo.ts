@@ -6,7 +6,7 @@ export const ukabeteAsobo: Game = {
   category: 'games',
   genre: { ja: 'お絵描き・サンドボックス', en: 'Drawing sandbox' },
   format: 'browser',
-  homeFeature: 'new-release',
+  homeFeature: 'update',
   authRequirement: 'none',
   pricingModel: 'free',
   availabilityStatus: 'active',
@@ -26,9 +26,13 @@ export const ukabeteAsobo: Game = {
   playUrl: 'https://tanzyyy-dev.github.io/ukabete-asobo/',
   repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
   releasedAt: '2026-11-17',
-  updatedAt: null,
-  version: '1.0.0',
+  updatedAt: '2026-11-18',
+  version: '1.1.0',
   updateNotes: [
+    {
+      ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加\nピンチ操作による画面の拡大・縮小を無効化',
+      en: 'Added strong wind, rain, and nighttime events that occur every minute.\nDisabled pinch-to-zoom gestures.'
+    },
     { ja: 'Ver 1.0.0 リリース', en: 'Ver 1.0.0 released' }
   ]
 };
