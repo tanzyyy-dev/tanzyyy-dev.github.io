@@ -30,9 +30,12 @@ export const ukabeteAsobo: Game = {
   version: '1.1.0',
   updateNotes: [
     {
-      ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加\nピンチ操作による画面の拡大・縮小を無効化',
-      en: 'Added strong wind, rain, and nighttime events that occur every minute.\nDisabled pinch-to-zoom gestures.'
+      ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加',
+      en: 'Added strong wind, rain, and nighttime events that occur every minute.'
     },
-    { ja: 'Ver 1.0.0 リリース', en: 'Ver 1.0.0 released' }
+    {
+      ja: 'ピンチ操作による画面の拡大・縮小を無効化',
+      en: 'Disabled pinch-to-zoom gestures.'
+    }
   ]
 };
