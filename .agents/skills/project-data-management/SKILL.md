@@ -38,6 +38,12 @@ For every proposed value, track its provenance: **existing data**, **repository-
 - Let the user correct any proposed field. Ask only for unresolved essential facts. If the current interface cannot support a large interactive form, use a compact staged form; avoid overwhelming the user.
 - The form's submit action means **return the reviewed values to the assistant**, not **commit to GitHub**. Request an explicit approval of the proposed source changes before writing/committing them.
 
+### Update notes entry boundaries
+
+- Store **one distinct change per `updateNotes` array element** (one localized `{ ja, en }` object). Do not combine separate changes in one string using newline characters or other separators.
+- Keep Japanese and English descriptions aligned within each element, and preview the resulting bullet points as separate entries before approval.
+- Preserve existing entries by default, but remove any entries the user explicitly asks to delete; do not retain an old release announcement against the user's instruction.
+
 ## 3a. Prepare media on the selected target branch
 
 During review, collect image/GIF candidates, provenance, rights, localized alt text, and whether media is final or placeholder. After the user approves the proposed media and data, place actual binary assets under the repository's existing public media convention (for games, e.g. `public/images/games/{slug}-demo.gif`) **on the user-approved branch (main direct push or a PR branch)**. The user may attach files or add them locally; if the AI cannot access the bytes, request the file and do not invent it. Check file existence, media paths, dimensions/format where possible, and ensure the asset and `media[].src` change appear in the same committed change. For missing media, explicitly offer to defer registration or use a schema-supported placeholder. Media files belong in the same change set as their data; use the approved branch (main or PR branch). Never assume a remote README image can be reused without rights review.

@@ -90,7 +90,17 @@ for (const category of categories) {
     }
     const notes = value(obj, 'updateNotes');
     if (!notes || !ts.isArrayLiteralExpression(notes)) fail(label + ': updateNotes must be an array');
-    else notes.elements.forEach((item, i) => checkLocalized(item, label + '.updateNotes[' + i + ']'));
+    else notes.elements.forEach((item, i) => {
+      const entryLabel = label + '.updateNotes[' + i + ']';
+      checkLocalized(item, entryLabel);
+      if (!ts.isObjectLiteralExpression(item)) return;
+      for (const lang of ['ja', 'en']) {
+        const note = asString(value(item, lang));
+        if (note !== undefined && /[\\r\\n]/.test(note)) {
+          fail(entryLabel + '.' + lang + ': each update must be a separate array entry (no line breaks)');
+        }
+      }
+    });
   }
 }
 if (errors.length) {
