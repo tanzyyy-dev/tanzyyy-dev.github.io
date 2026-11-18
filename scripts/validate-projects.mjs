@@ -96,7 +96,7 @@ for (const category of categories) {
       if (!ts.isObjectLiteralExpression(item)) return;
       for (const lang of ['ja', 'en']) {
         const note = asString(value(item, lang));
-        if (note !== undefined && /[\\r\\n]/.test(note)) {
+        if (note !== undefined && /[\r\n]/.test(note)) {
           fail(entryLabel + '.' + lang + ': each update must be a separate array entry (no line breaks)');
         }
       }
