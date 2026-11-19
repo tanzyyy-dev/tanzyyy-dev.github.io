@@ -19,16 +19,28 @@ export const ukabeteAsobo: Game = {
     type: 'image',
     src: '/images/games/ukabete-asobo-demo.gif',
     alt: {
-      ja: '「うかべてあそぼ」で描いた絵が浮かんで動くプレイ画面',
-      en: 'Gameplay animation showing drawings floating and moving in Ukabete Asobo'
+      ja: '「うかべてあそぼ」のお絵描き操作、浮かぶキャラクター、夜の花火を紹介するプレイ映像',
+      en: 'Gameplay animation showing the drawing tools, floating characters, and nighttime fireworks in Ukabete Asobo'
     }
   }],
   playUrl: 'https://tanzyyy-dev.github.io/ukabete-asobo/',
   repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
   releasedAt: '2026-11-17',
   updatedAt: '2026-11-19',
-  version: '1.1.1',
+  version: '2.0.0',
   updateNotes: [
+    {
+      ja: 'お絵描きの操作性を大幅に改善',
+      en: 'Significantly improved the drawing controls.'
+    },
+    {
+      ja: '浮かぶキャラクターに性格を追加',
+      en: 'Added personalities to floating characters.'
+    },
+    {
+      ja: '時間経過で発生するイベントを追加',
+      en: 'Added events that trigger over time.'
+    },
     {
       ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加（ver.1.1.0）',
       en: 'Added strong wind, rain, and nighttime events that occur every minute (ver.1.1.0).'
