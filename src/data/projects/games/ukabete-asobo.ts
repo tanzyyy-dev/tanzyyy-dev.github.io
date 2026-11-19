@@ -26,16 +26,20 @@ export const ukabeteAsobo: Game = {
   playUrl: 'https://tanzyyy-dev.github.io/ukabete-asobo/',
   repositoryUrl: 'https://github.com/tanzyyy-dev/ukabete-asobo',
   releasedAt: '2026-11-17',
-  updatedAt: '2026-11-18',
-  version: '1.1.0',
+  updatedAt: '2026-11-19',
+  version: '1.1.1',
   updateNotes: [
     {
-      ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加',
-      en: 'Added strong wind, rain, and nighttime events that occur every minute.'
+      ja: '1分ごとに強風・雨・夜のイベントが発生する機能を追加（ver.1.1.0）',
+      en: 'Added strong wind, rain, and nighttime events that occur every minute (ver.1.1.0).'
     },
     {
-      ja: 'ピンチ操作による画面の拡大・縮小を無効化',
-      en: 'Disabled pinch-to-zoom gestures.'
+      ja: 'ピンチ操作による画面の拡大・縮小を無効化（ver.1.1.0）',
+      en: 'Disabled pinch-to-zoom gestures (ver.1.1.0).'
+    },
+    {
+      ja: 'Safariのダブルタップによる画面の拡大を無効化（ver.1.1.1）',
+      en: 'Disabled double-tap zoom in Safari (ver.1.1.1).'
     }
   ]
 };
