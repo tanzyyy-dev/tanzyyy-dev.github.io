@@ -3,16 +3,19 @@ import type { Lang } from '../data/content';
 import type { Tool, Content } from '../data/types';
 import { availabilityStatusLabels } from '../data/games';
 import { projectUrl } from '../data/projects';
-interface Props { project: Tool | Content; lang: Lang; analyticsSource?: string }
-const { project, lang, analyticsSource } = Astro.props;
+import ProjectCardFeature from './ProjectCardFeature.astro';
+interface Props { project: Tool | Content; lang: Lang; showFeature?: boolean; analyticsSource?: string }
+const { project, lang, showFeature = false, analyticsSource } = Astro.props;
 const image = project.media.find(item => item.type === 'image');
-const category = project.category === 'tools' ? 'Tools' : 'Contents';
+const genre = project.category === 'contents' ? project.genre?.[lang] : undefined;
+const format = project.category === 'contents' ? project.categoryLabel?.[lang] ?? 'Contents' : 'Tools';
 ---
 <a class="home-game-entry" href={projectUrl(project, lang)} data-ga-event="project_card_click" data-ga-project={project.slug} data-ga-source={analyticsSource} aria-label={`${project.title} — ${lang === 'ja' ? '作品詳細を見る' : 'View project details'}`}>
   <div class="home-game-image">{image ? <img src={image.src} alt={image.alt[lang]} loading="lazy" width="144" height="144"/> : <span aria-hidden="true">{project.title}</span>}</div>
   <div class="home-game-copy">
+    {showFeature && <ProjectCardFeature project={project}/>}
     <h3 class="card-title-with-status"><span class={`availability-badge status-${project.availabilityStatus}`}>{availabilityStatusLabels[project.availabilityStatus][lang]}</span><span>{project.title}</span></h3>
-    <div class="home-game-meta"><span class="home-game-tag genre">{category}</span></div>
+    <div class="home-game-meta">{genre && <span class="home-game-tag genre">{genre}</span>}<span class="home-game-tag format">{format}</span></div>
     <p class="home-game-summary">{project.summary[lang]}</p>
   </div>
 </a>
@@ -27,12 +30,7 @@ const category = project.category === 'tools' ? 'Tools' : 'Contents';
 .home-game-image{display:block;aspect-ratio:1;overflow:hidden;border-radius:7px;background:#292B2D;color:#F0EFEB;text-decoration:none}
 .home-game-image img{display:block;width:100%;height:100%;object-fit:cover}
 .home-game-image span{display:flex;align-items:center;justify-content:center;height:100%;padding:8px;font-size:12px;text-align:center}
-.home-game-copy{min-width:0}.home-game-status{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:7px}
-.home-game-badge{display:inline-block;border:1px solid #B7B9B6;border-radius:999px;padding:3px 9px;background:#B58A76;color:#fff;font-size:10px;font-weight:800;letter-spacing:.04em;line-height:1.4}
-.home-game-badge.new-release{background:#F1E5DC;border-color:#B58A76;color:#784F3C}
-.home-game-badge.update{background:#E7EFEF;border-color:#7C9C9B;color:#466B6A}
-.home-game-badge.recommended{background:#B58A76;border-color:#B58A76;color:#fff}
-.home-game-status time{color:#777A7B;font-size:11px;font-variant-numeric:tabular-nums}
+.home-game-copy{min-width:0}
 h3{margin:0 0 5px;font-size:clamp(15px,1.5vw,19px);line-height:1.3;letter-spacing:-.025em;overflow-wrap:anywhere}
 
 .home-game-meta{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}.home-game-tag{display:inline-block;padding:3px 9px;border:1.5px solid;border-radius:6px;font-size:11px;font-weight:700;line-height:1.5}.home-game-tag.genre{background:#EBD6C9;border-color:#D1A993;color:#76513F}.home-game-tag.format{background:#E1E9E7;border-color:#9EBBB4;color:#365E59}

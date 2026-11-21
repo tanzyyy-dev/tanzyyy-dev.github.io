@@ -27,7 +27,7 @@ const paw = '<svg viewBox="0 0 24 24" width="23" height="23" style="width:23px;h
     <h2 id="news-heading" class="section-heading"><Fragment set:html={paw}/> News</h2>
     <div class="news-list" data-news-list>
       {news.map((item,index) => <div class="news-entry" data-news-item data-news-date={item.date || ''} data-news-feature={item.feature} data-news-index={index}>
-        {item.project.category === 'games' ? <HomeGameCard game={item.project} lang={lang} showAccess={true} analyticsSource="home_news"/> : <OtherProjectCard project={item.project} lang={lang} analyticsSource="home_news"/>}
+        {item.project.category === 'games' ? <HomeGameCard game={item.project} lang={lang} showAccess={true} analyticsSource="home_news"/> : <OtherProjectCard project={item.project} lang={lang} showFeature={true} analyticsSource="home_news"/>}
       </div>)}
       <p class="empty-message" data-news-empty hidden>{ja ? '現在、お知らせはありません。' : 'No news at the moment.'}</p>
     </div>

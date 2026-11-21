@@ -1,0 +1,17 @@
+---
+import type { Project } from '../data/types';
+interface Props { project: Project }
+const { project } = Astro.props;
+const reason = project.homeFeature;
+const badge = reason === 'new-release' ? 'NEW RELEASE' : reason === 'update' ? 'UPDATE' : 'RECOMMENDED';
+const date = reason === 'new-release' ? project.releasedAt : reason === 'update' ? project.updatedAt : null;
+---
+{reason && <div class="home-game-status"><span class:list={['home-game-badge', reason]}>{badge}</span>{date && <time datetime={date}>{date.replaceAll('-', '.')}</time>}</div>}
+<style>
+.home-game-status{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:7px}
+.home-game-badge{display:inline-block;border:1px solid #B7B9B6;border-radius:999px;padding:3px 9px;background:#B58A76;color:#fff;font-size:10px;font-weight:800;letter-spacing:.04em;line-height:1.4}
+.home-game-badge.new-release{background:#F1E5DC;border-color:#B58A76;color:#784F3C}
+.home-game-badge.update{background:#E7EFEF;border-color:#7C9C9B;color:#466B6A}
+.home-game-badge.recommended{background:#B58A76;border-color:#B58A76;color:#fff}
+.home-game-status time{color:#777A7B;font-size:11px;font-variant-numeric:tabular-nums}
+</style>
